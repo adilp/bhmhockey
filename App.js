@@ -9,6 +9,8 @@ import Signup from './src/pages/Signup';
 import Firebase from './src/Firebase';
 import Event from './src/pages/Event';
 import AuthLoading from './src/pages/AuthLoading';
+import Settings from './src/pages/Settings';
+import NewEvent from './src/pages/NewEvent';
 
 
 interface AppState {
@@ -45,62 +47,36 @@ componentWillMount(){
     }
   })
 }
-//   constructor(props){
-//   super(props);
-//     this.state = {
-//       user:{},
-//     }
-// }
-
-// componentDidMount(){
-  
-// }
-
-// authListner() {
-//   Config.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       this.setState({ user });
-//     } else {
-//       this.setState({user: null});
-//     }
-//   });
-// }
-
 
   render() {
-     //Check user state render conditionally either login page or home page
-      // if (this.state.isUserAuthenticated == true) {
-      //   return(<AppContainerHome />);
-        
-      // } else {
+     
          return(<AppContainer />);
-      // }
+      
   }
 }
 
+const HomeTabNavigator = createBottomTabNavigator({
+  Home,
+  Settings
+});
 
 
 //If user is not logged in
-const AppStackNavigator = createStackNavigator({
+const AppStackNavigator = createSwitchNavigator({
   Home: {
-    screen: Login,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Schedules',  // Title to appear in status bar
-      headerLeft: <Button onPress={() => props.navigation.navigate('DrawerOpen')} title= "=" />
-    })
-    
+    screen: Login,  
   },
   Signup: { 
     screen: Signup,
     navigationOptions: {
-      //title: 'Registration'
-      header: null
+      //title: 'Registration',
+      //header: null
     }
   },
   Main: {
-    screen: Home,
+    screen: HomeTabNavigator,
     navigationOptions: {
-      header: null,
+      
     }
   },
   Event: {
@@ -108,23 +84,17 @@ const AppStackNavigator = createStackNavigator({
     navigationOptions: {
       title: "Pickup",
     }
+  },
+  NewEvent: {
+    screen: NewEvent,
+    navigationOptions: {
+      title: "New Event"
+    }
   }
 });
 
 const AppContainer = createAppContainer(AppStackNavigator);
 
-//If user is logged in redirect to home page
-const AppStackNavigatorHome = createStackNavigator({
-  Home: Home,
-  Signup: { 
-    screen: Signup,
-    navigationOptions: {
-      title: 'Registration'
-    }
-  },
-});
-
-const AppContainerHome = createAppContainer(AppStackNavigatorHome);
 
 const styles = StyleSheet.create({
   container: {

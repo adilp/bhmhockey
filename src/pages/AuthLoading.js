@@ -2,14 +2,27 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    ActivityIndicator,
+    AsyncStorage
 } from 'react-native';
 
 class AuthLoading extends Component {
+
+    constructor(){
+        super()
+        this.loadApp()
+    }
+
+    loadApp = async() => {
+        const userToken = await AsyncStorage.getItem('userToken')
+
+        this.props.navigation.navigate(userToken ? 'App' : 'Auth')
+    }
     render () {
         return(
             <View style={styles.container}>
-                <Text>AuthLoading</Text>
+                <ActivityIndicator />
             </View>
         );
     }

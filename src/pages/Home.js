@@ -4,7 +4,10 @@ import {
     StyleSheet,
     Button,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    Alert
 } from "react-native";
 
 import Form from '../components/Form';
@@ -13,13 +16,19 @@ import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
-import { TouchableOpacity } from "react-native-gesture-handler";
+//import { TouchableOpacity } from "react-native-gesture-handler";
 
 
 
 class Home extends Component {
     logout() {
         //Firebase.auth.signOut();
+    }
+
+    SampleFunction = () => {
+
+        this.props.navigation.navigate('Home');
+
     }
 
     renderHeader() {
@@ -29,19 +38,19 @@ class Home extends Component {
             <Block flex={0.42} column style={{ paddingHorizontal: 15 }}>
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
                     <Block center>
-                    
+
                         <Text h3 white style={{ marginRight: -(25 + 5) }}>
                             Pickup schedule
                         </Text>
-                        
+
                     </Block>
                 </Block>
                 <Block card shadow color="white" style={styles.headerChart}>
                     <Block collumn center>
-                    
+
                         <Text h3> Monday 4/15/19 </Text>
                         <Text h3> 7:00pm </Text>
-                        
+
                     </Block>
                     <Block row space="between" style={{ paddingHorizontal: 30 }}>
                         <Block flex={false} row center>
@@ -162,7 +171,7 @@ class Home extends Component {
                             organizer: request.organizer,
                             availability: request.availability,
 
-                          })}>
+                        })}>
                             {this.renderRequest(request)}
                         </TouchableOpacity>
                     ))}
@@ -173,8 +182,18 @@ class Home extends Component {
     render() {
         return (
             <SafeAreaView style={styles.safe} >
+                
                 {this.renderHeader()}
                 {this.renderRequests()}
+
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
+                    <Image source={{uri : 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png'}} 
+          
+                    style={styles.FloatingButtonStyle} />
+                    </TouchableOpacity>
+                   
+
+                
             </SafeAreaView>
             // <View style={styles.container}>
 
@@ -253,5 +272,23 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold'
     },
+
+    TouchableOpacityStyle: {
+
+        position: 'absolute',
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 30,
+        bottom: 10,
+    },
+
+    FloatingButtonStyle: {
+
+        resizeMode: 'contain',
+        width: 50,
+        height: 50,
+    }
 
 });
