@@ -6,6 +6,7 @@ import {
     AsyncStorage,
     SafeAreaView,
     ScrollView,
+    TextInput
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -16,11 +17,18 @@ import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+
 class NewEvent extends Component {
 
-    constructor() {
-        super()
-        //this.loadApp()
+    constructor(props) {
+        super(props)
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            level: '',
+        };
     }
 
     // loadApp = async() => {
@@ -32,12 +40,14 @@ class NewEvent extends Component {
         //const { user } = this.props;
 
         return (
-            <Block flex={0.15} column style={{ paddingHorizontal: 15 }}>
+            <Block flex={0.1} color="gray2" column style={{ paddingHorizontal: 15 }}>
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
-                    <Block center>
-                        <Text h3 white style={{ marginRight: -(25 + 5) }}>
-                            NewEvent
+                    <Block >
+                        <Text h2 bold accent style={{ marginRight: -(25 + 5) }}>
+                            New Event
                         </Text>
+
+
                     </Block>
                 </Block>
 
@@ -51,88 +61,16 @@ class NewEvent extends Component {
 
 
             <Block flex={0.9} color="gray2" style={styles.requests}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <TouchableOpacity>
-                        <Block row card shadow color="white" style={styles.request} >
-                            <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                                <Block flex={false} row center>
-                                    <Text h3 > Account </Text>
-                                </Block>
+                <Text h3 accent style={{ marginRight: -(25 + 5), marginTop: 5 }}>
+                    Pick date
+        </Text>
 
-                                <Block flex={false} row center>
-                                    <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                        >
-                            </Text>
+                <TextInput style={styles.input}
+                    underlineColorAndroid="transparent"
+                    placeholder="First Name"
+                    placeholderTextColor="white"
+                />
 
-                                </Block>
-                            </Block>
-                        </Block>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                    <Block row card shadow color="white" style={styles.request} >
-                        <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                            <Block flex={false} row center>
-                                <Text h3 > Payment </Text>
-                            </Block>
-
-                            <Block flex={false} row center>
-                                <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                    >
-                    </Text>
-
-                            </Block>
-                        </Block>
-                    </Block>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                    <Block row card shadow color="white" style={styles.request} >
-                        <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                            <Block flex={false} row center>
-                                <Text h3 > Notifications </Text>
-                            </Block>
-
-                            <Block flex={false} row center>
-                                <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                    >
-                    </Text>
-
-                            </Block>
-                        </Block>
-                    </Block>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                    <Block row card shadow color="white" style={styles.request} >
-                        <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                            <Block flex={false} row center>
-                                <Text h3 > About </Text>
-                            </Block>
-
-                            <Block flex={false} row center>
-                                <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                    >
-                    </Text>
-
-                            </Block>
-                        </Block>
-                    </Block>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                    <Block row card shadow color="white" style={styles.request} >
-                        <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                            <Block flex={false} row center>
-                                <Text h3 > Logout </Text>
-                            </Block>
-
-                            <Block flex={false} row center>
-                                <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                    >
-                    </Text>
-
-                            </Block>
-                        </Block>
-                    </Block>
-                    </TouchableOpacity>
-                </ScrollView>
             </Block>
 
         );
@@ -218,5 +156,17 @@ const styles = StyleSheet.create({
     requestsHeader: {
         paddingHorizontal: 20,
         paddingBottom: 15
+    },
+    inputBox: {
+        width: 300
+    },
+    input: {
+        width: 300,
+        height: 50,
+        backgroundColor: theme.colors.accent,
+        borderRadius: 5,
+        paddingHorizontal: 16,
+        fontSize: 16,
+        marginVertical: 16
     },
 });

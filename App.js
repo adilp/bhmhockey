@@ -62,9 +62,13 @@ const HomeTabNavigator = createBottomTabNavigator({
 
 
 //If user is not logged in
-const AppStackNavigator = createSwitchNavigator({
+const AppStackNavigator = createStackNavigator({
   Home: {
-    screen: Login,  
+    screen: Login, 
+    navigationOptions: {
+      //title: 'Registration',
+      header: null
+    } 
   },
   Signup: { 
     screen: Signup,
@@ -76,7 +80,7 @@ const AppStackNavigator = createSwitchNavigator({
   Main: {
     screen: HomeTabNavigator,
     navigationOptions: {
-      
+      header: null
     }
   },
   Event: {

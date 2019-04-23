@@ -7,7 +7,8 @@ import {
     ScrollView,
     Image,
     TouchableOpacity,
-    Alert
+    Alert,
+    Animated
 } from "react-native";
 
 import Form from '../components/Form';
@@ -21,6 +22,17 @@ import App from "../../App";
 
 
 class Home extends Component {
+
+    state = {
+        animateItem: new Animated.Value(0),
+    }
+
+    componentWillMount() {
+        Animated.timing(this.state.animateItem, {
+            toValue: 1,
+            duration: 200
+        }).start
+    }
     logout() {
         //Firebase.auth.signOut();
     }
@@ -160,35 +172,47 @@ class Home extends Component {
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
                     <Text light>Upcoming games</Text>
                 </Block>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    {requests.map(request => (
-                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`} onPress={() => this.props.navigation.navigate('Event', {
-                            id: request.id,
-                            spots: request.spots,
-                            date: request.date,
-                            puckdrop: request.puckdrop,
-                            level: request.level,
-                            organizer: request.organizer,
-                            availability: request.availability,
 
-                        })}>
-                            {this.renderRequest(request)}
-                        </TouchableOpacity>
-                    ))}
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  {/*  <Animated.View style={{
+                        margin: 5,
+                        transform: [{
+                            translateY: this.state.animateItem.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [700, 1]
+                            })
+                        }]
+                    }}> */} 
+                        {requests.map(request => (
+                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`} onPress={() => this.props.navigation.navigate('Event', {
+                                id: request.id,
+                                spots: request.spots,
+                                date: request.date,
+                                puckdrop: request.puckdrop,
+                                level: request.level,
+                                organizer: request.organizer,
+                                availability: request.availability,
+
+                            })}>
+                                {this.renderRequest(request)}
+                            </TouchableOpacity>
+                        ))}
+                    {/* </Animated.View> */}
                 </ScrollView>
+
             </Block>
         );
     }
     render() {
         return (
             <SafeAreaView style={styles.safe} >
-                
+
                 {this.renderHeader()}
                 {this.renderRequests()}
 
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
-                    <Image source={{uri : 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png'}} 
-          
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
+                    <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
+
                     style={styles.FloatingButtonStyle} />
                     </TouchableOpacity>
                    
