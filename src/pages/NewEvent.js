@@ -7,6 +7,7 @@ import {
     SafeAreaView,
     ScrollView,
     TextInput,
+    Picker
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -31,7 +32,9 @@ class NewEvent extends Component {
             password: '',
             level: '',
             isVisible: false,
-            chosenDateTime: 'Pick a Date'
+            chosenDateTime: 'Pick a Date',
+            availSpots: 0,
+            level: ''
         };
     }
 
@@ -61,7 +64,7 @@ class NewEvent extends Component {
 
     handlePicker = (datetime) => {
         this.setState({
-            isVisible:false,
+            isVisible: false,
             chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a')
         })
     }
@@ -84,9 +87,8 @@ class NewEvent extends Component {
 
 
             <Block flex={0.9} color="gray2" style={styles.requests}>
-            <Text h1 primary bold> Date</Text>
-                <Text h3 accent style={{ marginRight: -(25 + 5), marginTop: 5 }}>
-                </Text>
+                <Text h3 primary caption bold h3 accent> Date</Text>
+
                 <TouchableOpacity
                     style={styles.button}
                     onPress={this.showPicker}
@@ -94,11 +96,49 @@ class NewEvent extends Component {
                     <Text style={styles.buttonText}> {this.state.chosenDateTime}</Text>
                 </TouchableOpacity>
 
-                <TextInput style={styles.input}
-                    underlineColorAndroid="transparent"
-                    placeholder="First Name"
-                    placeholderTextColor="white"
-                />
+                <Block flex={false}>
+                    <Text h3 primary caption bold h3 accent style={{ marginRight: -(25 + 5), marginTop: 15 }}> NUMBER OF SPOTS</Text>
+                    <TextInput style={styles.input}
+                        underlineColorAndroid="transparent"
+                        keyboardType='numeric'
+                        placeholder="Number of spots"
+                        placeholderTextColor="gray"
+                        onChangeText={(text) => this.setState({ availSpots: text })}
+                    />
+                </Block>
+
+                <Block flex={false} row style={{ marginTop: 15 }}>
+                    <Text h3 primary caption bold h3 accent style={{ marginRight: -(25 + 5) }}> LEVEL</Text>
+                    <Block center>
+                    <Picker
+                        selectedValue={this.state.level}
+                        style={{height: 50, width: 100}}
+                        onValueChange={(itemValue, itemIndex) =>
+                        this.setState({level: itemValue})
+                        }>
+                        <Picker.Item label="All Levels" value="All" />
+                        <Picker.Item label="Gold" value="Gold" />
+                        <Picker.Item label="Silver" value="Silver" />
+                        <Picker.Item label="Bronze" value="Bronze" />
+                        <Picker.Item label="D-League" value="Dev" />
+                    </Picker>
+                    </Block>
+                    
+                    
+                </Block>
+
+                <Block flex={1} center style={{  justifyContent: 'flex-end', marginBottom: 36}}>
+                <TouchableOpacity
+                style={styles.button2}
+                onPress={() => this.props.navigation.navigate('Main')}
+                
+            >
+                <Text style={styles.signupText}> ADD EVENT</Text>
+            </TouchableOpacity>
+                </Block>
+
+                
+
 
                 <DateTimePicker
                     isVisible={this.state.isVisible}
@@ -110,6 +150,7 @@ class NewEvent extends Component {
 
                 />
 
+
             </Block>
 
         );
@@ -118,7 +159,7 @@ class NewEvent extends Component {
     render() {
         return (
             <SafeAreaView style={styles.safe} >
-                
+
                 {this.renderRequests()}
             </SafeAreaView>
         );
@@ -178,10 +219,14 @@ const styles = StyleSheet.create({
     },
     signupText: {
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     button: {
-        backgroundColor: '#3A3232',
+        //backgroundColor: '#3A3232',
+        borderColor: theme.colors.accent,
+        borderRadius: 5,
+        borderWidth: 0.5,
         width: 300,
         borderRadius: 5,
         paddingVertical: 10
@@ -189,7 +234,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         fontWeight: '500',
-        color: 'white',
+        color: 'black',
         textAlign: 'center'
     },
     requestsHeader: {
@@ -202,10 +247,21 @@ const styles = StyleSheet.create({
     input: {
         width: 300,
         height: 50,
-        backgroundColor: theme.colors.accent,
+        //backgroundColor: theme.colors.accent,
+        borderColor: theme.colors.accent,
         borderRadius: 5,
         paddingHorizontal: 16,
+        borderWidth: 0.5,
         fontSize: 16,
-        marginVertical: 16
+        marginVertical: 1
+    },
+    button2: {
+        backgroundColor: '#3A3232',
+        borderColor: theme.colors.accent,
+        borderRadius: 5,
+        borderWidth: 0.5,
+        width: 300,
+        borderRadius: 5,
+        paddingVertical: 10
     },
 });

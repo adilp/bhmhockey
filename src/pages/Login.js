@@ -11,13 +11,14 @@ import {
 import Form from '../components/Form';
 
 import Logo from '../components/Logo';
-import Firebase from "../Firebase";
+import * as firebase from 'firebase';
+import AuthLoading from './AuthLoading';
 
 class Login extends Component {
 
     componentDidMount(){
         //this._logoutPress()
-        this._otherPress()
+        //this._otherPress()
         //console.log("this.state.email");
 
       }
@@ -27,17 +28,21 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            loading: false
             
         };
     }
 
-    _handlePress(){
+    async _handlePress(){
+        this.setState({loading: true})
         console.log(this.state.password);
         console.log(this.state.email);
         
         try {
-            Firebase.auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(function (user){
+            await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function (user){
                 console.log(user)
+                this.setState({loading: false})
+                
             })
         }catch (error) {
             console.log(error.toString());
@@ -47,21 +52,21 @@ class Login extends Component {
 
     _otherPress(){
 
-        var user = Firebase.auth.currentUser;
+        // var user = Firebase.auth.currentUser;
 
-        if (user != null){
-            console.log(user.uid)
-        }
-        console.log(user)
+        // if (user != null){
+        //     console.log(user.uid)
+        // }
+        // console.log(user)
 
     }
 
     _logoutPress(){
-        this.props.navigation.navigate('Main')
-        // var user = Firebase.auth.currentUser;
+        //this.props.navigation.navigate('Main')
+        // var user = firebase.auth.currentUser;
         // Firebase.auth.signOut();
         // console.log("signedout");
-        // Firebase.auth.onAuthStateChanged(function(user){
+        // firebase.auth.onAuthStateChanged(function(user){
         //     if (user){
         //         console.log("logged in")
         //     } else {
@@ -75,6 +80,11 @@ class Login extends Component {
     
 
     render() {
+        if (this.state.loading) {
+            return(
+                <AuthLoading />
+            );
+        } else {
         return (
             
             <View style={styles.container}>
@@ -93,13 +103,14 @@ class Login extends Component {
                     onChangeText={(text) => this.setState({ password: text })}
 
                 />
-                {/* <TouchableOpacity
+                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => this._handlePress()}
                     
                 >
                     <Text style={styles.buttonText}> Sign in</Text>
-                </TouchableOpacity>*/}
+                </TouchableOpacity>
+                {/* login button bypass firebase 
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => this._logoutPress()}
@@ -107,6 +118,9 @@ class Login extends Component {
                 >
                     <Text style={styles.buttonText}> Sign in</Text>
                 </TouchableOpacity>
+                
+                */}
+                
 
                 <View style={styles.signupTextCont}>
                     <Text> Dont have an acount yet? </Text>
@@ -135,6 +149,7 @@ class Login extends Component {
 
         );
     }
+}
 }
 export default Login;
 

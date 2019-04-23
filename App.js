@@ -6,51 +6,60 @@ import { createStackNavigator, createAppContainer, createBottomTabNavigator, cre
 import Login from './src/pages/Login';
 import Home from './src/pages/Home';
 import Signup from './src/pages/Signup';
-import Firebase from './src/Firebase';
+//import Firebase from './src/Firebase';
 import Event from './src/pages/Event';
 import AuthLoading from './src/pages/AuthLoading';
 import Settings from './src/pages/Settings';
 import NewEvent from './src/pages/NewEvent';
+import * as firebase from 'firebase';
+import Api from './src/Api'  
 
 
-interface AppState {
-  authStatusReported: boolean,
-  isUserAuthenticated: Boolean,
-}
+
+
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isLoadingComplete: false,
+      isAuthenticationReady: false,
+      isAuthenticated: false,
+    }
+
+    console.log(this.state.isAuthenticated);
+
+    //Initialize
+    if (!firebase.apps.length) {
+      firebase.initializeApp(Api.FirebaseConfig)
+    }
+
+    
+    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
 
 }
-  state: AppState = {
-    authStatusReported: false,
-    isUserAuthenticated: false,
-  }
-componentWillMount(){
-  Firebase.init();
-  console.log("componentwillMount");
-  
-  Firebase.auth.onAuthStateChanged(user => {
-    if (user) {
-      this.setState({
-        isUserAuthenticated: true
-      });
-      console.log("in");
-    } else {
-      this.setState({
-        isUserAuthenticated: false
-      });
-      console.log("out");
 
-    }
-  })
+onAuthStateChanged = (user) => {
+  this.setState({isAuthenticationReady: true});
+  this.setState({isAuthenticated: !!user});
+}
+
+componentWillMount(){
+  //Firebase.init();
+  console.log("componentwillMount");
 }
 
   render() {
-     
-         return(<AppContainer />);
+     if (this.state.isAuthenticated) {
+       return(<HomeAppContainer />);
+     } else {
+      return(
+        <AppContainer />
+        );
+     }
+         
+         
       
   }
 }
@@ -98,6 +107,43 @@ const AppStackNavigator = createStackNavigator({
 });
 
 const AppContainer = createAppContainer(AppStackNavigator);
+//If user logged in
+const HomeStackNavigator = createStackNavigator({
+  Home: {
+    screen: HomeTabNavigator, 
+    navigationOptions: {
+      //title: 'Registration',
+      header: null
+    } 
+  },
+  Signup: { 
+    screen: Signup,
+    navigationOptions: {
+      //title: 'Registration',
+      //header: null
+    }
+  },
+  Main: {
+    screen: HomeTabNavigator,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Event: {
+    screen: Event,
+    navigationOptions: {
+      title: "Pickup",
+    }
+  },
+  NewEvent: {
+    screen: NewEvent,
+    navigationOptions: {
+      title: "New Event"
+    }
+  }
+});
+
+const HomeAppContainer = createAppContainer(HomeStackNavigator);
 
 
 const styles = StyleSheet.create({

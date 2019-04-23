@@ -15,6 +15,7 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as firebase from 'firebase';
 
 class AuthLoading extends Component {
 
@@ -28,6 +29,12 @@ class AuthLoading extends Component {
 
     //     this.props.navigation.navigate(userToken ? 'App' : 'Auth')
     // }
+
+    _logout(){
+        //var user = firebase.auth.currentUser;
+        firebase.auth().signOut();
+        console.log("signedout");
+    }
     renderHeader() {
         //const { user } = this.props;
 
@@ -44,6 +51,8 @@ class AuthLoading extends Component {
             </Block>
         );
     }
+
+    
 
     renderRequests() {
 
@@ -116,7 +125,9 @@ class AuthLoading extends Component {
                         </Block>
                     </Block>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={() => this._logout()}
+                    >
                     <Block row card shadow color="white" style={styles.request} >
                         <Block row space="between" style={{ paddingHorizontal: 30 }}>
                             <Block flex={false} row center>

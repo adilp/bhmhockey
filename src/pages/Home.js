@@ -57,6 +57,9 @@ class Home extends Component {
 
                     </Block>
                 </Block>
+                <TouchableOpacity  style={{ flex: 1}}>
+                
+                
                 <Block card shadow color="white" style={styles.headerChart}>
                     <Block collumn center>
 
@@ -96,6 +99,7 @@ class Home extends Component {
                     <Block flex={1}>
                     </Block>
                 </Block>
+                </TouchableOpacity>
             </Block>
         );
     }
