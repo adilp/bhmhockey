@@ -63,7 +63,7 @@ class NewEvent extends Component {
             <Block flex={0.9} color="gray2" style={styles.requests}>
                 <Text h3 accent style={{ marginRight: -(25 + 5), marginTop: 5 }}>
                     Pick date
-        </Text>
+                </Text>
 
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"
