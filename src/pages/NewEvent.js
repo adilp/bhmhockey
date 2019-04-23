@@ -16,6 +16,8 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from 'moment';
 
 
 class NewEvent extends Component {
@@ -28,6 +30,8 @@ class NewEvent extends Component {
             email: '',
             password: '',
             level: '',
+            isVisible: false,
+            chosenDateTime: ''
         };
     }
 
@@ -55,6 +59,25 @@ class NewEvent extends Component {
         );
     }
 
+    handlePicker = (datetime) => {
+        this.setState({
+            isVisible:false,
+            chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a')
+        })
+    }
+
+    hidePicker = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
+
+    showPicker = () => {
+        this.setState({
+            isVisible: true
+        })
+    }
+
     renderRequests() {
 
         return (
@@ -62,13 +85,27 @@ class NewEvent extends Component {
 
             <Block flex={0.9} color="gray2" style={styles.requests}>
                 <Text h3 accent style={{ marginRight: -(25 + 5), marginTop: 5 }}>
-                    Pick date
+                {this.state.chosenDateTime}
                 </Text>
+
+                <TouchableOpacity onPress={this.showPicker}>
+                    <Text> Date  </Text>
+                </TouchableOpacity>
 
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"
                     placeholder="First Name"
                     placeholderTextColor="white"
+                />
+
+                <DateTimePicker
+                    isVisible={this.state.isVisible}
+                    onConfirm={this.handlePicker}
+                    onCancel={this.hidePicker}
+                    mode={'datetime'}
+                    is24Hour={false}
+
+
                 />
 
             </Block>
