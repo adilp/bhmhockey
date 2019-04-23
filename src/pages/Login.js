@@ -46,6 +46,7 @@ class Login extends Component {
             })
         }catch (error) {
             console.log(error.toString());
+            this.setState({loading: false})
         }
     }
 
