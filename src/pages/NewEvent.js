@@ -6,7 +6,7 @@ import {
     AsyncStorage,
     SafeAreaView,
     ScrollView,
-    TextInput
+    TextInput,
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -31,7 +31,7 @@ class NewEvent extends Component {
             password: '',
             level: '',
             isVisible: false,
-            chosenDateTime: ''
+            chosenDateTime: 'Pick a Date'
         };
     }
 
@@ -84,12 +84,14 @@ class NewEvent extends Component {
 
 
             <Block flex={0.9} color="gray2" style={styles.requests}>
+            <Text h1 primary bold> Date</Text>
                 <Text h3 accent style={{ marginRight: -(25 + 5), marginTop: 5 }}>
-                {this.state.chosenDateTime}
                 </Text>
-
-                <TouchableOpacity onPress={this.showPicker}>
-                    <Text> Date  </Text>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.showPicker}
+                >
+                    <Text style={styles.buttonText}> {this.state.chosenDateTime}</Text>
                 </TouchableOpacity>
 
                 <TextInput style={styles.input}
@@ -116,7 +118,7 @@ class NewEvent extends Component {
     render() {
         return (
             <SafeAreaView style={styles.safe} >
-                {this.renderHeader()}
+                
                 {this.renderRequests()}
             </SafeAreaView>
         );
@@ -181,7 +183,7 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#3A3232',
         width: 300,
-        borderRadius: 25,
+        borderRadius: 5,
         paddingVertical: 10
     },
     buttonText: {
