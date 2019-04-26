@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import Form from '../components/Form';
-import Firebase from "../Firebase";
+import * as firebase from 'firebase';
 
 
 class Signup extends Component {
@@ -22,26 +22,18 @@ class Signup extends Component {
             email: '',
             password: '',
             level: '',
+            uid: ''
         };
     }
 
-    async _handlePress(): Promise<void> {
-        console.log(this.state.password);
-        console.log(this.state.firstName);
-        console.log(this.state.lastName);
-        console.log(this.state.email);
-        try {
-            await Firebase.auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-        } catch (e) {
-            alert(e);
-        }
-    }
+    writeUserData(email,fname,lname,level,uid){
 
-    writeUserData(email,fname,lname){
-        Firebase.database().ref('UsersList/').push({
+        
+        firebase.database().ref('UsersList/').child("users").child(uid).push({
             email,
             fname,
-            lname
+            lname,
+            level
         }).then((data)=>{
             //success callback
             console.log('data ' , data)
@@ -50,6 +42,44 @@ class Signup extends Component {
             console.log('error ' , error)
         })
     }
+
+    async _handlePress(): Promise<void> {
+        // console.log(this.state.password);
+        // console.log(this.state.firstName);
+        // console.log(this.state.lastName);
+        // console.log(this.state.email);
+        let oldstate = this;
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
+                oldstate.setState({uid: user.user.uid});
+                firebase.database().ref('UsersList/').child("users").child(user.user.uid).set({
+                    email: oldstate.state.email,
+                    firstname: oldstate.state.firstName,
+                    lastname: oldstate.state.lastName,
+                    level: oldstate.state.level
+                }).then((data)=>{
+                    //success callback
+                    console.log('data ' , data)
+                }).catch((error)=>{
+                    //error callback
+                    console.log('error ' , error)
+                })
+                console.log('uid:', oldstate.state.uid);
+            })
+
+            //var user = firebase.auth.currentUser;
+            
+            
+            
+        } catch (e) {
+            alert(e);
+        }
+        //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
+
+        console.log("after login ",  this.state.uid)
+    }
+
+ 
 
     render() {
         return (
@@ -84,12 +114,12 @@ class Signup extends Component {
                     underlineColorAndroid="transparent"
                     placeholder="Playing experience"
                     placeholderTextColor="white"
-                    onChangeText={(text) => this.setState({ password: text })}
+                    onChangeText={(text) => this.setState({ level: text })}
 
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => this.writeUserData("email","this.state","firstName")}
+                    onPress={() => this._handlePress()}
                 >
                     <Text style={styles.buttonText}> {this.props.type}</Text>
                 </TouchableOpacity>

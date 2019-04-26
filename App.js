@@ -12,7 +12,8 @@ import AuthLoading from './src/pages/AuthLoading';
 import Settings from './src/pages/Settings';
 import NewEvent from './src/pages/NewEvent';
 import * as firebase from 'firebase';
-import Api from './src/Api'  
+import Api from './src/Api';
+//import AuthLoading from './AuthLoading';  
 
 
 
@@ -51,6 +52,7 @@ componentWillMount(){
 }
 
   render() {
+    
      if (this.state.isAuthenticated) {
        return(<HomeAppContainer />);
      } else {
