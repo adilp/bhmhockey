@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import Form from '../components/Form';
-import Firebase from "../Firebase";
+import * as firebase from "firebase";
 import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
@@ -28,6 +28,7 @@ class NewEvent extends Component {
         this.state = {
             firstName: '',
             lastName: '',
+            fullname:'',
             email: '',
             password: '',
             level: '',
@@ -130,7 +131,8 @@ class NewEvent extends Component {
                 <Block flex={1} center style={{  justifyContent: 'flex-end', marginBottom: 36}}>
                 <TouchableOpacity
                 style={styles.button2}
-                onPress={() => this.props.navigation.navigate('Main')}
+                //onPress={() => this.props.navigation.navigate('Main')}
+                onPress={() => this._handlePress()}
                 
             >
                 <Text style={styles.signupText}> ADD EVENT</Text>
@@ -155,6 +157,66 @@ class NewEvent extends Component {
 
         );
     }
+
+    async _handlePress(): Promise<void> {
+        // console.log(this.state.password);
+        // console.log(this.state.firstName);
+        // console.log(this.state.lastName);
+        // console.log(this.state.email);
+        let oldstate = this;
+        currentUser = firebase.auth().currentUser.uid;
+        console.log("after login ",  currentUser)
+        try {
+            
+                
+            firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
+                let firstName = (snapshot.val() && snapshot.val().firstname)
+                let lastName = (snapshot.val() && snapshot.val().lastname)
+                console.log("FirstName ",  firstName)
+
+                oldstate.setState({
+                    fullname: firstName + " " + lastName
+                })
+            })
+        
+    } catch (e) {
+        alert(e);
+    }
+    console.log("fullname ",  this.state.fullname)
+
+        try {
+            
+                
+                firebase.database().ref('Events/').push({
+                    chosenDate: oldstate.state.chosenDateTime,
+                    availableSpots: oldstate.state.availSpots,
+                    scheduler: oldstate.state.fullname,
+                    level: oldstate.state.level
+                }).then((data)=>{
+                    //success callback
+                    console.log('data ' , data)
+                }).catch((error)=>{
+                    //error callback
+                    console.log('error ' , error)
+                })
+                //console.log('uid:', oldstate.state.uid);
+            
+
+            //var user = firebase.auth.currentUser;
+            
+            
+            
+        } catch (e) {
+            alert(e);
+        }
+        
+        
+        //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
+
+        //console.log("after login ",  this.state.uid)
+    }
+
+
 
     render() {
         return (

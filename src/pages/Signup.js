@@ -26,22 +26,6 @@ class Signup extends Component {
         };
     }
 
-    writeUserData(email,fname,lname,level,uid){
-
-        
-        firebase.database().ref('UsersList/').child("users").child(uid).push({
-            email,
-            fname,
-            lname,
-            level
-        }).then((data)=>{
-            //success callback
-            console.log('data ' , data)
-        }).catch((error)=>{
-            //error callback
-            console.log('error ' , error)
-        })
-    }
 
     async _handlePress(): Promise<void> {
         // console.log(this.state.password);
@@ -52,7 +36,7 @@ class Signup extends Component {
         try {
             await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
                 oldstate.setState({uid: user.user.uid});
-                firebase.database().ref('UsersList/').child("users").child(user.user.uid).set({
+                firebase.database().ref('UsersList/').child(user.user.uid).set({
                     email: oldstate.state.email,
                     firstname: oldstate.state.firstName,
                     lastname: oldstate.state.lastName,
