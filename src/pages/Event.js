@@ -16,6 +16,7 @@ import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 
+
 class Event extends Component {
 
     constructor(props) {
@@ -26,6 +27,7 @@ class Event extends Component {
             message: 'default click state'
           }
     }
+
 
     
     logout() {

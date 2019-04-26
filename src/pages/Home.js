@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import Form from '../components/Form';
-import Firebase from "../Firebase";
+import firebase from "firebase";
 import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
@@ -37,6 +37,21 @@ class Home extends Component {
         //Firebase.auth.signOut();
     }
 
+    getEvents() {
+
+        firebase.database().ref('Events/').once("value").then(function(snapshot){
+            const id = snapshot.key;
+            let avail = (snapshot.val())
+            //let lastName = (snapshot.val() && snapshot.val().lastname)
+            console.log("FirstName ",  avail)
+
+            // oldstate.setState({
+            //     fullname: firstName + " " + lastName
+            // })
+        })
+        //console.log("events1: " , allEvents)
+    }
+
     SampleFunction = () => {
 
         this.props.navigation.navigate('Home');
@@ -57,7 +72,9 @@ class Home extends Component {
 
                     </Block>
                 </Block>
-                <TouchableOpacity  style={{ flex: 1}}>
+                <TouchableOpacity  style={{ flex: 1}}
+                onPress={this.getEvents()}
+                >
                 
                 
                 <Block card shadow color="white" style={styles.headerChart}>
