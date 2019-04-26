@@ -34,6 +34,7 @@ class NewEvent extends Component {
             level: '',
             isVisible: false,
             chosenDateTime: 'Pick a Date',
+            dateTime: '',
             availSpots: 0,
             level: ''
         };
@@ -66,8 +67,11 @@ class NewEvent extends Component {
     handlePicker = (datetime) => {
         this.setState({
             isVisible: false,
-            chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a')
+            chosenDateTime: datetime,
+            //chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a'),
+            //dateTime: datetime
         })
+        console.log(datetime)
     }
 
     hidePicker = () => {
@@ -189,6 +193,7 @@ class NewEvent extends Component {
                 
                 firebase.database().ref('Events/').push({
                     chosenDate: oldstate.state.chosenDateTime,
+                    //datetime: oldstate.state.dateTime,
                     availableSpots: oldstate.state.availSpots,
                     scheduler: oldstate.state.fullname,
                     level: oldstate.state.level
