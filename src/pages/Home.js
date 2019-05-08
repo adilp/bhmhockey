@@ -40,10 +40,13 @@ class Home extends Component {
     getEvents() {
 
         firebase.database().ref('Events/').once("value").then(function(snapshot){
-            const id = snapshot.key;
-            let avail = (snapshot.val())
+
+            
+
+            //const id = snapshot.key;
+            //let avail = (snapshot.val())
             //let lastName = (snapshot.val() && snapshot.val().lastname)
-            console.log("FirstName ",  avail)
+            console.log("Events ",  snapshot.val())
 
             // oldstate.setState({
             //     fullname: firstName + " " + lastName
