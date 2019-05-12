@@ -17,14 +17,18 @@ import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
+
 //import { TouchableOpacity } from "react-native-gesture-handler";
 
-
+const requests2 = [];
 
 class Home extends Component {
+    
 
     state = {
         animateItem: new Animated.Value(0),
+        requestsState: {}
+        
     }
 
     componentWillMount() {
@@ -38,20 +42,51 @@ class Home extends Component {
     }
 
     getEvents() {
+        //oldstate = this
+        let requestsState = [...this.state.requestsState];
+        var currentTime = Date.now();
+        var ref = firebase.database().ref('Events/');
+        var query = ref.orderByChild('availableSpots');
+        query.once('value', function(snapshot) {
+            //console.log(snapshot.val().availableSpots);
+            snapshot.forEach(function(child){
+                //console.log(child.key, child.val().availableSpots);
+                var time = child.val().epochTime;
+                if (currentTime<time) {
+                    console.log("each time ", time);
+                    //const object = {child.val()}
+                    requestsState.push({value: child.val()})
+                    this.setState({ requestsState })
+                    //console.log("objects", child.val())
+                    
+                }
+                
+                console.log("current time",currentTime)
 
-        firebase.database().ref('Events/').once("value").then(function(snapshot){
+            })
+        })
+        //console.log(requests2);
+        // firebase.database().ref.child('Events/').orderByChild('availableSpots').on("value", function(snapshot) {
+        //     console.log(snapshot.val());
+        //     snapshot.forEach(function(data) {
+        //         console.log(data.key);
+        //     });
+        // });
+
+        // firebase.database().ref('Events/').once("value").then(function(snapshot){
 
             
 
-            //const id = snapshot.key;
-            //let avail = (snapshot.val())
-            //let lastName = (snapshot.val() && snapshot.val().lastname)
-            console.log("Events ",  snapshot.val())
+        //     //const id = snapshot.key;
+        //     //let avail = (snapshot.val())
+        //     let lastName = (snapshot.val() && snapshot.val().availableSpots)
+        //     console.log("Events ",  snapshot.val())
+        //     console.log("Lat " , lastName)
 
-            // oldstate.setState({
-            //     fullname: firstName + " " + lastName
-            // })
-        })
+        //     // oldstate.setState({
+        //     //     fullname: firstName + " " + lastName
+        //     // })
+        // })
         //console.log("events1: " , allEvents)
     }
 
@@ -156,6 +191,11 @@ class Home extends Component {
 
 
     renderRequests() {
+        console.log(requests2)
+        for (const s of requests2){
+            console.log("hello")
+        }
+
         const requests = [
             {
                 id: 1,
