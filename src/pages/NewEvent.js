@@ -229,6 +229,9 @@ class NewEvent extends Component {
         //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
 
         //console.log("after login ",  this.state.uid)
+
+        this.props.navigation.navigate('Main');
+        
     }
 
 
