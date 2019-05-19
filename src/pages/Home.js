@@ -10,25 +10,64 @@ import {
     Alert,
     Animated
 } from "react-native";
-
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import Form from '../components/Form';
 import firebase from "firebase";
 import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
+import HomeHeader from './HomeHeader';
 
 //import { TouchableOpacity } from "react-native-gesture-handler";
 
 const requests2 = [];
 
+const initialState = {
+    counter: 0
+}
+const reducer = (state = initialState) => {
+    return state
+}
+const store = createStore(reducer)
+
 class Home extends Component {
-    
+
 
     state = {
         animateItem: new Animated.Value(0),
-        requestsState: {}
-        
+        requestsState: [],
+        loading: false
+
+    }
+
+    componentDidMount() {
+        var currentTime = Date.now();
+        var that = this;
+        var ref = firebase.database().ref('Events/');
+        var query = ref.orderByChild('availableSpots');
+        query.once('value', function (snapshot) {
+            //console.log(snapshot.val().availableSpots);
+            snapshot.forEach(function (child) {
+                //console.log(child.key, child.val().availableSpots);
+                var time = child.val().epochTime;
+                if (currentTime < time) {
+                    console.log("each time ", time);
+                    //const object = {child.val()}
+                    // requestsState.push({value: child.val()})
+                    // that.setState({ requestsState })
+                    console.log("objects", child.val())
+                    that.setState({ requestsState: [...that.state.requestsState, child.val()] })
+                    that.setState({ loading: true });
+                }
+
+                console.log("current time", currentTime)
+                console.log("Array ", that.state.requestsState)
+
+            })
+        })
+
     }
 
     componentWillMount() {
@@ -43,28 +82,8 @@ class Home extends Component {
 
     getEvents() {
         //oldstate = this
-        let requestsState = [...this.state.requestsState];
-        var currentTime = Date.now();
-        var ref = firebase.database().ref('Events/');
-        var query = ref.orderByChild('availableSpots');
-        query.once('value', function(snapshot) {
-            //console.log(snapshot.val().availableSpots);
-            snapshot.forEach(function(child){
-                //console.log(child.key, child.val().availableSpots);
-                var time = child.val().epochTime;
-                if (currentTime<time) {
-                    console.log("each time ", time);
-                    //const object = {child.val()}
-                    requestsState.push({value: child.val()})
-                    this.setState({ requestsState })
-                    //console.log("objects", child.val())
-                    
-                }
-                
-                console.log("current time",currentTime)
+        //let requestsState = [...this.state.requestsState];
 
-            })
-        })
         //console.log(requests2);
         // firebase.database().ref.child('Events/').orderByChild('availableSpots').on("value", function(snapshot) {
         //     console.log(snapshot.val());
@@ -75,7 +94,7 @@ class Home extends Component {
 
         // firebase.database().ref('Events/').once("value").then(function(snapshot){
 
-            
+
 
         //     //const id = snapshot.key;
         //     //let avail = (snapshot.val())
@@ -101,136 +120,52 @@ class Home extends Component {
 
         return (
             <Block flex={0.42} column style={{ paddingHorizontal: 15 }}>
-                <Block flex={false} row style={{ paddingVertical: 15 }}>
-                    <Block center>
+                <Provider store={store}>
+                    <HomeHeader />
+                </Provider>
 
-                        <Text h3 white style={{ marginRight: -(25 + 5) }}>
-                            Pickup schedule
-                        </Text>
-
-                    </Block>
-                </Block>
-                <TouchableOpacity  style={{ flex: 1}}
-                onPress={this.getEvents()}
-                >
-                
-                
-                <Block card shadow color="white" style={styles.headerChart}>
-                    <Block collumn center>
-
-                        <Text h3> Monday 4/15/19 </Text>
-                        <Text h3> 7:00pm </Text>
-
-                    </Block>
-                    <Block row space="between" style={{ paddingHorizontal: 30 }}>
-                        <Block flex={false} row center>
-                            <Text caption bold tertiary>Level: </Text>
-                            <Text h1 style={{ paddingHorizontal: 10 }}>
-                                B
-                  </Text>
-                        </Block>
-
-                        <Block flex={false} row center>
-                            <Text caption bold primary style={{ paddingHorizontal: 10 }}>
-                                Spots Available:
-                  </Text>
-                            <Text h1>3</Text>
-                        </Block>
-                    </Block>
-                    <Block
-                        flex={0.5}
-                        collumn
-                        center
-                        space="between"
-                        style={{ paddingHorizontal: 30 }}
-                    >
-                        <Text caption light>
-                            Organizer:
-                </Text>
-                        <Text caption light>
-                            Adil
-                </Text>
-                    </Block>
-                    <Block flex={1}>
-                    </Block>
-                </Block>
-                </TouchableOpacity>
             </Block>
         );
     }
     renderRequest(request) {
-        return (
-            <Block row card shadow color="white" style={styles.request}>
-                <Block
-                    flex={0.45}
-                    card
-                    column
-                    color="secondary"
-                    style={styles.requestStatus}
-                >
-                    <Block flex={0.45} middle center color={theme.colors.primary}>
-                        <Text medium white style={{ textTransform: "uppercase", padding: 5 }}>
-                            {request.availability}
-                        </Text>
+        console.log("level ", request[1])
+
+        if (this.state.loading) {
+            return (
+                <Block row card shadow color="white" style={styles.request}>
+                    <Block
+                        flex={0.45}
+                        card
+                        column
+                        color="secondary"
+                        style={styles.requestStatus}
+                    >
+                        <Block flex={0.45} middle center color={theme.colors.primary}>
+                            <Text medium white style={{ textTransform: "uppercase", padding: 5 }}>
+                                {request.availability}
+                            </Text>
+                        </Block>
+                        <Block flex={0.7} center middle>
+                            <Text h2 white>
+                                {request.availableSpots}
+                            </Text>
+                        </Block>
                     </Block>
-                    <Block flex={0.7} center middle>
-                        <Text h2 white>
-                            {request.spots}
+                    <Block flex={0.75} column middle>
+                        <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
+                        <Text caption semibold>
+                            Time: {request.puckdrop}  •  Level: {request.level}  •  Organizer: {request.organizer}
                         </Text>
                     </Block>
                 </Block>
-                <Block flex={0.75} column middle>
-                    <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
-                    <Text caption semibold>
-                        Time: {request.puckdrop}  •  Level: {request.level}  •  Organizer: {request.organizer}
-                    </Text>
-                </Block>
-            </Block>
-        );
+            );
+
+        }
+
     }
 
 
     renderRequests() {
-        console.log(requests2)
-        for (const s of requests2){
-            console.log("hello")
-        }
-
-        const requests = [
-            {
-                id: 1,
-                spots: "15",
-                date: "Tuesday 4/16/19",
-                puckdrop: "10pm",
-                level: "B",
-                organizer: "Adil Patel",
-                time: 12,
-                availability: "Available",
-            },
-            {
-                id: 2,
-                spots: "0",
-                date: "Wednesday 4/17/19",
-                puckdrop: "11pm",
-                level: "All",
-                organizer: "Brian",
-                time: 22,
-                availability: "Sold out",
-            },
-            {
-                id: 3,
-                spots: "1",
-                date: "Wednesday 4/17/19",
-                puckdrop: "9pm",
-                level: "D",
-                organizer: "Erik",
-                time: 24,
-                availability: "Available",
-            },
-
-        ];
-
-
         return (
             <Block flex={0.8} color="gray2" style={styles.requests}>
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
@@ -238,7 +173,7 @@ class Home extends Component {
                 </Block>
 
                 <ScrollView showsVerticalScrollIndicator={false}>
-                  {/*  <Animated.View style={{
+                    {/*  <Animated.View style={{
                         margin: 5,
                         transform: [{
                             translateY: this.state.animateItem.interpolate({
@@ -246,21 +181,47 @@ class Home extends Component {
                                 outputRange: [700, 1]
                             })
                         }]
-                    }}> */} 
-                        {requests.map(request => (
-                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`} onPress={() => this.props.navigation.navigate('Event', {
-                                id: request.id,
-                                spots: request.spots,
-                                date: request.date,
-                                puckdrop: request.puckdrop,
-                                level: request.level,
-                                organizer: request.organizer,
-                                availability: request.availability,
+                    }}> */}
+                    {this.state.requestsState.map(request => (
+                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.epochTime}`} onPress={() => this.props.navigation.navigate('Event', {
+                            spots: request.availableSpots,
+                            date: request.date,
+                            puckdrop: request.time,
+                            level: request.level,
+                            organizer: request.scheduler,
+                            //availability: request.availability,
 
-                            })}>
-                                {this.renderRequest(request)}
-                            </TouchableOpacity>
-                        ))}
+                        })}>
+                            {/* {this.renderRequest(this.state.requestsState)} */}
+
+                            <Block row card shadow color="white" style={styles.request}>
+                                <Block
+                                    flex={0.45}
+                                    card
+                                    column
+                                    color="secondary"
+                                    style={styles.requestStatus}
+                                >
+                                    <Block flex={0.45} middle center color={theme.colors.primary}>
+                                        <Text medium white style={{ textTransform: "uppercase", padding: 5 }}>
+                                            {request.availability}
+                                        </Text>
+                                    </Block>
+                                    <Block flex={0.7} center middle>
+                                        <Text h2 white>
+                                            {request.availableSpots}
+                                        </Text>
+                                    </Block>
+                                </Block>
+                                <Block flex={0.75} column middle>
+                                    <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
+                                    <Text caption semibold>
+                                        Time: {request.time}  •  Level: {request.level}  •  Organizer: {request.scheduler}
+                                    </Text>
+                                </Block>
+                            </Block>
+                        </TouchableOpacity>
+                    ))}
                     {/* </Animated.View> */}
                 </ScrollView>
 
@@ -277,11 +238,11 @@ class Home extends Component {
                 <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
                     <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
 
-                    style={styles.FloatingButtonStyle} />
-                    </TouchableOpacity>
-                   
+                        style={styles.FloatingButtonStyle} />
+                </TouchableOpacity>
 
-                
+
+
             </SafeAreaView>
             // <View style={styles.container}>
 

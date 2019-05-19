@@ -34,7 +34,9 @@ class NewEvent extends Component {
             level: '',
             isVisible: false,
             chosenDateTime: 'Pick a Date',
+            date: '',
             epochTime: 0,
+            time: 0,
             dateTime: '',
             availSpots: 0,
             level: ''
@@ -71,6 +73,8 @@ class NewEvent extends Component {
             //chosenDateTime: datetime,
             epochTime: moment.utc(datetime).valueOf(),
             chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a'),
+            time: moment(datetime).format("hh:mm a"),
+            date: moment(datetime).format("LL"),
             //dateTime: datetime
         })
         console.log(datetime)
@@ -197,10 +201,12 @@ class NewEvent extends Component {
                 firebase.database().ref('Events/').push({
                     chosenDate: oldstate.state.chosenDateTime,
                     epochTime: oldstate.state.epochTime,
+                    time: oldstate.state.time,
                     //datetime: oldstate.state.dateTime,
                     availableSpots: oldstate.state.availSpots,
                     scheduler: oldstate.state.fullname,
-                    level: oldstate.state.level
+                    level: oldstate.state.level,
+                    date: oldstate.state.date,
                 }).then((data)=>{
                     //success callback
                     console.log('data ' , data)
