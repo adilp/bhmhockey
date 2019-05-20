@@ -128,9 +128,7 @@ class Home extends Component {
         );
     }
     renderRequest(request) {
-        console.log("level ", request[1])
-
-        if (this.state.loading) {
+         if (this.state.loading) {
             return (
                 <Block row card shadow color="white" style={styles.request}>
                     <Block
@@ -167,7 +165,7 @@ class Home extends Component {
 
     renderRequests() {
         return (
-            <Block flex={0.8} color="gray2" style={styles.requests}>
+            <Block flex={0.9} color="gray2" style={styles.requests}>
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
                     <Text light>Upcoming games</Text>
                 </Block>
@@ -189,6 +187,7 @@ class Home extends Component {
                             puckdrop: request.time,
                             level: request.level,
                             organizer: request.scheduler,
+                            uuid: request.uuid,
                             //availability: request.availability,
 
                         })}>
@@ -228,11 +227,29 @@ class Home extends Component {
             </Block>
         );
     }
+
+    render2Header() {
+        //const { user } = this.props;
+
+        return (
+            <Block flex={0.15} column style={{ paddingHorizontal: 15 }}>
+                <Block flex={false} row style={{ paddingVertical: 15 }}>
+                    <Block center>
+                        <Text h3 white style={{ marginRight: -(25 + 5) }}>
+                            Pickup Schedule
+                        </Text>
+                    </Block>
+                </Block>
+
+            </Block>
+        );
+    }
     render() {
         return (
             <SafeAreaView style={styles.safe} >
+                
 
-                {this.renderHeader()}
+                {this.render2Header()} 
                 {this.renderRequests()}
 
                 <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>

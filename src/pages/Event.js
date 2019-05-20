@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import {
     View,
     StyleSheet,
-    Button,
+    ActivityIndicator,
+    AsyncStorage,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    TextInput,
+    Picker
 } from "react-native";
 
 import Form from '../components/Form';
-import Firebase from "../Firebase";
+import * as firebase from "firebase";
 import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
@@ -24,9 +27,11 @@ class Event extends Component {
         this.params = this.props.navigation.state.params;
         this.state = {
             isDisabled: true,
-            message: 'default click state'
+            message: 'default click state',
+            fullname: '',
           }
     }
+
 
 
     
@@ -137,7 +142,7 @@ class Event extends Component {
         return (
             <Block flex={0.8} color="gray2" style={styles.requests}>
             <Block center>
-                 <TouchableOpacity disabled={this.state.isDisabled} style={styles.button}>
+                 <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
                     
                         <Text style={styles.buttonText}> Register</Text>
     
@@ -170,6 +175,77 @@ class Event extends Component {
             </Block>
         );
     }
+
+    async _handlePress(): Promise<void> {
+        // console.log(this.state.password);
+        // console.log(this.state.firstName);
+        // console.log(this.state.lastName);
+        // console.log(this.state.email);
+        let oldstate = this;
+        currentUser = firebase.auth().currentUser.uid;
+        console.log("after login ",  currentUser)
+        console.log("Evvent uuid; ",  this.params.uuid)
+        let event_uuid = this.params.uuid;
+
+        try {
+            
+                
+            firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
+                let firstName = (snapshot.val() && snapshot.val().firstname)
+                let lastName = (snapshot.val() && snapshot.val().lastname)
+                console.log("FirstName ",  firstName)
+
+                oldstate.setState({
+                    fullname: firstName + " " + lastName
+                })
+            })
+        
+    } catch (e) {
+        alert(e);
+    }
+    console.log("fullname ",  this.state.fullname)
+
+        try {
+            
+              
+                firebase.database().ref('SignUp/' + event_uuid + '/' + currentUser).push({
+                    //uuid: event_uuid,
+                    //chosenDate: oldstate.state.chosenDateTime,
+                    //epochTime: oldstate.state.epochTime,
+                    //time: oldstate.state.time,
+                    //datetime: oldstate.state.dateTime,
+                    //availableSpots: oldstate.state.availSpots,
+                    scheduler: oldstate.state.fullname,
+                    //level: oldstate.state.level,
+                    //date: oldstate.state.date,
+                }).then((data)=>{
+                    //success callback
+                    console.log('data ' , data)
+                }).catch((error)=>{
+                    //error callback
+                    console.log('error ' , error)
+                })
+                //console.log('uid:', oldstate.state.uid);
+            
+
+            //var user = firebase.auth.currentUser;
+            
+            
+            
+        } catch (e) {
+            alert(e);
+        }
+        
+        
+        //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
+
+        //console.log("Uid ",  this.state.uuid)
+        
+
+        //this.props.navigation.navigate('Main');
+        
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.safe} >
