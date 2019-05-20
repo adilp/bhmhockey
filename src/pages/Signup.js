@@ -26,6 +26,8 @@ class Signup extends Component {
         };
     }
 
+    
+
 
     async _handlePress(): Promise<void> {
         // console.log(this.state.password);

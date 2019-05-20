@@ -39,7 +39,8 @@ class NewEvent extends Component {
             time: 0,
             dateTime: '',
             availSpots: 0,
-            level: ''
+            level: '',
+            uuid: 0,
         };
     }
 
@@ -48,6 +49,14 @@ class NewEvent extends Component {
 
     //     this.props.navigation.navigate(userToken ? 'App' : 'Auth')
     // }
+
+    uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+    }
+
     renderHeader() {
         //const { user } = this.props;
 
@@ -75,10 +84,12 @@ class NewEvent extends Component {
             chosenDateTime: moment(datetime).format('MMMM Do YYYY, h:mm a'),
             time: moment(datetime).format("hh:mm a"),
             date: moment(datetime).format("LL"),
+            uuid: this.uuidv4(),
             //dateTime: datetime
         })
         console.log(datetime)
         console.log(moment.utc(datetime).valueOf())
+
     }
 
     hidePicker = () => {
@@ -197,8 +208,9 @@ class NewEvent extends Component {
 
         try {
             
-                
+              
                 firebase.database().ref('Events/').push({
+                    uuid: oldstate.state.uuid,
                     chosenDate: oldstate.state.chosenDateTime,
                     epochTime: oldstate.state.epochTime,
                     time: oldstate.state.time,
@@ -228,7 +240,8 @@ class NewEvent extends Component {
         
         //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
 
-        //console.log("after login ",  this.state.uid)
+        console.log("Uid ",  this.state.uuid)
+        
 
         this.props.navigation.navigate('Main');
         
