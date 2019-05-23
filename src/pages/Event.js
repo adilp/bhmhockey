@@ -34,23 +34,37 @@ class Event extends Component {
           }
     }
 
+    force(){
+        this.setState({ requestsState: this.state })
+    }
+
     componentDidMount() {
         //var currentTime = Date.now();
         var that = this;
-        var ref = firebase.database().ref('SignUp/');
-        var query = ref.orderByChild(this.params.uuid);
-        query.once('value').then(function (snapshot) {
+        var ref = firebase.database().ref('SignUp/' + this.params.uuid);
+        //var query = ref.orderByChild("uuid");
+        console.log(this.params.uuid);
+        ref.once('value').then(function (snapshot) {
             //console.log(snapshot.val().availableSpots);
             snapshot.forEach(function (child) {
-                child.forEach(item => {
-                    item.forEach(child => {
-                        let currentlike = child.val()
-                        //console.log("sched " , currentlike);
-                        that.setState({ requestsState: [...that.state.requestsState, currentlike] })
-                        that.setState({ loading: true });
-                    })
+                // child.forEach(item => {
+                //     // item.forEach(child => {
+                //     //     let currentlike = child.val()
+                //     //     console.log("sched " , currentlike);
+                //     //     that.setState({ requestsState: [...that.state.requestsState, currentlike] })
+                //     //     that.setState({ loading: true });
+                //     // })
+                //     let currentlike = item.val()
+                //     console.log("sched ", currentlike)
+                //     that.setState({ requestsState: [...that.state.requestsState, currentlike] })
+                //     that.setState({ loading: true });
                    
-                })
+                // })
+
+                let currentlike = child.val()
+                    console.log("sched ", currentlike)
+                    that.setState({ requestsState: [...that.state.requestsState, currentlike] })
+                    that.setState({ loading: true });
 
                
 
@@ -67,11 +81,11 @@ class Event extends Component {
 
     check() {
         let _ = require('underscore');
-        console.log("My name: " , this.state.fullname)
+        //console.log("My name: " , this.state.fullname)
         var checking = true;
         Object.keys(this.state.requestsState).map(i => {
             var myitem = this.state.requestsState[i];
-            console.log("state name: " , myitem.scheduler)
+            //console.log("state name: " , myitem.scheduler)
            //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
 
             if ("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)){
@@ -200,11 +214,7 @@ class Event extends Component {
                         <Text style={styles.buttonText}> Register</Text>
     
                 </TouchableOpacity>
-                <TouchableOpacity  style={styles.button} onPress={() => this.check()}>
-                    
-                        <Text style={styles.buttonText}> Test</Text>
-    
-                </TouchableOpacity>
+                
                 </Block>
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
                     <Text h3>White team:</Text>
@@ -261,11 +271,11 @@ class Event extends Component {
     //console.log("ehllo " ,this.check())
 
     if (this.check()) {
-        console.log("New name");
+        //console.log("New name");
         try {
             
             var signupUid = this.uuidv4();
-            firebase.database().ref('SignUp/' + event_uuid + '/' + currentUser).push({
+            firebase.database().ref('SignUp/' + event_uuid /* + '/' + currentUser */).push({
                 //uuid: event_uuid,
                 //chosenDate: oldstate.state.chosenDateTime,
                 //epochTime: oldstate.state.epochTime,
@@ -291,12 +301,12 @@ class Event extends Component {
         alert(e);
     }
     } else {
-        console.log("Already exists");
+        //console.log("Already exists");
         alert("You have already registered!")
     }
 
         
-        
+        //this.force();
     }
 
     render() {
