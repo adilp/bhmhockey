@@ -29,11 +29,66 @@ class Event extends Component {
             isDisabled: true,
             message: 'default click state',
             fullname: '',
+            requestsState: [],
+            loading: false
           }
     }
 
+    componentDidMount() {
+        //var currentTime = Date.now();
+        var that = this;
+        var ref = firebase.database().ref('SignUp/');
+        var query = ref.orderByChild(this.params.uuid);
+        query.once('value').then(function (snapshot) {
+            //console.log(snapshot.val().availableSpots);
+            snapshot.forEach(function (child) {
+                child.forEach(item => {
+                    item.forEach(child => {
+                        let currentlike = child.val()
+                        //console.log("sched " , currentlike);
+                        that.setState({ requestsState: [...that.state.requestsState, currentlike] })
+                        that.setState({ loading: true });
+                    })
+                   
+                })
 
+               
 
+            })
+        })
+
+    }
+    uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+    }
+
+    check() {
+        let _ = require('underscore');
+        console.log("My name: " , this.state.fullname)
+        var checking = true;
+        Object.keys(this.state.requestsState).map(i => {
+            var myitem = this.state.requestsState[i];
+            console.log("state name: " , myitem.scheduler)
+           //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
+
+            if ("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)){
+                console.log("false")
+                checking = false;
+                
+            }
+            else {
+                console.log("true")
+                
+            }
+            
+        })
+
+        return checking;
+        
+    }
     
     logout() {
         //Firebase.auth.signOut();
@@ -102,43 +157,41 @@ class Event extends Component {
 
 
     renderRequests() {
-        const requests = [
-            {
-                id: 1,
-                spots: "15",
-                date: "Tuesday 4/16/19",
-                puckdrop: "10pm",
-                level: "B",
-                organizer: "Adil Patel",
-                time: 12,
-                availability: "Available",
-            },
-            {
-                id: 2,
-                spots: "0",
-                date: "Wednesday 4/17/19",
-                puckdrop: "11pm",
-                level: "All",
-                organizer: "Brian",
-                time: 22,
-                availability: "Sold out",
-            },
-            {
-                id: 3,
-                spots: "1",
-                date: "Wednesday 4/17/19",
-                puckdrop: "9pm",
-                level: "D",
-                organizer: "Erik",
-                time: 24,
-                availability: "Available",
-            },
+        // const requests = [
+        //     {
+        //         id: 1,
+        //         spots: "15",
+        //         date: "Tuesday 4/16/19",
+        //         puckdrop: "10pm",
+        //         level: "B",
+        //         organizer: "Adil Patel",
+        //         time: 12,
+        //         availability: "Available",
+        //     },
+        //     {
+        //         id: 2,
+        //         spots: "0",
+        //         date: "Wednesday 4/17/19",
+        //         puckdrop: "11pm",
+        //         level: "All",
+        //         organizer: "Brian",
+        //         time: 22,
+        //         availability: "Sold out",
+        //     },
+        //     {
+        //         id: 3,
+        //         spots: "1",
+        //         date: "Wednesday 4/17/19",
+        //         puckdrop: "9pm",
+        //         level: "D",
+        //         organizer: "Erik",
+        //         time: 24,
+        //         availability: "Available",
+        //     },
 
-        ];
+        // ];
 
-
-
-
+        
         return (
             <Block flex={0.8} color="gray2" style={styles.requests}>
             <Block center>
@@ -147,15 +200,22 @@ class Event extends Component {
                         <Text style={styles.buttonText}> Register</Text>
     
                 </TouchableOpacity>
+                <TouchableOpacity  style={styles.button} onPress={() => this.check()}>
+                    
+                        <Text style={styles.buttonText}> Test</Text>
+    
+                </TouchableOpacity>
                 </Block>
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
                     <Text h3>White team:</Text>
                 </Block>
                 <Block row card shadow color="white" style={styles.request} >
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    {requests.map(request => (
-                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`}>
-                            {this.renderRequest(request)}
+                    {this.state.requestsState.map(request => (
+                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
+                        <Block flex={0.75} column middle>
+                        <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
+                    </Block>
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
@@ -163,15 +223,7 @@ class Event extends Component {
                 <Block flex={false} row space="between" style={styles.requestsHeader}>
                 <Text h3>Black team:</Text>
             </Block>
-                <Block row card shadow color="white" style={styles.request} >
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    {requests.map(request => (
-                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.id}`}>
-                            {this.renderRequest(request)}
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
-                </Block>
+                
             </Block>
         );
     }
@@ -181,10 +233,12 @@ class Event extends Component {
         // console.log(this.state.firstName);
         // console.log(this.state.lastName);
         // console.log(this.state.email);
+
+        
         let oldstate = this;
         currentUser = firebase.auth().currentUser.uid;
-        console.log("after login ",  currentUser)
-        console.log("Evvent uuid; ",  this.params.uuid)
+        //console.log("after login ",  currentUser)
+        //console.log("Evvent uuid; ",  this.params.uuid)
         let event_uuid = this.params.uuid;
 
         try {
@@ -193,7 +247,7 @@ class Event extends Component {
             firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
                 let firstName = (snapshot.val() && snapshot.val().firstname)
                 let lastName = (snapshot.val() && snapshot.val().lastname)
-                console.log("FirstName ",  firstName)
+                //console.log("FirstName ",  firstName)
 
                 oldstate.setState({
                     fullname: firstName + " " + lastName
@@ -203,46 +257,45 @@ class Event extends Component {
     } catch (e) {
         alert(e);
     }
-    console.log("fullname ",  this.state.fullname)
+    //console.log("fullname ",  this.state.fullname)
+    //console.log("ehllo " ,this.check())
 
+    if (this.check()) {
+        console.log("New name");
         try {
             
-              
-                firebase.database().ref('SignUp/' + event_uuid + '/' + currentUser).push({
-                    //uuid: event_uuid,
-                    //chosenDate: oldstate.state.chosenDateTime,
-                    //epochTime: oldstate.state.epochTime,
-                    //time: oldstate.state.time,
-                    //datetime: oldstate.state.dateTime,
-                    //availableSpots: oldstate.state.availSpots,
-                    scheduler: oldstate.state.fullname,
-                    //level: oldstate.state.level,
-                    //date: oldstate.state.date,
-                }).then((data)=>{
-                    //success callback
-                    console.log('data ' , data)
-                }).catch((error)=>{
-                    //error callback
-                    console.log('error ' , error)
-                })
-                //console.log('uid:', oldstate.state.uid);
-            
-
-            //var user = firebase.auth.currentUser;
-            
-            
-            
-        } catch (e) {
-            alert(e);
-        }
+            var signupUid = this.uuidv4();
+            firebase.database().ref('SignUp/' + event_uuid + '/' + currentUser).push({
+                //uuid: event_uuid,
+                //chosenDate: oldstate.state.chosenDateTime,
+                //epochTime: oldstate.state.epochTime,
+                //time: oldstate.state.time,
+                //datetime: oldstate.state.dateTime,
+                //availableSpots: oldstate.state.availSpots,
+                scheduler: oldstate.state.fullname,
+                uuid: signupUid,
+                //level: oldstate.state.level,
+                //date: oldstate.state.date,
+            }).then((data)=>{
+                //success callback
+                console.log('data ' , data)
+            }).catch((error)=>{
+                //error callback
+                console.log('error ' , error)
+            })
+           
         
         
-        //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
-
-        //console.log("Uid ",  this.state.uuid)
         
+    } catch (e) {
+        alert(e);
+    }
+    } else {
+        console.log("Already exists");
+        alert("You have already registered!")
+    }
 
-        //this.props.navigation.navigate('Main');
+        
         
     }
 
