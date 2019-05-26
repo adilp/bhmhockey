@@ -14,6 +14,11 @@ import NewEvent from './src/pages/NewEvent';
 import * as firebase from 'firebase';
 import Api from './src/Api';
 //import AuthLoading from './AuthLoading';  
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+import Reducers from './src/Reducer';
+
 
 
 
@@ -54,10 +59,16 @@ componentWillMount(){
   render() {
     
      if (this.state.isAuthenticated) {
-       return(<HomeAppContainer />);
+       return(
+        <Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
+         <HomeAppContainer />
+         </Provider>
+         );
      } else {
       return(
+        <Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
         <AppContainer />
+        </Provider>
         );
      }
          

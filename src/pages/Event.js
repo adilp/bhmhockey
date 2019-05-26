@@ -17,6 +17,13 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getListThunk } from '../actions' 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import {connect} from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+import Reducers from '../Reducer';
+import RenderRequestsList from './RenderRequests';
 
 
 
@@ -34,35 +41,33 @@ class Event extends Component {
           }
     }
 
-    force(){
-        this.setState({ requestsState: this.state })
+  
+    componentDidMount() {
+        
+        this._handleStart();
+       
+
     }
 
-    componentDidMount() {
-        //var currentTime = Date.now();
+    componentWillMount(){
+        var passedUuid = this.params.uuid
+        this.props.getListThunk(this.params.uuid);
+        
+    }
+
+    async _handleStart(): Promise<void> {
         var that = this;
         var ref = firebase.database().ref('SignUp/' + this.params.uuid);
-        //var query = ref.orderByChild("uuid");
-        console.log(this.params.uuid);
+   
+
+        
         ref.once('value').then(function (snapshot) {
-            //console.log(snapshot.val().availableSpots);
+            
             snapshot.forEach(function (child) {
-                // child.forEach(item => {
-                //     // item.forEach(child => {
-                //     //     let currentlike = child.val()
-                //     //     console.log("sched " , currentlike);
-                //     //     that.setState({ requestsState: [...that.state.requestsState, currentlike] })
-                //     //     that.setState({ loading: true });
-                //     // })
-                //     let currentlike = item.val()
-                //     console.log("sched ", currentlike)
-                //     that.setState({ requestsState: [...that.state.requestsState, currentlike] })
-                //     that.setState({ loading: true });
-                   
-                // })
+               
 
                 let currentlike = child.val()
-                    console.log("sched ", currentlike)
+                    //console.log("sched ", currentlike)
                     that.setState({ requestsState: [...that.state.requestsState, currentlike] })
                     that.setState({ loading: true });
 
@@ -70,7 +75,6 @@ class Event extends Component {
 
             })
         })
-
     }
     uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -89,12 +93,12 @@ class Event extends Component {
            //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
 
             if ("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)){
-                console.log("false")
+                //console.log("false")
                 checking = false;
                 
             }
             else {
-                console.log("true")
+               // console.log("true")
                 
             }
             
@@ -104,9 +108,7 @@ class Event extends Component {
         
     }
     
-    logout() {
-        //Firebase.auth.signOut();
-    }
+    
 
     renderHeader() {
         //const { user } = this.props;
@@ -161,51 +163,17 @@ class Event extends Component {
     }
     renderRequest(request) {
         return (
-            //<Block row card shadow color="white" style={styles.request}>
+            
                 <Block flex={0.75} column middle>
                     <Text caption style={{ paddingVertical: 8, }}>{request.organizer}</Text>
                 </Block>
-            //</Block>
+           
         );
     }
 
 
     renderRequests() {
-        // const requests = [
-        //     {
-        //         id: 1,
-        //         spots: "15",
-        //         date: "Tuesday 4/16/19",
-        //         puckdrop: "10pm",
-        //         level: "B",
-        //         organizer: "Adil Patel",
-        //         time: 12,
-        //         availability: "Available",
-        //     },
-        //     {
-        //         id: 2,
-        //         spots: "0",
-        //         date: "Wednesday 4/17/19",
-        //         puckdrop: "11pm",
-        //         level: "All",
-        //         organizer: "Brian",
-        //         time: 22,
-        //         availability: "Sold out",
-        //     },
-        //     {
-        //         id: 3,
-        //         spots: "1",
-        //         date: "Wednesday 4/17/19",
-        //         puckdrop: "9pm",
-        //         level: "D",
-        //         organizer: "Erik",
-        //         time: 24,
-        //         availability: "Available",
-        //     },
-
-        // ];
-
-        
+                
         return (
             <Block flex={0.8} color="gray2" style={styles.requests}>
             <Block center>
@@ -238,17 +206,92 @@ class Event extends Component {
         );
     }
 
-    async _handlePress(): Promise<void> {
-        // console.log(this.state.password);
-        // console.log(this.state.firstName);
-        // console.log(this.state.lastName);
-        // console.log(this.state.email);
+    renderRequestsRedux() {
+        if (!Array.isArray(this.props.list) || !this.props.list.length) {
+            // array does not exist, is not an array, or is empty
+            // ⇒ do not attempt to process array
+            console.log("Empty array")
 
+            return(
+                <Block flex={0.8} color="gray2" style={styles.requests}>
+                <Block center>
+                     <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
+                        
+                            <Text style={styles.buttonText}> Register</Text>
         
+                    </TouchableOpacity>
+                    
+                    </Block>
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                        <Text h3>White team:</Text>
+                    </Block>
+                    <Block row card shadow color="white" style={styles.request} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <Text>Empty </Text>
+                    </ScrollView>
+                    </Block>
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                    <Text h3>Black team:</Text>
+                </Block>
+                <Block row card shadow color="white" style={styles.request} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <Text>Empty </Text>
+                    </ScrollView>
+                    </Block>
+                    
+                </Block>
+            );
+          } else {
+            return (
+                <Block flex={0.8} color="gray2" style={styles.requests}>
+                <Block center>
+                     <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
+                        
+                            <Text style={styles.buttonText}> Register</Text>
+        
+                    </TouchableOpacity>
+                    
+                    </Block>
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                        <Text h3>White team:</Text>
+                    </Block>
+                    <Block row card shadow color="white" style={styles.request} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        {this.props.list.map(request => (
+                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
+                            <Block flex={0.75} column middle>
+                            <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
+                        </Block>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                    </Block>
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                    <Text h3>Black team:</Text>
+                </Block>
+                <Block row card shadow color="white" style={styles.request} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        {this.props.list.map(request => (
+                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
+                            <Block flex={0.75} column middle>
+                            <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
+                        </Block>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                    </Block>
+                    
+                </Block>
+            );
+          }
+                
+        
+    }
+
+    async _handlePress(): Promise<void> {
+                
         let oldstate = this;
         currentUser = firebase.auth().currentUser.uid;
-        //console.log("after login ",  currentUser)
-        //console.log("Evvent uuid; ",  this.params.uuid)
         let event_uuid = this.params.uuid;
 
         try {
@@ -257,7 +300,7 @@ class Event extends Component {
             firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
                 let firstName = (snapshot.val() && snapshot.val().firstname)
                 let lastName = (snapshot.val() && snapshot.val().lastname)
-                //console.log("FirstName ",  firstName)
+                
 
                 oldstate.setState({
                     fullname: firstName + " " + lastName
@@ -267,25 +310,17 @@ class Event extends Component {
     } catch (e) {
         alert(e);
     }
-    //console.log("fullname ",  this.state.fullname)
-    //console.log("ehllo " ,this.check())
+    
 
     if (this.check()) {
-        //console.log("New name");
+       
         try {
             
             var signupUid = this.uuidv4();
             firebase.database().ref('SignUp/' + event_uuid /* + '/' + currentUser */).push({
-                //uuid: event_uuid,
-                //chosenDate: oldstate.state.chosenDateTime,
-                //epochTime: oldstate.state.epochTime,
-                //time: oldstate.state.time,
-                //datetime: oldstate.state.dateTime,
-                //availableSpots: oldstate.state.availSpots,
                 scheduler: oldstate.state.fullname,
                 uuid: signupUid,
-                //level: oldstate.state.level,
-                //date: oldstate.state.date,
+               
             }).then((data)=>{
                 //success callback
                 console.log('data ' , data)
@@ -307,37 +342,37 @@ class Event extends Component {
 
         
         //this.force();
+        //this.componentWillMount();
     }
 
     render() {
+        console.log("props " , this.props.list)
+        const empty = [];
+        
         return (
             <SafeAreaView style={styles.safe} >
                 {this.renderHeader()}
-                {this.renderRequests()}
+                {this.renderRequestsRedux()}
+
+                {/*    
+                    
+                    {this.renderRequests()} 
+                <RenderRequestsList uuid={this.params.uuid} />
+                */}
+                
             </SafeAreaView>
-            // <View style={styles.container}>
-
-            //     <View style={styles.signupTextCont}>
-            //         <Text> Dont have an acount yet? </Text>
-            //         <Text style={styles.signupText}
-            //         onPress={() => this.logout()}
-            //         > Signup </Text>
-
-            //     </View>
-
-            // </View>
+ 
         );
     }
 }
 
-// Home.defaultProps = {
-//     user:mocks.user,
-//     requests: mocks.requests,
-//     chart: mocks.chart,
-// };
 
 
-export default Event;
+export default connect(
+    state=>({list: state.listReducer}), 
+    { getListThunk }
+  )(Event);
+
 
 const styles = StyleSheet.create({
     container: {

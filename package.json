@@ -19,6 +19,7 @@
     "react-navigation-material-bottom-tabs": "^1.0.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

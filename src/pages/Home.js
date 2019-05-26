@@ -24,13 +24,7 @@ import HomeHeader from './HomeHeader';
 
 const requests2 = [];
 
-const initialState = {
-    counter: 0
-}
-const reducer = (state = initialState) => {
-    return state
-}
-const store = createStore(reducer)
+
 
 class Home extends Component {
 
@@ -63,7 +57,7 @@ class Home extends Component {
                 }
 
                 console.log("current time", currentTime)
-                console.log("Array ", that.state.requestsState)
+                //console.log("Array ", that.state.requestsState)
 
             })
         })
@@ -120,9 +114,9 @@ class Home extends Component {
 
         return (
             <Block flex={0.42} column style={{ paddingHorizontal: 15 }}>
-                <Provider store={store}>
+               
                     <HomeHeader />
-                </Provider>
+                
 
             </Block>
         );
@@ -249,7 +243,8 @@ class Home extends Component {
             <SafeAreaView style={styles.safe} >
                 
 
-                {this.render2Header()} 
+                {this.render2Header()}
+                 
                 {this.renderRequests()}
 
                 <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
