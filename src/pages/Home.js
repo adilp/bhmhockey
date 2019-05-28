@@ -19,6 +19,9 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import HomeHeader from './HomeHeader';
+import { getUserThunk } from '../actions';
+import {connect} from 'react-redux';
+
 
 //import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -33,7 +36,6 @@ class Home extends Component {
         animateItem: new Animated.Value(0),
         requestsState: [],
         loading: false
-
     }
 
     componentDidMount() {
@@ -47,16 +49,16 @@ class Home extends Component {
                 //console.log(child.key, child.val().availableSpots);
                 var time = child.val().epochTime;
                 if (currentTime < time) {
-                    console.log("each time ", time);
+                    //console.log("each time ", time);
                     //const object = {child.val()}
                     // requestsState.push({value: child.val()})
                     // that.setState({ requestsState })
-                    console.log("objects", child.val())
+                    //console.log("objects", child.val())
                     that.setState({ requestsState: [...that.state.requestsState, child.val()] })
                     that.setState({ loading: true });
                 }
 
-                console.log("current time", currentTime)
+                //console.log("current time", currentTime)
                 //console.log("Array ", that.state.requestsState)
 
             })
@@ -65,10 +67,12 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        Animated.timing(this.state.animateItem, {
-            toValue: 1,
-            duration: 200
-        }).start
+        // Animated.timing(this.state.animateItem, {
+        //     toValue: 1,
+        //     duration: 200
+        // }).start
+        console.log("Component will mount");
+        this.props.getUserThunk();
     }
     logout() {
         //Firebase.auth.signOut();
@@ -231,6 +235,7 @@ class Home extends Component {
                     <Block center>
                         <Text h3 white style={{ marginRight: -(25 + 5) }}>
                             Pickup Schedule
+                            
                         </Text>
                     </Block>
                 </Block>
@@ -239,6 +244,7 @@ class Home extends Component {
         );
     }
     render() {
+        console.log("usersadf ", this.props.userReducer)
         return (
             <SafeAreaView style={styles.safe} >
                 
@@ -256,29 +262,19 @@ class Home extends Component {
 
 
             </SafeAreaView>
-            // <View style={styles.container}>
 
-            //     <View style={styles.signupTextCont}>
-            //         <Text> Dont have an acount yet? </Text>
-            //         <Text style={styles.signupText}
-            //         onPress={() => this.logout()}
-            //         > Signup </Text>
-
-            //     </View>
-
-            // </View>
         );
     }
 }
 
-// Home.defaultProps = {
-//     user:mocks.user,
-//     requests: mocks.requests,
-//     chart: mocks.chart,
-// };
 
 
-export default Home;
+export default connect(
+    state=>({userReducer: state.userReducer}), 
+    { getUserThunk }
+  )(Home);
+
+//export default Home;
 
 const styles = StyleSheet.create({
     container: {

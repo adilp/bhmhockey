@@ -18,6 +18,8 @@ import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from "react-native-modal-datetime-picker";
+import { getUserDetailsThunk } from '../actions';
+import {connect} from 'react-redux';
 import moment from 'moment';
 
 
@@ -44,11 +46,11 @@ class NewEvent extends Component {
         };
     }
 
-    // loadApp = async() => {
-    //     const userToken = await AsyncStorage.getItem('userToken')
-
-    //     this.props.navigation.navigate(userToken ? 'App' : 'Auth')
-    // }
+    componentWillMount() {
+      
+        console.log("Component will mount");
+        this.props.getUserDetailsThunk();
+    }
 
     uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -186,24 +188,7 @@ class NewEvent extends Component {
         // console.log(this.state.lastName);
         // console.log(this.state.email);
         let oldstate = this;
-        currentUser = firebase.auth().currentUser.uid;
-        console.log("after login ",  currentUser)
-        try {
-            
-                
-            firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
-                let firstName = (snapshot.val() && snapshot.val().firstname)
-                let lastName = (snapshot.val() && snapshot.val().lastname)
-                console.log("FirstName ",  firstName)
 
-                oldstate.setState({
-                    fullname: firstName + " " + lastName
-                })
-            })
-        
-    } catch (e) {
-        alert(e);
-    }
     console.log("fullname ",  this.state.fullname)
 
         try {
@@ -216,7 +201,8 @@ class NewEvent extends Component {
                     time: oldstate.state.time,
                     //datetime: oldstate.state.dateTime,
                     availableSpots: oldstate.state.availSpots,
-                    scheduler: oldstate.state.fullname,
+                    // scheduler: oldstate.state.fullname,
+                    scheduler: this.props.userDetailsReducer,
                     level: oldstate.state.level,
                     date: oldstate.state.date,
                 }).then((data)=>{
@@ -250,6 +236,7 @@ class NewEvent extends Component {
 
 
     render() {
+        console.log("Full name ", this.props)
         return (
             <SafeAreaView style={styles.safe} >
 
@@ -258,8 +245,11 @@ class NewEvent extends Component {
         );
     }
 }
-
-export default NewEvent;
+export default connect(
+    state=>({userDetailsReducer: state.userDetailsReducer}), 
+    { getUserDetailsThunk }
+  )(NewEvent);
+// export default NewEvent;
 
 const styles = StyleSheet.create({
     container: {

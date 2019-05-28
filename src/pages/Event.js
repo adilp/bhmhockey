@@ -17,7 +17,7 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getListThunk } from '../actions' 
+import { getListThunk, getUserDetailsThunk } from '../actions' 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
@@ -52,6 +52,7 @@ class Event extends Component {
     componentWillMount(){
         var passedUuid = this.params.uuid
         this.props.getListThunk(this.params.uuid);
+        this.props.getUserDetailsThunk();
         
     }
 
@@ -92,7 +93,7 @@ class Event extends Component {
             //console.log("state name: " , myitem.scheduler)
            //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
 
-            if ("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)){
+            if ("Is eqal ", _.isEqual(myitem.scheduler, this.props.userDetailsReducer)){
                 //console.log("false")
                 checking = false;
                 
@@ -290,27 +291,10 @@ class Event extends Component {
 
     async _handlePress(): Promise<void> {
                 
-        let oldstate = this;
-        currentUser = firebase.auth().currentUser.uid;
+        
         let event_uuid = this.params.uuid;
 
-        try {
-            
-                
-            firebase.database().ref('UsersList/' + currentUser).once("value").then(function(snapshot){
-                let firstName = (snapshot.val() && snapshot.val().firstname)
-                let lastName = (snapshot.val() && snapshot.val().lastname)
-                
-
-                oldstate.setState({
-                    fullname: firstName + " " + lastName
-                })
-            })
-        
-    } catch (e) {
-        alert(e);
-    }
-    
+           
 
     if (this.check()) {
        
@@ -318,7 +302,7 @@ class Event extends Component {
             
             var signupUid = this.uuidv4();
             firebase.database().ref('SignUp/' + event_uuid /* + '/' + currentUser */).push({
-                scheduler: oldstate.state.fullname,
+                scheduler: this.props.userDetailsReducer,
                 uuid: signupUid,
                
             }).then((data)=>{
@@ -369,8 +353,8 @@ class Event extends Component {
 
 
 export default connect(
-    state=>({list: state.listReducer}), 
-    { getListThunk }
+    state=>({list: state.listReducer, userDetailsReducer: state.userDetailsReducer}), 
+    { getListThunk, getUserDetailsThunk }
   )(Event);
 
 
