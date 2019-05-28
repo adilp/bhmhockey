@@ -1,0 +1,6 @@
+framework module Pods_bhmhockey {
+  umbrella header "Pods-bhmhockey-umbrella.h"
+
+  export *
+  module * { export * }
+}

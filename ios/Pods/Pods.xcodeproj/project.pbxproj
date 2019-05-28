@@ -1,0 +1,1157 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B1AADDABC0FF92BF51AC88E6BD57DB25 /* Build configuration list for PBXAggregateTarget "AppCenterReactNativeShared" */;
+			buildPhases = (
+			);
+			dependencies = (
+				0051E4214884EF5346A2A55966EC832B /* PBXTargetDependency */,
+			);
+			name = AppCenterReactNativeShared;
+		};
+		A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D0944D0DEFF9CDF0CBE6D4A41B195020 /* Build configuration list for PBXAggregateTarget "AppCenter" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = AppCenter;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		1B43A90CE8C1DC6F816DE9AECCE032DB /* Pods-bhmhockey-tvOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C3ADAEED850342DDAA1F1781CB4994 /* Pods-bhmhockey-tvOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		391E170612D767A7ADF87465E3FB99DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D50031945639C9CFCD3CBF24E18561 /* Foundation.framework */; };
+		3F7CE5AD8D8693758F1DD58D01FA0FBA /* Pods-bhmhockey-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E09FDE9A2E89E98439EF2C35016BF231 /* Pods-bhmhockey-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		482A3A2AADF09D8B89588498836D10FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D50031945639C9CFCD3CBF24E18561 /* Foundation.framework */; };
+		67A0E472832796D4CFA4566DDD530C78 /* Pods-bhmhockey-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF313250F540761C4D356F4D505E2899 /* Pods-bhmhockey-tvOSTests-dummy.m */; };
+		6CF4AD728729D9E4DCDA01366649C1EE /* Pods-bhmhockeyTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172ACC4D2271CFCD69C687C8A59A699 /* Pods-bhmhockeyTests-dummy.m */; };
+		6D0238B548C102D27E192ECFCA574EA1 /* Pods-bhmhockeyTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7707983C20F33E67955F1B5476FA1DE1 /* Pods-bhmhockeyTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A778FAA769B4512ACD90EFB1C703402 /* Pods-bhmhockey-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3928DAA238150482E57534AC9CAF483D /* Pods-bhmhockey-tvOS-dummy.m */; };
+		A2F62C1F565F5F5E17133C19DA228653 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B712C7D27EB7CD8F8A18A3EDE52765C0 /* Foundation.framework */; };
+		AA27D92414AAEBC8FCDDECECDAA9001D /* Pods-bhmhockey-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2E84C3B21B2811EBCB2F40987B7654 /* Pods-bhmhockey-dummy.m */; };
+		D9D619BC8AA0B546B7E49B5A19AD3E00 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B712C7D27EB7CD8F8A18A3EDE52765C0 /* Foundation.framework */; };
+		DEA362F48D7E6CC44FC9A466179E98E5 /* Pods-bhmhockey-tvOSTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81671B0D4175AAB2176BD313F0150C2F /* Pods-bhmhockey-tvOSTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AE4FF19A9EB498466FB335B234F537B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CD32458A161AF8E4BA58B4310701AB3;
+			remoteInfo = AppCenterReactNativeShared;
+		};
+		9E662ACA61303D6EAEBA3EE86C6C8CDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F94A58E2F0F198CA2D75DC5D783E434;
+			remoteInfo = "Pods-bhmhockey";
+		};
+		C761DEA863D03F08BF1D01CF82EBDEFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26992D49E0939E3DB7513174487E3F09;
+			remoteInfo = "Pods-bhmhockey-tvOS";
+		};
+		CBA7984D694645AF375AA5B65E62C795 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
+		};
+		D96B09CB6F7CDF72F3099DD83AD5AB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		021FF9E1DC06F15EEF3EE34F37C5C442 /* Pods_bhmhockeyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_bhmhockeyTests.framework; path = "Pods-bhmhockeyTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09BF91BBE887296596D2409674E1C4F1 /* Pods-bhmhockey-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		101086D48961A1F5D174F74008C809D8 /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
+		1557D899A5A0359EC9BE8B89DEECFE5B /* Pods-bhmhockeyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockeyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		174D2FB7FE8C7D2F7CE69199A07E33CC /* Pods-bhmhockey-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2172ACC4D2271CFCD69C687C8A59A699 /* Pods-bhmhockeyTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-bhmhockeyTests-dummy.m"; sourceTree = "<group>"; };
+		259A51087349695F5B93EE5070F4CE70 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
+		31B9B85468D8F57A696D51D5C8BFCA0B /* Pods-bhmhockey-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		3928DAA238150482E57534AC9CAF483D /* Pods-bhmhockey-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-bhmhockey-tvOS-dummy.m"; sourceTree = "<group>"; };
+		3C607CF6258E98FDEA385B0B0BBA0319 /* Pods-bhmhockey-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		440D4681461D2AB8D37612E04C2E45D4 /* Pods-bhmhockey-tvOSTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-tvOSTests-Info.plist"; sourceTree = "<group>"; };
+		4EE11CAA6DA968F48E8DABA3C9787FE8 /* Pods-bhmhockey-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-Info.plist"; sourceTree = "<group>"; };
+		4F2E84C3B21B2811EBCB2F40987B7654 /* Pods-bhmhockey-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-bhmhockey-dummy.m"; sourceTree = "<group>"; };
+		50F8BBF28F82C293D81AF9B3E1567026 /* Pods-bhmhockey-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		52C43FB795DA86DB29F2F27FA714A071 /* Pods_bhmhockey_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_bhmhockey_tvOSTests.framework; path = "Pods-bhmhockey-tvOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57447041E60F2B2A34B159A833C2254C /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenter.xcconfig; sourceTree = "<group>"; };
+		5ED3CFFD1BB0A3BAF2C4244720B24AB7 /* Pods-bhmhockeyTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-bhmhockeyTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6F076FC3741566F9DEB1142F4CF31139 /* Pods-bhmhockey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey.release.xcconfig"; sourceTree = "<group>"; };
+		7060142EA711F9C55A8F6E9EDD953E4F /* Pods-bhmhockey-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-bhmhockey-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7707983C20F33E67955F1B5476FA1DE1 /* Pods-bhmhockeyTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-bhmhockeyTests-umbrella.h"; sourceTree = "<group>"; };
+		80D50031945639C9CFCD3CBF24E18561 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		81671B0D4175AAB2176BD313F0150C2F /* Pods-bhmhockey-tvOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-bhmhockey-tvOSTests-umbrella.h"; sourceTree = "<group>"; };
+		89D4656699C95E09C4A0BAFEA1110338 /* Pods-bhmhockey-tvOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-tvOS-Info.plist"; sourceTree = "<group>"; };
+		8E2C036A941D6A4DCB002A858C9A06AE /* Pods_bhmhockey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_bhmhockey.framework; path = "Pods-bhmhockey.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95757AA292F9C46F063991F956276C9E /* Pods-bhmhockey-tvOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-bhmhockey-tvOSTests.modulemap"; sourceTree = "<group>"; };
+		9AFD679B46DBA76818DC37DC7D0DEA50 /* Pods-bhmhockeyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockeyTests.release.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A755A9528B1065A1A612B81C553BA2B4 /* Pods-bhmhockey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-bhmhockey.debug.xcconfig"; sourceTree = "<group>"; };
+		A96F3DD3070A6EF30A58D44105CB7D15 /* Pods-bhmhockey-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-bhmhockey-acknowledgements.markdown"; sourceTree = "<group>"; };
+		AA74AEE837D2E31AED4614946CC71A44 /* Pods-bhmhockeyTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockeyTests-Info.plist"; sourceTree = "<group>"; };
+		AE9C2FEFE11B5C21CD3264F64C384297 /* Pods-bhmhockeyTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-bhmhockeyTests.modulemap"; sourceTree = "<group>"; };
+		AEBD1FCE4DD91455FF64AB5D0F1F3F4D /* Pods-bhmhockey.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-bhmhockey.modulemap"; sourceTree = "<group>"; };
+		B55189CC7F5AB01AC7ECE022D94BAD6E /* Pods_bhmhockey_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_bhmhockey_tvOS.framework; path = "Pods-bhmhockey-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B712C7D27EB7CD8F8A18A3EDE52765C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenterReactNativeShared.xcconfig; sourceTree = "<group>"; };
+		C8D4E00B335CF39F473D1446D4AEE02C /* Pods-bhmhockey-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-bhmhockey-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CF313250F540761C4D356F4D505E2899 /* Pods-bhmhockey-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-bhmhockey-tvOSTests-dummy.m"; sourceTree = "<group>"; };
+		D02083BE00833D8848BBA06BD44BD5ED /* Pods-bhmhockey-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D7E374B3744B817FE4A968D1ACD3CA8D /* Pods-bhmhockeyTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockeyTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D8C3ADAEED850342DDAA1F1781CB4994 /* Pods-bhmhockey-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-bhmhockey-tvOS-umbrella.h"; sourceTree = "<group>"; };
+		DCAAE85AC203397BDE0A76C8DF9EC108 /* Pods-bhmhockey-tvOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-bhmhockey-tvOS.modulemap"; sourceTree = "<group>"; };
+		E09FDE9A2E89E98439EF2C35016BF231 /* Pods-bhmhockey-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-bhmhockey-umbrella.h"; sourceTree = "<group>"; };
+		E66BC47E14D0DBDC84D88E397438337F /* Pods-bhmhockey-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-bhmhockey-acknowledgements.plist"; sourceTree = "<group>"; };
+		F4CE7345C6137AF49A54827B4AEA2E17 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C2AED2F7E7ACC84DB35F092A7811D14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				482A3A2AADF09D8B89588498836D10FC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		657186C5C9E8C412347F06C484E3573F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				391E170612D767A7ADF87465E3FB99DF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFC34A9CC1B415031C8A43A705830E10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9D619BC8AA0B546B7E49B5A19AD3E00 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA09668A9ED3EC8F87E45BC46C31ACC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F62C1F565F5F5E17133C19DA228653 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E40D94BB364328FBE96A84A9A48CC14 /* AppCenterReactNativeShared */ = {
+			isa = PBXGroup;
+			children = (
+				ED7F0E7602AAB87E8282D7EE77A128F2 /* Frameworks */,
+				C2F79BBE68CAC64203149AF75B3502BF /* Support Files */,
+			);
+			name = AppCenterReactNativeShared;
+			path = AppCenterReactNativeShared;
+			sourceTree = "<group>";
+		};
+		23977631E0E947775B0FF421D89FC310 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				259A51087349695F5B93EE5070F4CE70 /* AppCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D46366A65DDC0794CEBC0FE82BB8A8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57447041E60F2B2A34B159A833C2254C /* AppCenterAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FC4AE2549344EE73AA948096F468642 /* Pods-bhmhockeyTests */ = {
+			isa = PBXGroup;
+			children = (
+				AE9C2FEFE11B5C21CD3264F64C384297 /* Pods-bhmhockeyTests.modulemap */,
+				5ED3CFFD1BB0A3BAF2C4244720B24AB7 /* Pods-bhmhockeyTests-acknowledgements.markdown */,
+				D7E374B3744B817FE4A968D1ACD3CA8D /* Pods-bhmhockeyTests-acknowledgements.plist */,
+				2172ACC4D2271CFCD69C687C8A59A699 /* Pods-bhmhockeyTests-dummy.m */,
+				AA74AEE837D2E31AED4614946CC71A44 /* Pods-bhmhockeyTests-Info.plist */,
+				7707983C20F33E67955F1B5476FA1DE1 /* Pods-bhmhockeyTests-umbrella.h */,
+				1557D899A5A0359EC9BE8B89DEECFE5B /* Pods-bhmhockeyTests.debug.xcconfig */,
+				9AFD679B46DBA76818DC37DC7D0DEA50 /* Pods-bhmhockeyTests.release.xcconfig */,
+			);
+			name = "Pods-bhmhockeyTests";
+			path = "Target Support Files/Pods-bhmhockeyTests";
+			sourceTree = "<group>";
+		};
+		3CB2A22D728031A627D59E8F451D846A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E2C036A941D6A4DCB002A858C9A06AE /* Pods_bhmhockey.framework */,
+				B55189CC7F5AB01AC7ECE022D94BAD6E /* Pods_bhmhockey_tvOS.framework */,
+				52C43FB795DA86DB29F2F27FA714A071 /* Pods_bhmhockey_tvOSTests.framework */,
+				021FF9E1DC06F15EEF3EE34F37C5C442 /* Pods_bhmhockeyTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5D0D3521F21C1BB5DCE82B8CAEF9692B /* AppCenter */ = {
+			isa = PBXGroup;
+			children = (
+				6EDB0407D90518B826ED8A5E5A0B7C09 /* Analytics */,
+				94182EE150168D8F091F83224D20C0A4 /* Core */,
+				9B7151692B2AC286B115FA8800335CA1 /* Crashes */,
+				D7E2631FD0126E1F8A2EF339F5A433A9 /* Support Files */,
+			);
+			name = AppCenter;
+			path = AppCenter;
+			sourceTree = "<group>";
+		};
+		6EDB0407D90518B826ED8A5E5A0B7C09 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2D46366A65DDC0794CEBC0FE82BB8A8A /* Frameworks */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		71BF10D9671F60B91D333968CED34958 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				B712C7D27EB7CD8F8A18A3EDE52765C0 /* Foundation.framework */,
+			);
+			name = tvOS;
+			sourceTree = "<group>";
+		};
+		7AE41926CCFF9083F785B403F8645320 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E20011AB0C3064F722447FD29620DD77 /* Pods-bhmhockey */,
+				CA1DA67E07A05632F5DABB084253DD2B /* Pods-bhmhockey-tvOS */,
+				83D425D8EF66175606AD1C68055A9B7F /* Pods-bhmhockey-tvOSTests */,
+				2FC4AE2549344EE73AA948096F468642 /* Pods-bhmhockeyTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		83D425D8EF66175606AD1C68055A9B7F /* Pods-bhmhockey-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				95757AA292F9C46F063991F956276C9E /* Pods-bhmhockey-tvOSTests.modulemap */,
+				7060142EA711F9C55A8F6E9EDD953E4F /* Pods-bhmhockey-tvOSTests-acknowledgements.markdown */,
+				D02083BE00833D8848BBA06BD44BD5ED /* Pods-bhmhockey-tvOSTests-acknowledgements.plist */,
+				CF313250F540761C4D356F4D505E2899 /* Pods-bhmhockey-tvOSTests-dummy.m */,
+				440D4681461D2AB8D37612E04C2E45D4 /* Pods-bhmhockey-tvOSTests-Info.plist */,
+				81671B0D4175AAB2176BD313F0150C2F /* Pods-bhmhockey-tvOSTests-umbrella.h */,
+				3C607CF6258E98FDEA385B0B0BBA0319 /* Pods-bhmhockey-tvOSTests.debug.xcconfig */,
+				174D2FB7FE8C7D2F7CE69199A07E33CC /* Pods-bhmhockey-tvOSTests.release.xcconfig */,
+			);
+			name = "Pods-bhmhockey-tvOSTests";
+			path = "Target Support Files/Pods-bhmhockey-tvOSTests";
+			sourceTree = "<group>";
+		};
+		8910DE18F4068EE7F2F8E36E5101A369 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A88CC71D6E55F0202A23277A509BCA0 /* iOS */,
+				71BF10D9671F60B91D333968CED34958 /* tvOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94182EE150168D8F091F83224D20C0A4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				23977631E0E947775B0FF421D89FC310 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		9A88CC71D6E55F0202A23277A509BCA0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				80D50031945639C9CFCD3CBF24E18561 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		9B7151692B2AC286B115FA8800335CA1 /* Crashes */ = {
+			isa = PBXGroup;
+			children = (
+				BB344F108DF82A6C8E5EC1D35D0DE13C /* Frameworks */,
+			);
+			name = Crashes;
+			sourceTree = "<group>";
+		};
+		BB344F108DF82A6C8E5EC1D35D0DE13C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4CE7345C6137AF49A54827B4AEA2E17 /* AppCenterCrashes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2F79BBE68CAC64203149AF75B3502BF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AppCenterReactNativeShared";
+			sourceTree = "<group>";
+		};
+		CA1DA67E07A05632F5DABB084253DD2B /* Pods-bhmhockey-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				DCAAE85AC203397BDE0A76C8DF9EC108 /* Pods-bhmhockey-tvOS.modulemap */,
+				C8D4E00B335CF39F473D1446D4AEE02C /* Pods-bhmhockey-tvOS-acknowledgements.markdown */,
+				31B9B85468D8F57A696D51D5C8BFCA0B /* Pods-bhmhockey-tvOS-acknowledgements.plist */,
+				3928DAA238150482E57534AC9CAF483D /* Pods-bhmhockey-tvOS-dummy.m */,
+				89D4656699C95E09C4A0BAFEA1110338 /* Pods-bhmhockey-tvOS-Info.plist */,
+				D8C3ADAEED850342DDAA1F1781CB4994 /* Pods-bhmhockey-tvOS-umbrella.h */,
+				09BF91BBE887296596D2409674E1C4F1 /* Pods-bhmhockey-tvOS.debug.xcconfig */,
+				50F8BBF28F82C293D81AF9B3E1567026 /* Pods-bhmhockey-tvOS.release.xcconfig */,
+			);
+			name = "Pods-bhmhockey-tvOS";
+			path = "Target Support Files/Pods-bhmhockey-tvOS";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				8910DE18F4068EE7F2F8E36E5101A369 /* Frameworks */,
+				EE373CD21EE89767163B4F9D8A04C324 /* Pods */,
+				3CB2A22D728031A627D59E8F451D846A /* Products */,
+				7AE41926CCFF9083F785B403F8645320 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D7E2631FD0126E1F8A2EF339F5A433A9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AppCenter";
+			sourceTree = "<group>";
+		};
+		E20011AB0C3064F722447FD29620DD77 /* Pods-bhmhockey */ = {
+			isa = PBXGroup;
+			children = (
+				AEBD1FCE4DD91455FF64AB5D0F1F3F4D /* Pods-bhmhockey.modulemap */,
+				A96F3DD3070A6EF30A58D44105CB7D15 /* Pods-bhmhockey-acknowledgements.markdown */,
+				E66BC47E14D0DBDC84D88E397438337F /* Pods-bhmhockey-acknowledgements.plist */,
+				4F2E84C3B21B2811EBCB2F40987B7654 /* Pods-bhmhockey-dummy.m */,
+				4EE11CAA6DA968F48E8DABA3C9787FE8 /* Pods-bhmhockey-Info.plist */,
+				E09FDE9A2E89E98439EF2C35016BF231 /* Pods-bhmhockey-umbrella.h */,
+				A755A9528B1065A1A612B81C553BA2B4 /* Pods-bhmhockey.debug.xcconfig */,
+				6F076FC3741566F9DEB1142F4CF31139 /* Pods-bhmhockey.release.xcconfig */,
+			);
+			name = "Pods-bhmhockey";
+			path = "Target Support Files/Pods-bhmhockey";
+			sourceTree = "<group>";
+		};
+		ED7F0E7602AAB87E8282D7EE77A128F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				101086D48961A1F5D174F74008C809D8 /* AppCenterReactNativeShared.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE373CD21EE89767163B4F9D8A04C324 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D0D3521F21C1BB5DCE82B8CAEF9692B /* AppCenter */,
+				1E40D94BB364328FBE96A84A9A48CC14 /* AppCenterReactNativeShared */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1EF2027098E0FA12B1737566D912EB0D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEA362F48D7E6CC44FC9A466179E98E5 /* Pods-bhmhockey-tvOSTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D240F6F3E13BBFDA037FD27BE8F12B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B43A90CE8C1DC6F816DE9AECCE032DB /* Pods-bhmhockey-tvOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF5EBF71882284DD007589DA4A255FD1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D0238B548C102D27E192ECFCA574EA1 /* Pods-bhmhockeyTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF2934B49FAFEE1B530DA98487F8415 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CE5AD8D8693758F1DD58D01FA0FBA /* Pods-bhmhockey-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		26992D49E0939E3DB7513174487E3F09 /* Pods-bhmhockey-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5705E5B11C354BE88C0DB1048E8B0F72 /* Build configuration list for PBXNativeTarget "Pods-bhmhockey-tvOS" */;
+			buildPhases = (
+				5D240F6F3E13BBFDA037FD27BE8F12B5 /* Headers */,
+				5BEE8E6C9E820DFB4D6C814715F676FC /* Sources */,
+				FA09668A9ED3EC8F87E45BC46C31ACC3 /* Frameworks */,
+				882B8F05AD3F57686AE93F9B9783CD1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-bhmhockey-tvOS";
+			productName = "Pods-bhmhockey-tvOS";
+			productReference = B55189CC7F5AB01AC7ECE022D94BAD6E /* Pods_bhmhockey_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5F94A58E2F0F198CA2D75DC5D783E434 /* Pods-bhmhockey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58EB5CA36CCAF75B28066EAFF499F408 /* Build configuration list for PBXNativeTarget "Pods-bhmhockey" */;
+			buildPhases = (
+				ECF2934B49FAFEE1B530DA98487F8415 /* Headers */,
+				C80B9C35C94771505096A229D98F1227 /* Sources */,
+				2C2AED2F7E7ACC84DB35F092A7811D14 /* Frameworks */,
+				576E28D5E3C858858CBE0908D6CAEF5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEF88CBCB3AE5289E6F541D46E82B361 /* PBXTargetDependency */,
+				01CC7F8122F86391F4B89DFD8CAC579D /* PBXTargetDependency */,
+			);
+			name = "Pods-bhmhockey";
+			productName = "Pods-bhmhockey";
+			productReference = 8E2C036A941D6A4DCB002A858C9A06AE /* Pods_bhmhockey.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8FEB78D249C95109A5E7F99BE3DFE569 /* Pods-bhmhockeyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5BE0B2F23CD08180966598F646A1930 /* Build configuration list for PBXNativeTarget "Pods-bhmhockeyTests" */;
+			buildPhases = (
+				CF5EBF71882284DD007589DA4A255FD1 /* Headers */,
+				F9F33549741D354A05E046CC0F10CDB4 /* Sources */,
+				657186C5C9E8C412347F06C484E3573F /* Frameworks */,
+				65674430206E36ACAB3712158714EFEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E084BE870BA518B9AF5C3D30D509AAEA /* PBXTargetDependency */,
+			);
+			name = "Pods-bhmhockeyTests";
+			productName = "Pods-bhmhockeyTests";
+			productReference = 021FF9E1DC06F15EEF3EE34F37C5C442 /* Pods_bhmhockeyTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A3BB6B2143B22855712CC8FFBE91DB90 /* Pods-bhmhockey-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFF44B4EDA0E11D4CFE554AC21E4B20D /* Build configuration list for PBXNativeTarget "Pods-bhmhockey-tvOSTests" */;
+			buildPhases = (
+				1EF2027098E0FA12B1737566D912EB0D /* Headers */,
+				79DDD2F5FA4B3ECEFC7A14FAF28DA0C3 /* Sources */,
+				AFC34A9CC1B415031C8A43A705830E10 /* Frameworks */,
+				F80FA1FEEDE6ACEFD9004E2413376F1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE205085AE7EE7C058C0E3F1207686EB /* PBXTargetDependency */,
+			);
+			name = "Pods-bhmhockey-tvOSTests";
+			productName = "Pods-bhmhockey-tvOSTests";
+			productReference = 52C43FB795DA86DB29F2F27FA714A071 /* Pods_bhmhockey_tvOSTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 3CB2A22D728031A627D59E8F451D846A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */,
+				2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */,
+				5F94A58E2F0F198CA2D75DC5D783E434 /* Pods-bhmhockey */,
+				26992D49E0939E3DB7513174487E3F09 /* Pods-bhmhockey-tvOS */,
+				A3BB6B2143B22855712CC8FFBE91DB90 /* Pods-bhmhockey-tvOSTests */,
+				8FEB78D249C95109A5E7F99BE3DFE569 /* Pods-bhmhockeyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		576E28D5E3C858858CBE0908D6CAEF5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65674430206E36ACAB3712158714EFEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882B8F05AD3F57686AE93F9B9783CD1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80FA1FEEDE6ACEFD9004E2413376F1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BEE8E6C9E820DFB4D6C814715F676FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A778FAA769B4512ACD90EFB1C703402 /* Pods-bhmhockey-tvOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79DDD2F5FA4B3ECEFC7A14FAF28DA0C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67A0E472832796D4CFA4566DDD530C78 /* Pods-bhmhockey-tvOSTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80B9C35C94771505096A229D98F1227 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA27D92414AAEBC8FCDDECECDAA9001D /* Pods-bhmhockey-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9F33549741D354A05E046CC0F10CDB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CF4AD728729D9E4DCDA01366649C1EE /* Pods-bhmhockeyTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0051E4214884EF5346A2A55966EC832B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenter;
+			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
+			targetProxy = D96B09CB6F7CDF72F3099DD83AD5AB87 /* PBXContainerItemProxy */;
+		};
+		01CC7F8122F86391F4B89DFD8CAC579D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenterReactNativeShared;
+			target = 2CD32458A161AF8E4BA58B4310701AB3 /* AppCenterReactNativeShared */;
+			targetProxy = 3AE4FF19A9EB498466FB335B234F537B /* PBXContainerItemProxy */;
+		};
+		CEF88CBCB3AE5289E6F541D46E82B361 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppCenter;
+			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
+			targetProxy = CBA7984D694645AF375AA5B65E62C795 /* PBXContainerItemProxy */;
+		};
+		E084BE870BA518B9AF5C3D30D509AAEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-bhmhockey";
+			target = 5F94A58E2F0F198CA2D75DC5D783E434 /* Pods-bhmhockey */;
+			targetProxy = 9E662ACA61303D6EAEBA3EE86C6C8CDE /* PBXContainerItemProxy */;
+		};
+		EE205085AE7EE7C058C0E3F1207686EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-bhmhockey-tvOS";
+			target = 26992D49E0939E3DB7513174487E3F09 /* Pods-bhmhockey-tvOS */;
+			targetProxy = C761DEA863D03F08BF1D01CF82EBDEFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3144DEF011EE2C01C54CB2B5D51535EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50F8BBF28F82C293D81AF9B3E1567026 /* Pods-bhmhockey-tvOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey-tvOS/Pods-bhmhockey-tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey-tvOS/Pods-bhmhockey-tvOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		44DA8D30A185CF39FF38CACD51676CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66391669DEC81AA8DF758D0ACEA1E6B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F076FC3741566F9DEB1142F4CF31139 /* Pods-bhmhockey.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey/Pods-bhmhockey-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey/Pods-bhmhockey.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		68F07807C8D62F2D76C744A41F3D874D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		6F4D25CB9F599D775DBC451590213731 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74C4B5CCB8440F66A7E5B33AC87D4C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1557D899A5A0359EC9BE8B89DEECFE5B /* Pods-bhmhockeyTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockeyTests/Pods-bhmhockeyTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockeyTests/Pods-bhmhockeyTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8A791558A6CAD52F6A29BE7CDFC70C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59CE2BED226D8BACCDFB3EEC78580EC1 /* AppCenter.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4DBF2CB73A4E8A61525FE6A006F06A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A755A9528B1065A1A612B81C553BA2B4 /* Pods-bhmhockey.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey/Pods-bhmhockey-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey/Pods-bhmhockey.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B91B5E41C47BFCD2F19DCBA10F931239 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09BF91BBE887296596D2409674E1C4F1 /* Pods-bhmhockey-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey-tvOS/Pods-bhmhockey-tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey-tvOS/Pods-bhmhockey-tvOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C4939254D9B12C5F8E84CFE6C51D11AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B949CDF652086A792464DA9B3CE2C9FA /* AppCenterReactNativeShared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DEBE43883D5120BD05CF5D0BB67EB651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AFD679B46DBA76818DC37DC7D0DEA50 /* Pods-bhmhockeyTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockeyTests/Pods-bhmhockeyTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockeyTests/Pods-bhmhockeyTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E1ED6DABFEFD9C54EE38EDA3D2F7092C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		E68587836B0E03262C1686A4CB48E92F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 174D2FB7FE8C7D2F7CE69199A07E33CC /* Pods-bhmhockey-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey-tvOSTests/Pods-bhmhockey-tvOSTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey-tvOSTests/Pods-bhmhockey-tvOSTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FB1B2A5386F1FB6BC115F3B7A351A1CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C607CF6258E98FDEA385B0B0BBA0319 /* Pods-bhmhockey-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-bhmhockey-tvOSTests/Pods-bhmhockey-tvOSTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-bhmhockey-tvOSTests/Pods-bhmhockey-tvOSTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1ED6DABFEFD9C54EE38EDA3D2F7092C /* Debug */,
+				68F07807C8D62F2D76C744A41F3D874D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5705E5B11C354BE88C0DB1048E8B0F72 /* Build configuration list for PBXNativeTarget "Pods-bhmhockey-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B91B5E41C47BFCD2F19DCBA10F931239 /* Debug */,
+				3144DEF011EE2C01C54CB2B5D51535EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58EB5CA36CCAF75B28066EAFF499F408 /* Build configuration list for PBXNativeTarget "Pods-bhmhockey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4DBF2CB73A4E8A61525FE6A006F06A5 /* Debug */,
+				66391669DEC81AA8DF758D0ACEA1E6B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1AADDABC0FF92BF51AC88E6BD57DB25 /* Build configuration list for PBXAggregateTarget "AppCenterReactNativeShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4939254D9B12C5F8E84CFE6C51D11AE /* Debug */,
+				44DA8D30A185CF39FF38CACD51676CDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0944D0DEFF9CDF0CBE6D4A41B195020 /* Build configuration list for PBXAggregateTarget "AppCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F4D25CB9F599D775DBC451590213731 /* Debug */,
+				8A791558A6CAD52F6A29BE7CDFC70C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5BE0B2F23CD08180966598F646A1930 /* Build configuration list for PBXNativeTarget "Pods-bhmhockeyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C4B5CCB8440F66A7E5B33AC87D4C79 /* Debug */,
+				DEBE43883D5120BD05CF5D0BB67EB651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFF44B4EDA0E11D4CFE554AC21E4B20D /* Build configuration list for PBXNativeTarget "Pods-bhmhockey-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB1B2A5386F1FB6BC115F3B7A351A1CF /* Debug */,
+				E68587836B0E03262C1686A4CB48E92F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
