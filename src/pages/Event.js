@@ -17,7 +17,7 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getListThunk, getUserDetailsThunk } from '../actions' 
+import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount } from '../actions' 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
@@ -53,6 +53,8 @@ class Event extends Component {
         var passedUuid = this.params.uuid
         this.props.getListThunk(this.params.uuid);
         this.props.getUserDetailsThunk();
+        this.props.getEventCountThunk(this.params.uuid);
+        
         
     }
 
@@ -109,6 +111,15 @@ class Event extends Component {
         
     }
     
+    fullCheck(){
+        if (this.params.spots == 0){
+            console.log("Zero spots aval")
+            return true
+        } else {
+            console.log("There are " + this.params.spots + " available")
+            return false
+        }
+    }
     
 
     renderHeader() {
@@ -139,7 +150,7 @@ class Event extends Component {
                             <Text caption bold primary style={{ paddingHorizontal: 10 }}>
                                 Spots Available:
                   </Text>
-                            <Text h1>{this.params.spots}</Text>
+                            <Text h1>{this.props.eventcountReducer}</Text>
                         </Block>
                     </Block>
                     <Block
@@ -208,6 +219,24 @@ class Event extends Component {
     }
 
     renderRequestsRedux() {
+        const register = <Block center>
+                            <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
+                                       <Text style={styles.buttonText}> Register</Text>
+
+                            </TouchableOpacity>
+                        </Block>
+        const disableRegister = <Block center>
+                                    <TouchableOpacity style={styles.button} onPress={() => alert("Game is full!")}>
+                                        <Text style={styles.buttonText}> Register</Text>
+                                    </TouchableOpacity>
+                                </Block>
+        let regButton = disableRegister;
+
+        if (this.fullCheck()) {
+            regButton = disableRegister;
+        } else {
+            regButton = register;
+        }
         if (!Array.isArray(this.props.list) || !this.props.list.length) {
             // array does not exist, is not an array, or is empty
             // ⇒ do not attempt to process array
@@ -215,14 +244,7 @@ class Event extends Component {
 
             return(
                 <Block flex={0.8} color="gray2" style={styles.requests}>
-                <Block center>
-                     <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
-                        
-                            <Text style={styles.buttonText}> Register</Text>
-        
-                    </TouchableOpacity>
-                    
-                    </Block>
+                {regButton}
                     <Block flex={false} row space="between" style={styles.requestsHeader}>
                         <Text h3>White team:</Text>
                     </Block>
@@ -306,7 +328,7 @@ class Event extends Component {
                 uuid: signupUid,
                
             }).then((data)=>{
-                //success callback
+                this.props.updateCount(event_uuid);
                 console.log('data ' , data)
             }).catch((error)=>{
                 //error callback
@@ -319,6 +341,20 @@ class Event extends Component {
     } catch (e) {
         alert(e);
     }
+
+    // try {
+    //     var querry = firebase.database().ref('Event/').orderByChild("uuid").equalTo(event_uuid);
+    //     querry.once("value", function(snapshot){
+    //         snapshot.forEach(child => {
+    //             console.log("child2 ", child.val().availableSpots)
+    //             var spots = child.val().availableSpots -1 
+    //             console.log("New spots ", spots)
+    //             //child.ref.update({availableSpots: })
+    //         })
+    //     })
+    // } catch(e){
+    //     alert(e)
+    // }
     } else {
         //console.log("Already exists");
         alert("You have already registered!")
@@ -330,8 +366,13 @@ class Event extends Component {
     }
 
     render() {
+        // console.log("Available spots ", this.params.spots)
+        //this.fullCheck();
+        console.log("Key ", this.props.eventcountReducer)
         console.log("props " , this.props.list)
+        console.log("reducerasfasdf ", this.props.updateCountReducer)
         const empty = [];
+        
         
         return (
             <SafeAreaView style={styles.safe} >
@@ -353,8 +394,8 @@ class Event extends Component {
 
 
 export default connect(
-    state=>({list: state.listReducer, userDetailsReducer: state.userDetailsReducer}), 
-    { getListThunk, getUserDetailsThunk }
+    state=>({list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount}), 
+    { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount }
   )(Event);
 
 

@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { GET_LIST, GET_USER, GET_USER_DETAILS } from './types';
+import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT } from './types';
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
 
@@ -49,5 +49,39 @@ export const getUserDetailsThunk = () => {
             console.log("Full name thunk ", fullname)
           dispatch({ type: GET_USER_DETAILS, payload: fullname });
         });
+    };
+  };
+
+  export const getEventCountThunk = (uuid) => {
+    //console.log("Index UUUID " , uuid);
+    foundKey = '';
+    return (dispatch) => {
+        var ref = firebase.database().ref('Events/');
+        ref.orderByChild("uuid").equalTo(uuid).on("value", function(snapshot) {
+            //console.log("Snapshot from action " , snapshot.val())
+            snapshot.forEach(child => {
+                //console.log("child ", child.val().availableSpots)
+                dispatch({ type: GET_EVENT_COUNT, payload: child.val().availableSpots });
+            })
+          });
+    };
+  };
+
+  export const updateCount = (uuid) => {
+    console.log("Index UUUID " , uuid);
+    foundKey = '';
+    return (dispatch) => {
+        var ref = firebase.database().ref('Events/');
+        ref.orderByChild("uuid").equalTo(uuid).once("value", function(snapshot) {
+            //console.log("Snapshot from action " , snapshot.val())
+            snapshot.forEach(child => {
+                console.log("Current Spots ", child.val().availableSpots)
+                var decrement = (child.val().availableSpots) -1
+                console.log("Remove Spots ", decrement)
+                child.ref.update({ availableSpots: decrement});
+
+                //dispatch({ type: GET_EVENT_COUNT, payload: decrement });
+            })
+          });
     };
   };
