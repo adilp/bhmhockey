@@ -85,3 +85,9 @@ export const getUserDetailsThunk = () => {
           });
     };
   };
+
+  export const getAllEvents = () => {
+      return (dispatch) => {
+
+      }
+  }
