@@ -8,7 +8,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type){
         case GET_USER:
-            console.log("action ", action.payload);
+            console.log("actionUser ", action.payload);
             return state.user.push(action.payload);
         default:
         console.log("default ");

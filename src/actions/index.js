@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT } from './types';
+import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS } from './types';
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
 
@@ -87,7 +87,20 @@ export const getUserDetailsThunk = () => {
   };
 
   export const getAllEvents = () => {
+    var a =[]
       return (dispatch) => {
-
+        
+        var ref = firebase.database().ref('Events/');
+        ref.orderByChild("availableSpots").on("value", function(snapshot) {
+            console.log("Snapshot from action " , snapshot.val())
+            snapshot.forEach(child => {
+                a.push(child.val())
+                dispatch({ type: GET_EVENT_LIST, payload: child.val() });
+            })
+            console.log("Array dispatch ", a)
+            
+            
+          });
       }
   }
+
