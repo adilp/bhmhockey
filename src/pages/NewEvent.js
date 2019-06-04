@@ -21,6 +21,8 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { getUserDetailsThunk } from '../actions';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import ModalSelector from 'react-native-modal-selector';
+
 
 
 class NewEvent extends Component {
@@ -107,7 +109,16 @@ class NewEvent extends Component {
     }
 
     renderRequests() {
+        let index = 0;
+        const data = [
+            { key: index++, section: true, label: 'Level' },
+            { key: index++, label: 'All' },
+            { key: index++, label: 'Gold' },
+            { key: index++, label: 'Silver' },
+            { key: index++, label: 'Bronze' },
 
+        ];
+        
         return (
 
 
@@ -134,21 +145,13 @@ class NewEvent extends Component {
 
                 <Block flex={false} row style={{ marginTop: 15 }}>
                     <Text h3 primary caption bold h3 accent style={{ marginRight: -(25 + 5) }}> LEVEL</Text>
-                    <Block center>
+                    <Block style={{ marginTop: 30}}>
                         
-                        
-                        <Picker
-                            selectedValue={this.state.level}
-                            style={{ borderWidth: 1, borderColor: 'red', position: "absolute", left: 0, right: 0 }}
-                            onValueChange={(itemValue, itemIndex) =>
-                                this.setState({ level: itemValue })
-                            }>
-                            <Picker.Item label="All Levels" value="All" />
-                            <Picker.Item label="Gold" value="Gold" />
-                            <Picker.Item label="Silver" value="Silver" />
-                            <Picker.Item label="Bronze" value="Bronze" />
-                            <Picker.Item label="D-League" value="Dev" />
-                        </Picker>
+                    <ModalSelector
+                    data={data}
+                    initValue="Select level"
+                    onChange={(option)=>{ this.setState({ level: option.label }) }} />
+
                     </Block>
 
 

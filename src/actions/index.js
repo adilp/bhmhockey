@@ -122,7 +122,7 @@ export const fetchingSuccess = ar => ({
         dispatch(fetchingStart());
         try {
             var ref = firebase.database().ref('Events/');
-            ref.orderByChild("availableSpots").on("value", function(snapshot) {
+            ref.orderByChild("epochTime").on("value", function(snapshot) {
                 console.log("Snapshot from action " , snapshot.val())
                 snapshot.forEach(child => {
                     a.push(child.val())
