@@ -17,7 +17,7 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents } from '../actions' 
+import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk } from '../actions' 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
@@ -55,6 +55,7 @@ class Event extends Component {
         this.props.getUserDetailsThunk();
         this.props.getEventCountThunk(this.params.uuid);
         this.props.getAllEvents();
+        this.props.getUserThunk();
         
         
     }
@@ -369,6 +370,7 @@ class Event extends Component {
     render() {
         // console.log("Available spots ", this.params.spots)
         //this.fullCheck();
+        console.log("User thhhuunnkkk ", this.props.userThunk)
         console.log("Key ", this.props.eventcountReducer)
         console.log("props " , this.props.list)
         console.log("reducerasfasdf ", this.props.eventListReducer)
@@ -395,8 +397,8 @@ class Event extends Component {
 
 
 export default connect(
-    state=>({list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
-    { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents }
+    state=>({userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
+    { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk }
   )(Event);
 
 

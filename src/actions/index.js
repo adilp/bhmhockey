@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS } from './types';
+
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
 
@@ -86,21 +87,54 @@ export const getUserDetailsThunk = () => {
     };
   };
 
+//   export const getAllEvents = () => {
+//     var a =[]
+//       return (dispatch) => {
+        
+//         var ref = firebase.database().ref('Events/');
+//         ref.orderByChild("availableSpots").once("value", function(snapshot) {
+//             console.log("Snapshot from action " , snapshot.val())
+//             snapshot.forEach(child => {
+//                 a.push(child.val())
+//             })
+//             console.log("Array dispatch ", a)
+//             dispatch({ type: GET_EVENT_LIST, payload: a });
+            
+//           }).then( ch => {
+//               console.log("Finsihed");
+//               dispatch({ type: FETCH_SUCCESS, payload: false});
+//           });
+//       }
+//   }
+
+export const fetchingStart = () => ({type: FETCH_BEGIN});
+
+export const fetchingSuccess = ar => ({
+    type: FETCH_SUCCESS,
+    payload: ar
+});
+
+
+
   export const getAllEvents = () => {
     var a =[]
       return (dispatch) => {
+        dispatch(fetchingStart());
+        try {
+            var ref = firebase.database().ref('Events/');
+            ref.orderByChild("availableSpots").on("value", function(snapshot) {
+                console.log("Snapshot from action " , snapshot.val())
+                snapshot.forEach(child => {
+                    a.push(child.val())
+                })
+                console.log("Array dispatch ", a)
+                dispatch(fetchingSuccess(a))
+                //dispatch({ type: GET_EVENT_LIST, payload: a });
+                
+              });
+        } catch(error) {
+            console.log("Error ", error);
+        }
         
-        var ref = firebase.database().ref('Events/');
-        ref.orderByChild("availableSpots").on("value", function(snapshot) {
-            console.log("Snapshot from action " , snapshot.val())
-            snapshot.forEach(child => {
-                a.push(child.val())
-                dispatch({ type: GET_EVENT_LIST, payload: child.val() });
-            })
-            console.log("Array dispatch ", a)
-            
-            
-          });
       }
   }
-

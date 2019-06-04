@@ -19,7 +19,7 @@ import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { getUserDetailsThunk } from '../actions';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
 
@@ -30,7 +30,7 @@ class NewEvent extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            fullname:'',
+            fullname: '',
             email: '',
             password: '',
             level: '',
@@ -47,16 +47,16 @@ class NewEvent extends Component {
     }
 
     componentWillMount() {
-      
+
         console.log("Component will mount");
         this.props.getUserDetailsThunk();
     }
 
     uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
-          });
+        });
     }
 
     renderHeader() {
@@ -135,35 +135,37 @@ class NewEvent extends Component {
                 <Block flex={false} row style={{ marginTop: 15 }}>
                     <Text h3 primary caption bold h3 accent style={{ marginRight: -(25 + 5) }}> LEVEL</Text>
                     <Block center>
-                    <Picker
-                        selectedValue={this.state.level}
-                        style={{height: 50, width: 100}}
-                        onValueChange={(itemValue, itemIndex) =>
-                        this.setState({level: itemValue})
-                        }>
-                        <Picker.Item label="All Levels" value="All" />
-                        <Picker.Item label="Gold" value="Gold" />
-                        <Picker.Item label="Silver" value="Silver" />
-                        <Picker.Item label="Bronze" value="Bronze" />
-                        <Picker.Item label="D-League" value="Dev" />
-                    </Picker>
+                        
+                        
+                        <Picker
+                            selectedValue={this.state.level}
+                            style={{ borderWidth: 1, borderColor: 'red', position: "absolute", left: 0, right: 0 }}
+                            onValueChange={(itemValue, itemIndex) =>
+                                this.setState({ level: itemValue })
+                            }>
+                            <Picker.Item label="All Levels" value="All" />
+                            <Picker.Item label="Gold" value="Gold" />
+                            <Picker.Item label="Silver" value="Silver" />
+                            <Picker.Item label="Bronze" value="Bronze" />
+                            <Picker.Item label="D-League" value="Dev" />
+                        </Picker>
                     </Block>
-                    
-                    
+
+
                 </Block>
 
-                <Block flex={1} center style={{  justifyContent: 'flex-end', marginBottom: 36}}>
-                <TouchableOpacity
-                style={styles.button2}
-                //onPress={() => this.props.navigation.navigate('Main')}
-                onPress={() => this._handlePress()}
-                
-            >
-                <Text style={styles.signupText}> ADD EVENT</Text>
-            </TouchableOpacity>
+                <Block flex={1} center style={{ justifyContent: 'flex-end', marginBottom: 36 }}>
+                    <TouchableOpacity
+                        style={styles.button2}
+                        //onPress={() => this.props.navigation.navigate('Main')}
+                        onPress={() => this._handlePress()}
+
+                    >
+                        <Text style={styles.signupText}> ADD EVENT</Text>
+                    </TouchableOpacity>
                 </Block>
 
-                
+
 
 
                 <DateTimePicker
@@ -189,48 +191,48 @@ class NewEvent extends Component {
         // console.log(this.state.email);
         let oldstate = this;
 
-    console.log("fullname ",  this.state.fullname)
+        console.log("fullname ", this.state.fullname)
 
         try {
-            
-              
-                firebase.database().ref('Events/').push({
-                    uuid: oldstate.state.uuid,
-                    chosenDate: oldstate.state.chosenDateTime,
-                    epochTime: oldstate.state.epochTime,
-                    time: oldstate.state.time,
-                    //datetime: oldstate.state.dateTime,
-                    availableSpots: oldstate.state.availSpots,
-                    // scheduler: oldstate.state.fullname,
-                    scheduler: this.props.userDetailsReducer,
-                    level: oldstate.state.level,
-                    date: oldstate.state.date,
-                }).then((data)=>{
-                    //success callback
-                    console.log('data ' , data)
-                }).catch((error)=>{
-                    //error callback
-                    console.log('error ' , error)
-                })
-                //console.log('uid:', oldstate.state.uid);
-            
+
+
+            firebase.database().ref('Events/').push({
+                uuid: oldstate.state.uuid,
+                chosenDate: oldstate.state.chosenDateTime,
+                epochTime: oldstate.state.epochTime,
+                time: oldstate.state.time,
+                //datetime: oldstate.state.dateTime,
+                availableSpots: oldstate.state.availSpots,
+                // scheduler: oldstate.state.fullname,
+                scheduler: this.props.userDetailsReducer,
+                level: oldstate.state.level,
+                date: oldstate.state.date,
+            }).then((data) => {
+                //success callback
+                console.log('data ', data)
+            }).catch((error) => {
+                //error callback
+                console.log('error ', error)
+            })
+            //console.log('uid:', oldstate.state.uid);
+
 
             //var user = firebase.auth.currentUser;
-            
-            
-            
+
+
+
         } catch (e) {
             alert(e);
         }
-        
-        
+
+
         //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
 
-        console.log("Uid ",  this.state.uuid)
-        
+        console.log("Uid ", this.state.uuid)
+
 
         this.props.navigation.navigate('Main');
-        
+
     }
 
 
@@ -246,9 +248,9 @@ class NewEvent extends Component {
     }
 }
 export default connect(
-    state=>({userDetailsReducer: state.userDetailsReducer}), 
+    state => ({ userDetailsReducer: state.userDetailsReducer }),
     { getUserDetailsThunk }
-  )(NewEvent);
+)(NewEvent);
 // export default NewEvent;
 
 const styles = StyleSheet.create({

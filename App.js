@@ -60,15 +60,16 @@ componentWillMount(){
     
      if (this.state.isAuthenticated) {
        return(
-        <Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
+        //<Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
          <HomeAppContainer />
-         </Provider>
+         //</Provider>
          );
-     } else {
+     } 
+     else {
       return(
-        <Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
+        //<Provider store={ createStore(Reducers, {}, applyMiddleware(ReduxThunk))}>
         <AppContainer />
-        </Provider>
+        //</Provider>
         );
      }
          

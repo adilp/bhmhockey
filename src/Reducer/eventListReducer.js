@@ -1,35 +1,27 @@
 
 import { GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS } from '../actions/types';
+
+// const INITIAL_STATE = {
+//     arr:[],
+//     loading: true
+// };
+
 const INITIAL_STATE = {
-    arr:[],
-    loading: false
-};
+    arr: [],
+    isFetching: false,
+
+}
 
 const eventListReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type){
-        case GET_EVENT_LIST:
-            console.log("action count11", action.payload);
-            //return action.payload
-            return state.arr.push(action.payload);
-            // return { 
-            //     ...state,
-            //     arr: [...state.arr, action.payload]
-            // }
+    switch (action.type) {
         case FETCH_BEGIN:
-         console.log("Begining")
-            return {
-                ...state,
-                loading: true
-            }
+            console.log("begining fetch")
+          return { ...state, isFetching: true };
         case FETCH_SUCCESS:
-            return {
-                ...state,
-                loading:false
-            }
+          return { ...state, isFetching: false, arr: action.payload };
         default:
-        console.log("default ");
-            return state;
-    }
-};
+          return state;
+      }
+}
 
 export default eventListReducer;
