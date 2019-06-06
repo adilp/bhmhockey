@@ -1,5 +1,5 @@
-
 import { BALANCE_TEAMS, BLACK_TEAM, WHITE_TEAM, BLACK_TEAM_DNE, WHITE_TEAM_DNE, FETCH_SUCCESS } from '../actions/types';
+
 
 
 // const INITIAL_STATE = {
@@ -14,15 +14,17 @@ const INITIAL_STATE = {
     }]
   }
 
-const balanceTeamsReducer = (state = INITIAL_STATE, action) => {
+const blackTeamReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case BALANCE_TEAMS:
-            console.log("balance teams reducer ", action.payload)
-          return action.payload;
-          //return [...state, state.blackTeam: action.payload]
+        case BLACK_TEAM:
+        console.log("Black team reducer action ", action.payload)
+          return {...state, blackTeam: action.payload}
+        case BLACK_TEAM_DNE:
+        console.log("Black team reducer DNE action ", state)
+          return INITIAL_STATE;
         default:
           return state;
       }
 }
 
-export default balanceTeamsReducer;
+export default blackTeamReducer;

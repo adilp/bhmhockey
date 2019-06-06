@@ -17,7 +17,17 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk, getListBalanced } from '../actions' 
+import { 
+    getListThunk, 
+    getUserDetailsThunk, 
+    getEventCountThunk, 
+    updateCount, 
+    getAllEvents, 
+    getUserThunk, 
+    getListBalanced,
+    
+
+} from '../actions' 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
@@ -56,7 +66,7 @@ class Event extends Component {
         this.props.getUserDetailsThunk();
         this.props.getEventCountThunk(this.params.uuid);
         this.props.getUserThunk();
-        this.props.getListBalanced();
+        this.props.getListBalanced(this.params.uuid);
         
         
     }
@@ -240,36 +250,12 @@ class Event extends Component {
         } else {
             regButton = register;
         }
-        console.log("CHeck empty or noh ", _.isEmpty(this.props.balanceTeamsReducer))
-        //if (!Array.isArray(this.props.balanceTeamsReducer) || !this.props.balanceTeamsReducer.length) {
-            if (_.isEmpty(this.props.balanceTeamsReducer)){
-            // array does not exist, is not an array, or is empty
-            // ⇒ do not attempt to process array
-            console.log("Empty array")
-
+        //console.log("is fetching ", this.props.listReducer.isFetching )
+        if (this.props.teamListFetchReducer.isFetching) {
             return(
-                <Block flex={0.8} color="gray2" style={styles.requests}>
-                {regButton}
-                    <Block flex={false} row space="between" style={styles.requestsHeader}>
-                        <Text h3>White team:</Text>
-                    </Block>
-                    <Block row card shadow color="white" style={styles.request} >
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <Text>Empty </Text>
-                    </ScrollView>
-                    </Block>
-                    <Block flex={false} row space="between" style={styles.requestsHeader}>
-                    <Text h3>Black team:</Text>
-                </Block>
-                <Block row card shadow color="white" style={styles.request} >
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <Text>Empty </Text>
-                    </ScrollView>
-                    </Block>
-                    
-                </Block>
-            );
-          } else {
+                <ActivityIndicator size="large" color ="0000ff"/>
+            ) 
+        } else {
             return (
                 <Block flex={0.8} color="gray2" style={styles.requests}>
                 <Block center>
@@ -285,7 +271,7 @@ class Event extends Component {
                     </Block>
                     <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.balanceTeamsReducer.whiteTeam.map((request,i) => (
+                        {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
                                 <Block row space="between">
@@ -303,8 +289,8 @@ class Event extends Component {
                     <Text h3>Black team:</Text>
                 </Block>
                 <Block row card shadow color="white" style={styles.request} >
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.balanceTeamsReducer.blackTeam.map((request, i) => (
+                     <ScrollView showsVerticalScrollIndicator={false}>
+                        {this.props.blackTeamReducer.blackTeam.map((request, i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
                             <Block row space="between">
@@ -315,11 +301,12 @@ class Event extends Component {
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
+                    
                     </Block>
                     
                 </Block>
             );
-          }
+        }
                 
         
     }
@@ -377,16 +364,39 @@ class Event extends Component {
         //this.force();
         //this.componentWillMount();
     }
-
+// renderWHite() {
+//     if (this.props.whiteTeamReducer)
+//     <Block row card shadow color="white" style={styles.request} >
+//                     <ScrollView showsVerticalScrollIndicator={false}>
+//                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
+//                             <TouchableOpacity activeOpacity={0.8} key={i}>
+//                             <Block flex={0.75} column middle>
+//                                 <Block row space="between">
+//                                     <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
+//                                     <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
+//                                 </Block>
+                                
+                            
+//                             </Block>
+//                             </TouchableOpacity>
+//                         ))}
+//                     </ScrollView>
+//                     </Block>
+// }
     render() {
         // console.log("Available spots ", this.params.spots)
         //this.fullCheck();
         // console.log("User thhhuunnkkk ", this.props.userThunk)
         // console.log("Key ", this.props.eventcountReducer)
         // console.log("props " , this.props.list)
-        // console.log("reducerasfasdf ", this.props.eventListReducer)
+         console.log("reducerasfasdf ", this.props.teamListFetchReducer.isFetching)
     // console.log("White Team ", this.props.balanceTeamsReducer.whiteTeam[0])
     // console.log("Black Team ", this.props.balanceTeamsReducer.blackTeam[0])
+    console.log("Whole team in event ", this.props.balanceTeamsReducer)
+    //console.log("WHite team in event ", this.props.whiteTeamReducer[0])
+    //var wht = this.props.whiteTeamReducer[0]
+    //console.log("WHite look in ", wht.Name)
+    console.log("Black team in event ", this.props.blackTeamReducer)
         const empty = [];
         
         
@@ -410,7 +420,9 @@ class Event extends Component {
 
 
 export default connect(
-    state=>({ balanceTeamsReducer: state.balanceTeamsReducer, userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
+    state=>({ teamListFetchReducer: state.teamListFetchReducer, blackTeamReducer: state.blackTeamReducer, whiteTeamReducer: state.whiteTeamReducer, 
+        balanceTeamsReducer: state.balanceTeamsReducer, userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, 
+        eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
     { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk, getListBalanced }
   )(Event);
 

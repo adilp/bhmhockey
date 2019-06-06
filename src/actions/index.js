@@ -1,5 +1,7 @@
 import * as firebase from "firebase";
-import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS, BALANCE_TEAMS } from './types';
+import { GET_LIST, GET_USER, GET_USER_DETAILS, 
+  GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, 
+  FETCH_SUCCESS, BALANCE_TEAMS, WHITE_TEAM, BLACK_TEAM, WHITE_TEAM_DNE, BLACK_TEAM_DNE, LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS } from './types';
 
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
@@ -88,7 +90,6 @@ export const getUserDetailsThunk = () => {
   };
 
 
-
 export const fetchingStart = () => ({type: FETCH_BEGIN});
 
 export const fetchingSuccess = ar => ({
@@ -96,9 +97,11 @@ export const fetchingSuccess = ar => ({
     payload: ar
 });
 
+export const listFetchingStart = () => ({type: LIST_FETCH_BEGIN})
 
+export const listFetchingSuccess = () => ({type: LIST_FETCH_SUCCESS})
 
-  export const getAllEvents = () => {
+export const getAllEvents = () => {
     var a =[]
       return (dispatch) => {
         dispatch(fetchingStart());
@@ -121,12 +124,37 @@ export const fetchingSuccess = ar => ({
       }
   }
 
-  export const getListBalanced = () => {
+  export const getListBalanced = (uuid) => {
     return (dispatch) => {
-      var ref = firebase.database().ref('TeamsList/' + "6a1b2b69-3ed9-46bb-950a-275fbcc8894f");
+      dispatch(listFetchingStart())
+      var ref = firebase.database().ref('TeamsList/' + uuid);
       ref.on('value', function(snapshot){
-        console.log("Snapshot from list ", snapshot.val())
-        dispatch({type: BALANCE_TEAMS, payload: snapshot.val()})
+
+        if (snapshot.hasChild("whiteTeam")) {
+          console.log("White team exists")
+          dispatch({ type: WHITE_TEAM, payload: snapshot.val().whiteTeam})
+        } else {
+          console.log("White team does not exist")
+          dispatch({ type: WHITE_TEAM_DNE })
+        }
+
+        if (snapshot.hasChild("blackTeam")) {
+          console.log("Black team exists")
+          dispatch({ type: BLACK_TEAM, payload: snapshot.val().blackTeam})
+        } else {
+          console.log("BLack team does not exist")
+          dispatch({ type: BLACK_TEAM_DNE })
+        }
+
+        dispatch({ type: BALANCE_TEAMS, payload: snapshot.val()})
+        
+        // var whiteTeam = snapshot.val().whiteTeam
+        // var blackTeam = snapshot.val().blackTeam
+        
+        
+        // dispatch({type: WHITE_TEAM, payload: whiteTeam})
+        // //dispatch({})
+        // dispatch({type: BALANCE_TEAMS, payload: snapshot.val()})
       })
     }
   }
