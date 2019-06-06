@@ -5,3 +5,4 @@ export const GET_EVENT_COUNT = 'get_event_count';
 export const GET_EVENT_LIST = 'get_event_list';
 export const FETCH_BEGIN = 'fetch_begin';
 export const FETCH_SUCCESS = 'fetch_success';
+export const BALANCE_TEAMS = 'balance_teams';

@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS } from './types';
+import { GET_LIST, GET_USER, GET_USER_DETAILS, GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, FETCH_SUCCESS, BALANCE_TEAMS } from './types';
 
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
@@ -45,9 +45,9 @@ export const getUserDetailsThunk = () => {
         .on('value', snapshot => {
             let firstName = (snapshot.val() && snapshot.val().firstname)
             let lastName = (snapshot.val() && snapshot.val().lastname)
-            console.log("FirstName ",  firstName)
+            //console.log("FirstName ",  firstName)
             fullname = firstName + " " + lastName
-            console.log("Full name thunk ", fullname)
+            //console.log("Full name thunk ", fullname)
           dispatch({ type: GET_USER_DETAILS, payload: fullname });
         });
     };
@@ -87,25 +87,7 @@ export const getUserDetailsThunk = () => {
     };
   };
 
-//   export const getAllEvents = () => {
-//     var a =[]
-//       return (dispatch) => {
-        
-//         var ref = firebase.database().ref('Events/');
-//         ref.orderByChild("availableSpots").once("value", function(snapshot) {
-//             console.log("Snapshot from action " , snapshot.val())
-//             snapshot.forEach(child => {
-//                 a.push(child.val())
-//             })
-//             console.log("Array dispatch ", a)
-//             dispatch({ type: GET_EVENT_LIST, payload: a });
-            
-//           }).then( ch => {
-//               console.log("Finsihed");
-//               dispatch({ type: FETCH_SUCCESS, payload: false});
-//           });
-//       }
-//   }
+
 
 export const fetchingStart = () => ({type: FETCH_BEGIN});
 
@@ -123,7 +105,7 @@ export const fetchingSuccess = ar => ({
         try {
             var ref = firebase.database().ref('Events/');
             ref.orderByChild("epochTime").on("value", function(snapshot) {
-                console.log("Snapshot from action " , snapshot.val())
+                //console.log("Snapshot from action " , snapshot.val())
                 snapshot.forEach(child => {
                     a.push(child.val())
                 })
@@ -137,4 +119,14 @@ export const fetchingSuccess = ar => ({
         }
         
       }
+  }
+
+  export const getListBalanced = () => {
+    return (dispatch) => {
+      var ref = firebase.database().ref('TeamsList/' + "6a1b2b69-3ed9-46bb-950a-275fbcc8894f");
+      ref.on('value', function(snapshot){
+        console.log("Snapshot from list ", snapshot.val())
+        dispatch({type: BALANCE_TEAMS, payload: snapshot.val()})
+      })
+    }
   }

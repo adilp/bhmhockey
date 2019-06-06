@@ -17,13 +17,14 @@ import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk } from '../actions' 
+import { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk, getListBalanced } from '../actions' 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import Reducers from '../Reducer';
 import RenderRequestsList from './RenderRequests';
+import _ from 'lodash';
 
 
 
@@ -55,6 +56,7 @@ class Event extends Component {
         this.props.getUserDetailsThunk();
         this.props.getEventCountThunk(this.params.uuid);
         this.props.getUserThunk();
+        this.props.getListBalanced();
         
         
     }
@@ -238,7 +240,9 @@ class Event extends Component {
         } else {
             regButton = register;
         }
-        if (!Array.isArray(this.props.list) || !this.props.list.length) {
+        console.log("CHeck empty or noh ", _.isEmpty(this.props.balanceTeamsReducer))
+        //if (!Array.isArray(this.props.balanceTeamsReducer) || !this.props.balanceTeamsReducer.length) {
+            if (_.isEmpty(this.props.balanceTeamsReducer)){
             // array does not exist, is not an array, or is empty
             // ⇒ do not attempt to process array
             console.log("Empty array")
@@ -281,11 +285,16 @@ class Event extends Component {
                     </Block>
                     <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.list.map((request,i) => (
+                        {this.props.balanceTeamsReducer.whiteTeam.map((request,i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
-                            <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
-                        </Block>
+                                <Block row space="between">
+                                    <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
+                                    <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
+                                </Block>
+                                
+                            
+                            </Block>
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
@@ -295,11 +304,14 @@ class Event extends Component {
                 </Block>
                 <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.list.map((request, i) => (
+                        {this.props.balanceTeamsReducer.blackTeam.map((request, i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
-                            <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
+                            <Block row space="between">
+                            <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
+                            <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
                         </Block>
+                            </Block>
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
@@ -369,10 +381,12 @@ class Event extends Component {
     render() {
         // console.log("Available spots ", this.params.spots)
         //this.fullCheck();
-        console.log("User thhhuunnkkk ", this.props.userThunk)
-        console.log("Key ", this.props.eventcountReducer)
-        console.log("props " , this.props.list)
-        console.log("reducerasfasdf ", this.props.eventListReducer)
+        // console.log("User thhhuunnkkk ", this.props.userThunk)
+        // console.log("Key ", this.props.eventcountReducer)
+        // console.log("props " , this.props.list)
+        // console.log("reducerasfasdf ", this.props.eventListReducer)
+    // console.log("White Team ", this.props.balanceTeamsReducer.whiteTeam[0])
+    // console.log("Black Team ", this.props.balanceTeamsReducer.blackTeam[0])
         const empty = [];
         
         
@@ -396,8 +410,8 @@ class Event extends Component {
 
 
 export default connect(
-    state=>({userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
-    { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk }
+    state=>({ balanceTeamsReducer: state.balanceTeamsReducer, userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
+    { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk, getListBalanced }
   )(Event);
 
 
