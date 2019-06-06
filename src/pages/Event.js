@@ -54,7 +54,6 @@ class Event extends Component {
         this.props.getListThunk(this.params.uuid);
         this.props.getUserDetailsThunk();
         this.props.getEventCountThunk(this.params.uuid);
-        this.props.getAllEvents();
         this.props.getUserThunk();
         
         
@@ -282,8 +281,8 @@ class Event extends Component {
                     </Block>
                     <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.list.map(request => (
-                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
+                        {this.props.list.map((request,i) => (
+                            <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
                             <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
                         </Block>
@@ -296,8 +295,8 @@ class Event extends Component {
                 </Block>
                 <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {this.props.list.map(request => (
-                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
+                        {this.props.list.map((request, i) => (
+                            <TouchableOpacity activeOpacity={0.8} key={i}>
                             <Block flex={0.75} column middle>
                             <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
                         </Block>

@@ -82,8 +82,8 @@ class Home extends Component {
     
                     <ScrollView showsVerticalScrollIndicator={false}>
                
-                        {obj.map(request => (
-                            <TouchableOpacity activeOpacity={0.8} key={`request-${request.epochTime}`} onPress={() => this.props.navigation.navigate('Event', {
+                        {obj.map((request,i) => (
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.props.navigation.navigate('Event', {
                                 spots: request.availableSpots,
                                 date: request.date,
                                 puckdrop: request.time,
