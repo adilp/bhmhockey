@@ -10,9 +10,9 @@ const teamListFetchReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_BEGIN:
             console.log("begining fetch list")
-          return {isFetching: true};
+          return {...state, isFetching: true};
         case FETCH_SUCCESS:
-          return { isFetching: false};
+          return {...state, isFetching: false};
         default:
           return state;
       }

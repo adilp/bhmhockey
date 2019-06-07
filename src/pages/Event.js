@@ -56,6 +56,9 @@ class Event extends Component {
     componentDidMount() {
         
         this._handleStart();
+        if (!this.props.whiteTeamReducer && !this.props.blackTeamReducer){
+            alert("Hello")
+        }
        
 
     }
@@ -67,8 +70,6 @@ class Event extends Component {
         this.props.getEventCountThunk(this.params.uuid);
         this.props.getUserThunk();
         this.props.getListBalanced(this.params.uuid);
-        
-        
     }
 
     async _handleStart(): Promise<void> {
@@ -251,11 +252,7 @@ class Event extends Component {
             regButton = register;
         }
         //console.log("is fetching ", this.props.listReducer.isFetching )
-        if (this.props.teamListFetchReducer.isFetching) {
-            return(
-                <ActivityIndicator size="large" color ="0000ff"/>
-            ) 
-        } else {
+      
             return (
                 <Block flex={0.8} color="gray2" style={styles.requests}>
                 <Block center>
@@ -278,8 +275,6 @@ class Event extends Component {
                                     <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
                                     <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
                                 </Block>
-                                
-                            
                             </Block>
                             </TouchableOpacity>
                         ))}
@@ -306,7 +301,7 @@ class Event extends Component {
                     
                 </Block>
             );
-        }
+        
                 
         
     }
@@ -383,6 +378,7 @@ class Event extends Component {
 //                     </ScrollView>
 //                     </Block>
 // }
+
     render() {
         // console.log("Available spots ", this.params.spots)
         //this.fullCheck();
@@ -399,7 +395,11 @@ class Event extends Component {
     console.log("Black team in event ", this.props.blackTeamReducer)
         const empty = [];
         
-        
+        if (this.props.teamListFetchReducer.isFetching) {
+            return(
+                <ActivityIndicator size="large" color ="0000ff"/>
+            ) 
+        } else {
         return (
             <SafeAreaView style={styles.safe} >
                 {this.renderHeader()}
@@ -414,6 +414,7 @@ class Event extends Component {
             </SafeAreaView>
  
         );
+            }
     }
 }
 
