@@ -7,7 +7,8 @@ import {
     SafeAreaView,
     ScrollView,
     TextInput,
-    Picker
+    Picker,
+    RefreshControl
 } from "react-native";
 
 import Form from '../components/Form';
@@ -232,6 +233,63 @@ class Event extends Component {
         );
     }
 
+    togglePaidUnPaid(request, team) {
+        console.log("This is toggle " , request)
+        //console.log("THis is uuid ", this.params.uuid) 
+        //console.log("Team ",team)
+        let vpath = 'TeamsList/' + this.params.uuid + "/" + team + "/";
+        let Paid = 'Paid';
+        let unpaid = 'unpaid';
+        let vstatus = ''
+        let emmpty = "Empty";
+        // console.log()
+
+        if (request.Name == emmpty ){
+            console.log("EMpty");
+        } else {
+
+        
+        try {
+            
+            var signupUid = this.uuidv4();
+            firebase.database().ref('TeamsList/' + this.params.uuid + "/" + team).once('value', snapshot => {
+                //console.log("toggle ", snapshot.val())
+
+                snapshot.forEach( child => {
+                    console.log("toggle child", child.val())
+                    if (request.Name === child.val().Name) {
+                        //console.log("Found ", child.val())
+                        //console.log("Found ", child.key)
+                        vpath += child.key
+                        if (child.val().Paid === Paid){
+                            console.log("Unpaid")
+                            vstatus = "Unpaid";
+                        } else {
+                            vstatus = "Paid";
+                        }
+                    }
+                })
+               
+            }).then(this.updateToggle(vpath, vstatus))
+            
+            .catch((error)=>{
+                //error callback
+                console.log('error ' , error)
+            })
+           
+        
+        
+        
+    } catch (e) {
+        alert(e);
+    }
+}
+    }
+
+    updateToggle(vpath, vstatus){
+        //console.log("Update ", vpath)
+        firebase.database().ref(vpath).update({ Paid: vstatus });
+    }
     renderRequestsRedux() {
         const register = <Block center>
                             <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
@@ -269,7 +327,9 @@ class Event extends Component {
                     <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
-                            <TouchableOpacity activeOpacity={0.8} key={i}>
+                            
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")}
+                            >
                             <Block flex={0.75} column middle>
                                 <Block row space="between">
                                     <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
@@ -286,7 +346,7 @@ class Event extends Component {
                 <Block row card shadow color="white" style={styles.request} >
                      <ScrollView showsVerticalScrollIndicator={false}>
                         {this.props.blackTeamReducer.blackTeam.map((request, i) => (
-                            <TouchableOpacity activeOpacity={0.8} key={i}>
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} >
                             <Block flex={0.75} column middle>
                             <Block row space="between">
                             <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
@@ -337,63 +397,16 @@ class Event extends Component {
         alert(e);
     }
 
-    // try {
-    //     var querry = firebase.database().ref('Event/').orderByChild("uuid").equalTo(event_uuid);
-    //     querry.once("value", function(snapshot){
-    //         snapshot.forEach(child => {
-    //             console.log("child2 ", child.val().availableSpots)
-    //             var spots = child.val().availableSpots -1 
-    //             console.log("New spots ", spots)
-    //             //child.ref.update({availableSpots: })
-    //         })
-    //     })
-    // } catch(e){
-    //     alert(e)
-    // }
     } else {
         //console.log("Already exists");
         alert("You have already registered!")
     }
 
-        
-        //this.force();
-        //this.componentWillMount();
     }
-// renderWHite() {
-//     if (this.props.whiteTeamReducer)
-//     <Block row card shadow color="white" style={styles.request} >
-//                     <ScrollView showsVerticalScrollIndicator={false}>
-//                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
-//                             <TouchableOpacity activeOpacity={0.8} key={i}>
-//                             <Block flex={0.75} column middle>
-//                                 <Block row space="between">
-//                                     <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
-//                                     <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
-//                                 </Block>
-                                
-                            
-//                             </Block>
-//                             </TouchableOpacity>
-//                         ))}
-//                     </ScrollView>
-//                     </Block>
-// }
+
 
     render() {
-        // console.log("Available spots ", this.params.spots)
-        //this.fullCheck();
-        // console.log("User thhhuunnkkk ", this.props.userThunk)
-        // console.log("Key ", this.props.eventcountReducer)
-        // console.log("props " , this.props.list)
-         console.log("reducerasfasdf ", this.props.teamListFetchReducer.isFetching)
-    // console.log("White Team ", this.props.balanceTeamsReducer.whiteTeam[0])
-    // console.log("Black Team ", this.props.balanceTeamsReducer.blackTeam[0])
-    console.log("Whole team in event ", this.props.balanceTeamsReducer)
-    //console.log("WHite team in event ", this.props.whiteTeamReducer[0])
-    //var wht = this.props.whiteTeamReducer[0]
-    //console.log("WHite look in ", wht.Name)
-    console.log("Black team in event ", this.props.blackTeamReducer)
-        const empty = [];
+       
         
         if (this.props.teamListFetchReducer.isFetching) {
             return(

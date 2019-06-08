@@ -105,7 +105,7 @@ export const getAllEvents = () => {
     var a =[]
       return (dispatch) => {
         dispatch(fetchingStart());
-        try {
+        
             var ref = firebase.database().ref('Events/');
             ref.orderByChild("epochTime").on("value", function(snapshot) {
                 //console.log("Snapshot from action " , snapshot.val())
@@ -117,12 +117,12 @@ export const getAllEvents = () => {
                 //dispatch({ type: GET_EVENT_LIST, payload: a });
                 
               });
-        } catch(error) {
-            console.log("Error ", error);
-        }
+       
         
       }
   }
+
+
 
   export const getListBalanced = (uuid) => {
     return (dispatch) => {

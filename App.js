@@ -11,6 +11,7 @@ import Event from './src/pages/Event';
 import AuthLoading from './src/pages/AuthLoading';
 import Settings from './src/pages/Settings';
 import NewEvent from './src/pages/NewEvent';
+
 import * as firebase from 'firebase';
 import Api from './src/Api';
 //import AuthLoading from './AuthLoading';  
@@ -112,6 +113,7 @@ const AppStackNavigator = createStackNavigator({
       title: "Pickup",
     }
   },
+  
   NewEvent: {
     screen: NewEvent,
     navigationOptions: {
@@ -149,6 +151,7 @@ const HomeStackNavigator = createStackNavigator({
       title: "Pickup",
     }
   },
+  
   NewEvent: {
     screen: NewEvent,
     navigationOptions: {

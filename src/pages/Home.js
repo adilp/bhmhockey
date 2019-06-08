@@ -66,10 +66,7 @@ class Home extends Component {
     }
     renderRequests2() {
         var obj = this.props.eventListReducer
-        
-        
-
-        //var b = ar[0]; 
+         //var b = ar[0]; 
         console.log("Loading.... ", this.props.eventLoading)
         if (this.props.eventListReducer == null || (this.props.eventLoading === false)) {
             <Text> Broke </Text>
