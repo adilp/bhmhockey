@@ -242,10 +242,12 @@ class Event extends Component {
         let unpaid = 'unpaid';
         let vstatus = ''
         let emmpty = "Empty";
-        // console.log()
+        console.log("Reducer ", this.props.userDetailsReducer)
+        console.log("Thunk ", this.props.userThunk)
 
-        if (request.Name == emmpty ){
-            console.log("EMpty");
+
+        if (request.Name == emmpty || this.props.userDetailsReducer != this.params.organizer){
+            console.log("EMpty or same guys");
         } else {
 
         
