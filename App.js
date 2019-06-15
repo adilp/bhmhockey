@@ -11,7 +11,7 @@ import Event from './src/pages/Event';
 import AuthLoading from './src/pages/AuthLoading';
 import Settings from './src/pages/Settings';
 import NewEvent from './src/pages/NewEvent';
-
+import SignupScreen from './src/pages/SignupScreen';
 import * as firebase from 'firebase';
 import Api from './src/Api';
 //import AuthLoading from './AuthLoading';  
@@ -95,7 +95,7 @@ const AppStackNavigator = createStackNavigator({
     } 
   },
   Signup: { 
-    screen: Signup,
+    screen: SignupScreen,
     navigationOptions: {
       //title: 'Registration',
       //header: null
@@ -133,7 +133,7 @@ const HomeStackNavigator = createStackNavigator({
     } 
   },
   Signup: { 
-    screen: Signup,
+    screen: SignupScreen,
     navigationOptions: {
       //title: 'Registration',
       //header: null

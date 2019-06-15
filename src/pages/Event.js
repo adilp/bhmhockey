@@ -8,7 +8,8 @@ import {
     ScrollView,
     TextInput,
     Picker,
-    RefreshControl
+    RefreshControl,
+    TouchableOpacity
 } from "react-native";
 
 import Form from '../components/Form';
@@ -17,7 +18,7 @@ import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
-import { TouchableOpacity } from "react-native-gesture-handler";
+//import { TouchableOpacity } from "react-native-gesture-handler";
 import { 
     getListThunk, 
     getUserDetailsThunk, 
@@ -445,6 +446,7 @@ export default connect(
 
 const styles = StyleSheet.create({
     container: {
+        zIndex: 1,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -452,6 +454,7 @@ const styles = StyleSheet.create({
     },
 
     safe: {
+        zIndex: 1,
         flex: 1,
         backgroundColor: theme.colors.accent,
     },
@@ -467,48 +470,57 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
     request: {
+        zIndex: 1,
         padding: 20,
         marginBottom: 20
     },
     requestStatus: {
+        zIndex: 1,
         marginRight: 20,
         overflow: "hidden",
         height: 90
     },
     welcome: {
+        zIndex: 1,
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
         color: 'white'
     },
     instructions: {
+        zIndex: 1,
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
     },
     signupTextCont: {
+        zIndex: 1,
         flexGrow: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#455a64',
     },
     signupText: {
+        zIndex: 1,
         color: 'white',
         fontWeight: 'bold'
     },
     button: {
+        zIndex: 1,
         backgroundColor: '#3A3232',
         width: 300,
         borderRadius: 25,
         paddingVertical: 10
     },
     buttonText: {
+        zIndex: 1,
         fontSize: 16,
         fontWeight: '500',
         color: 'white',
         textAlign: 'center'
     },
     requestsHeader: {
+        zIndex: 1,
         paddingHorizontal: 20,
         paddingBottom: 15
       },

@@ -7,7 +7,8 @@ import {
     SafeAreaView,
     ScrollView,
     TextInput,
-    Picker
+    Picker,
+    TouchableOpacity
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -16,7 +17,7 @@ import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { getUserDetailsThunk } from '../actions';
 import { connect } from 'react-redux';

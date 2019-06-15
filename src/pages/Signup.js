@@ -5,11 +5,16 @@ import {
     StyleSheet,
     Button,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    ScrollView,
+    Image
 } from "react-native";
 
 import Form from '../components/Form';
+import Logo from '../components/Logo';
 import * as firebase from 'firebase';
+
 
 
 class Signup extends Component {
@@ -70,6 +75,13 @@ class Signup extends Component {
     render() {
         return (
             <View style={styles.container}>
+            <View style={styles.logo}>
+                <Image  style={{width:40, height: 70}}
+                source={require('../images/logo.png')}/>
+            <Text style={styles.logoText}>B</Text>	
+
+            </View>
+            <View style={styles.forms}>
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"
                     placeholder="First Name"
@@ -120,18 +132,9 @@ class Signup extends Component {
                     > Signup </Text>
                 </View>
             </View>
-            // <View style={styles.container}>
-            //     <Form type="Register" />
-
-            //     <View style={styles.signupTextCont}>
-            //         <Text> Already have an account? </Text>
-            //         <Text 
-            //         style={styles.signupText}
-            //         onPress={() => this.props.navigation.navigate('Home')}
-            //         > Signin </Text>
-            //     </View>
-
-            // </View>
+            
+            </View>
+            
         );
     }
 }
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         backgroundColor: '#455a64',
     },
 
@@ -190,5 +193,19 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: 'white',
         textAlign: 'center'
+    },
+    forms: {
+        flex: 1,
+        justifyContent: "center",
+    },
+    logoText : {
+        marginVertical: 15,
+        fontSize:18,
+        color:'rgba(255, 255, 255, 0.7)'
+    },
+    logo: {
+        flex: 1,
+        resizeMode: 'contain',
+        alignSelf: 'center'
     }
 });
