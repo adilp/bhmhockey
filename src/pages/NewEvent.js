@@ -8,7 +8,8 @@ import {
     ScrollView,
     TextInput,
     Picker,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -244,10 +245,21 @@ class NewEvent extends Component {
     render() {
         console.log("Full name ", this.props)
         return (
+            <KeyboardAvoidingView
+            behaviour = 'padding'
+            style = {styles.signup_container}
+          >
+          <ScrollView
+          contentContainerStyle = {styles.signup_container}
+          keyboardShouldPersistTaps = 'never'
+        >
             <SafeAreaView style={styles.safe} >
 
                 {this.renderRequests()}
             </SafeAreaView>
+
+            </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -258,6 +270,11 @@ export default connect(
 // export default NewEvent;
 
 const styles = StyleSheet.create({
+    signup_container: {
+        flex: 1,
+        backgroundColor: '#A62C23',
+        justifyContent: 'space-between',
+      },
     container: {
         flex: 1,
         alignItems: 'center',
