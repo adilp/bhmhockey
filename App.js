@@ -14,6 +14,7 @@ import NewEvent from './src/pages/NewEvent';
 import SignupScreen from './src/pages/SignupScreen';
 import * as firebase from 'firebase';
 import Api from './src/Api';
+import LoginScreen from './src/pages/LoginScreen';
 //import AuthLoading from './AuthLoading';  
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -88,7 +89,7 @@ const HomeTabNavigator = createBottomTabNavigator({
 //If user is not logged in
 const AppStackNavigator = createStackNavigator({
   Home: {
-    screen: Login, 
+    screen: LoginScreen, 
     navigationOptions: {
       //title: 'Registration',
       header: null
