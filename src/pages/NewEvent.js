@@ -124,7 +124,7 @@ class NewEvent extends Component {
         return (
 
 
-            <Block flex={0.9} color="gray2" style={styles.requests}>
+            <Block flex={1} color="gray2" style={styles.requests}>
                 <Text h3 primary caption bold h3 accent> Date</Text>
 
                 <TouchableOpacity
@@ -159,7 +159,9 @@ class NewEvent extends Component {
 
                 </Block>
 
-                <Block flex={1} center style={{ justifyContent: 'flex-end', marginBottom: 36 }}>
+                
+
+              {/*   <Block flex={1} center style={{ justifyContent: 'flex-end', marginBottom: 36 }}>
                     <TouchableOpacity
                         style={styles.button2}
                         //onPress={() => this.props.navigation.navigate('Main')}
@@ -169,7 +171,7 @@ class NewEvent extends Component {
                         <Text style={styles.signupText}> ADD EVENT</Text>
                     </TouchableOpacity>
                 </Block>
-
+*/}
 
 
 
@@ -256,6 +258,17 @@ class NewEvent extends Component {
             <SafeAreaView style={styles.safe} >
 
                 {this.renderRequests()}
+                <View style = {styles.signup_actions_container}>
+               
+                <TouchableOpacity
+                //onPress={() => this._handlePress()}
+                  style = {styles.signup_button}
+                >
+                  <Text style = {styles.signup_text}>
+                    ADD EVENT
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </SafeAreaView>
 
             </ScrollView>
@@ -370,4 +383,58 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingVertical: 10
     },
+    signup_form_container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      signup_banner_text: {
+        width: "100%",
+        height: 40,
+        fontSize: 20,
+        color: '#000',
+        fontWeight: 'bold',
+        letterSpacing: 10,
+        textAlign: 'center'
+      },
+      signup_input: {
+        width: 200,
+        height: 30,
+        borderColor: 'gray',
+        borderBottomWidth: 1,
+        marginTop: 15,
+        marginBottom: 15,
+        textAlign: 'left',
+        fontSize: 10
+      },
+      signup_actions_container: {
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+      },
+      login_button: {
+        backgroundColor: '#fff',
+        color: "lightgrey",
+        width: 200,
+        margin: 10,
+        height: 20,
+        fontSize: 10,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        marginBottom: 10
+      },
+      signup_button: {
+        backgroundColor: '#C4DE9F',
+        width: "100%",
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      signup_text: {
+        color: '#000',
+        fontSize: 24,
+        fontWeight: '600',
+        letterSpacing: 10
+      },
 });
