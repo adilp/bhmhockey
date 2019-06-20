@@ -261,7 +261,7 @@ class NewEvent extends Component {
                 <View style = {styles.signup_actions_container}>
                
                 <TouchableOpacity
-                //onPress={() => this._handlePress()}
+                onPress={() => this._handlePress()}
                   style = {styles.signup_button}
                 >
                   <Text style = {styles.signup_text}>

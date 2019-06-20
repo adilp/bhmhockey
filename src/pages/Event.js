@@ -407,6 +407,48 @@ class Event extends Component {
 
     }
 
+    _deleteEvent(){
+        var delEventuuid = ''
+        console.log("Event uuid", this.params.uuid)
+        var ref = firebase.database().ref('Events/');
+        ref.orderByChild("uuid").equalTo(this.params.uuid).on("value", function(snapshot) {
+            console.log("Snapshot from action " , snapshot.val())
+            
+            
+            snapshot.forEach(child => {
+                console.log("child ", child.key)
+                delEventuuid = child.key
+                
+            })
+          });
+        var remRef = firebase.database().ref('Events/' + delEventuuid);
+        remRef.remove()
+
+
+        this.props.navigation.navigate('Main');
+    }
+        //eventNode = 
+        //var adaRef = firebase.database().ref('Events/')
+    
+    
+    deleteEvent() {
+
+        if (this.props.userDetailsReducer != this.params.organizer){
+            return(<Text>.</Text>);
+        } else {
+        return(
+            <TouchableOpacity
+            onPress={() => this._deleteEvent()}
+              style = {styles.signup_button}
+            >
+              <Text style = {styles.signup_text}>
+                DELETE
+              </Text>
+            </TouchableOpacity>
+        );
+        }
+    }
+
 
     render() {
        
@@ -420,7 +462,8 @@ class Event extends Component {
             <SafeAreaView style={styles.safe} >
                 {this.renderHeader()}
                 {this.renderRequestsRedux()}
-
+                {this.deleteEvent()}
+               
                 {/*    
                     
                     {this.renderRequests()} 
@@ -523,5 +566,18 @@ const styles = StyleSheet.create({
         zIndex: 1,
         paddingHorizontal: 20,
         paddingBottom: 15
+      },
+      signup_button: {
+        backgroundColor: '#C4DE9F',
+        width: "100%",
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      signup_text: {
+        color: '#000',
+        fontSize: 24,
+        fontWeight: '600',
+        letterSpacing: 10
       },
 });
