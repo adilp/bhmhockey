@@ -18,7 +18,11 @@ const eventListReducer = (state = INITIAL_STATE, action) => {
             console.log("begining fetch")
           return { ...state, isFetching: true };
         case FETCH_SUCCESS:
-          return { ...state, isFetching: false, arr: action.payload };
+          //return { ...state, isFetching: false, arr: action.payload };
+          return {
+            arr: action.payload,
+            isFetching: false
+          }
         default:
           return state;
       }
