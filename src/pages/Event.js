@@ -143,6 +143,7 @@ class Event extends Component {
 
         return (
             <Block flex={0.42} column style={{ paddingHorizontal: 15 }}>
+            
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
                     <Block center>
                         <Text h3 white style={{ marginRight: -(25 + 5) }}>
@@ -151,13 +152,14 @@ class Event extends Component {
                     </Block>
                 </Block>
                 <Block card shadow color="white" style={styles.headerChart}>
+               <ScrollView>
                     <Block collumn center>
                         <Text h1> {this.params.puckdrop}</Text>
                     </Block>
                     <Block row space="between" style={{ paddingHorizontal: 30 }}>
                         <Block flex={false} row center>
                             <Text caption bold tertiary>Level: </Text>
-                            <Text h1 style={{ paddingHorizontal: 10 }}>
+                            <Text h2 style={{ paddingHorizontal: 10 }}>
                                 {this.params.level}
                   </Text>
                         </Block>
@@ -166,7 +168,7 @@ class Event extends Component {
                             <Text caption bold primary style={{ paddingHorizontal: 10 }}>
                                 Spots Available:
                   </Text>
-                            <Text h1>{this.props.eventcountReducer}</Text>
+                            <Text h2>{this.props.eventcountReducer}</Text>
                         </Block>
                     </Block>
                     <Block
@@ -177,15 +179,23 @@ class Event extends Component {
                         style={{ paddingHorizontal: 30 }}
                     >
                         <Text caption light>
-                            Organizer:
+                            Organizer venmo:
                 </Text>
                         <Text caption light>
-                            {this.params.organizer}
+                            {this.props.userVenmoReducer}
                 </Text>
+                <Block flex={false} row center>
+                    <Text caption bold primary style={{ paddingHorizontal: 10}}>
+                        Price: 
+                    </Text>
+                </Block>
+            
                     </Block>
                     <Block flex={1}>
                     </Block>
+                    </ScrollView>
                 </Block>
+                
             </Block>
         );
     }
@@ -451,7 +461,7 @@ class Event extends Component {
 
 
     render() {
-       
+       //console.log("helasdf ", this.props.userVenmoReducer)
         
         if (this.props.teamListFetchReducer.isFetching) {
             return(
@@ -482,7 +492,7 @@ class Event extends Component {
 export default connect(
     state=>({ teamListFetchReducer: state.teamListFetchReducer, blackTeamReducer: state.blackTeamReducer, whiteTeamReducer: state.whiteTeamReducer, 
         balanceTeamsReducer: state.balanceTeamsReducer, userThunk: state.userReducer, list: state.listReducer, userDetailsReducer: state.userDetailsReducer, 
-        eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer}), 
+        eventcountReducer: state.eventcountReducer, updateCountReducer: state.updateCount, eventListReducer: state.eventListReducer, userVenmoReducer: state.userVenmoReducer}), 
     { getListThunk, getUserDetailsThunk, getEventCountThunk, updateCount, getAllEvents, getUserThunk, getListBalanced }
   )(Event);
 

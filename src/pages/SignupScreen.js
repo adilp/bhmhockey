@@ -28,7 +28,8 @@ class SignupScreen extends Component {
             email: '',
             password: '',
             level: '',
-            uid: ''
+            uid: '',
+            venmo: ''
         };
     }
 
@@ -48,7 +49,8 @@ class SignupScreen extends Component {
                     email: oldstate.state.email,
                     firstname: oldstate.state.firstName,
                     lastname: oldstate.state.lastName,
-                    level: oldstate.state.level
+                    level: oldstate.state.level,
+                    venmo: oldstate.state.venmo
                 }).then((data)=>{
                     //success callback
                     console.log('data ' , data)
@@ -74,6 +76,8 @@ class SignupScreen extends Component {
  
 
     render() {
+
+      
         return (
             
             <KeyboardAvoidingView
@@ -132,9 +136,18 @@ class SignupScreen extends Component {
                 <TextInput
                 style = {styles.signup_input}
                 onChangeText={(text) => this.setState({ level: text })}
-                placeholder="Playing Experience"
+                placeholder="Playing Experience (Gold, Silver, Bronze) "
               //   autoCapitalize = "none"
                 onFocus = { () => this.setState({level: ""})}
+              //   keyboardType = "email-address"
+                underlineColorAndroid = "#fff"
+              />
+              <TextInput
+                style = {styles.signup_input}
+                onChangeText={(text) => this.setState({ venmo: text })}
+                placeholder="Venmo "
+              //   autoCapitalize = "none"
+                onFocus = { () => this.setState({venmo: ""})}
               //   keyboardType = "email-address"
                 underlineColorAndroid = "#fff"
               />

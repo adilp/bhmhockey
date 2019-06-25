@@ -47,6 +47,7 @@ class NewEvent extends Component {
             availSpots: 0,
             level: '',
             uuid: 0,
+            venmo: ''
         };
     }
 
@@ -214,6 +215,7 @@ class NewEvent extends Component {
                 scheduler: this.props.userDetailsReducer,
                 level: oldstate.state.level,
                 date: oldstate.state.date,
+                venmo: this.props.userVenmoReducer,
             }).then((data) => {
                 //success callback
                 console.log('data ', data)
@@ -277,7 +279,7 @@ class NewEvent extends Component {
     }
 }
 export default connect(
-    state => ({ userDetailsReducer: state.userDetailsReducer }),
+    state => ({ userDetailsReducer: state.userDetailsReducer, userVenmoReducer: state.userVenmoReducer }),
     { getUserDetailsThunk }
 )(NewEvent);
 // export default NewEvent;

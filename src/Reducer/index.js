@@ -7,7 +7,8 @@ import eventListReducer from './eventListReducer';
 import balanceTeamsReducer from './balanceTeamsReducer';
 import whiteTeamReducer from './whiteTeamReducer';
 import blackTeamReducer from './blackTeamReducer';
-import teamListFetchReducer from './teamListFetchReducer'
+import teamListFetchReducer from './teamListFetchReducer';
+import userVenmoReducer from './userVenmoReducer';
 
 export default combineReducers({
     listReducer: listReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     balanceTeamsReducer: balanceTeamsReducer,
     whiteTeamReducer: whiteTeamReducer,
     blackTeamReducer: blackTeamReducer,
-    teamListFetchReducer: teamListFetchReducer
+    teamListFetchReducer: teamListFetchReducer,
+    userVenmoReducer: userVenmoReducer,
 });

@@ -12,3 +12,4 @@ export const WHITE_TEAM_DNE = 'white_team_dne';
 export const BLACK_TEAM_DNE = 'black_team_dne';
 export const LIST_FETCH_SUCCESS = 'list_fetch_success';
 export const LIST_FETCH_BEGIN = 'list_fetch_begin';
+export const GET_USER_VENMO = 'get_user_venmo';

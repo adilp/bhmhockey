@@ -1,7 +1,10 @@
-import { GET_USER_DETAILS } from '../actions/types';
+import { GET_USER_DETAILS, GET_USER_VENMO } from '../actions/types';
 const INITIAL_STATE = {
-    userDetails: []
+    userDetails: [],
+    venmo: ''
 };
+
+
 
 const userDetailsReducer = (state = INITIAL_STATE, action) => {
     
