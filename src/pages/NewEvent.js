@@ -206,7 +206,7 @@ class NewEvent extends Component {
         // console.log(this.state.password);
         // console.log(this.state.firstName);
         // console.log(this.state.lastName);
-        // console.log(this.state.email);
+         console.log(this.state.price);
         let oldstate = this;
 
         console.log("fullname ", this.state.fullname)
