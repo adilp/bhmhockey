@@ -472,6 +472,7 @@ class Event extends Component {
         } else {
         return (
             <SafeAreaView style={styles.safe} >
+            <ScrollView>
                 {this.renderHeader()}
                 {this.renderRequestsRedux()}
                 {this.deleteEvent()}
@@ -481,7 +482,7 @@ class Event extends Component {
                     {this.renderRequests()} 
                 <RenderRequestsList uuid={this.params.uuid} />
                 */}
-                
+                </ScrollView>
             </SafeAreaView>
  
         );
@@ -500,6 +501,10 @@ export default connect(
 
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        flex: 1,
+        backgroundColor: "#F6F5F5"
+    },
     container: {
         zIndex: 1,
         flex: 1,
