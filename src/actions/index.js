@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 import { GET_LIST, GET_USER, GET_USER_DETAILS, 
   GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, 
-  FETCH_SUCCESS, BALANCE_TEAMS, WHITE_TEAM, BLACK_TEAM, WHITE_TEAM_DNE, BLACK_TEAM_DNE, LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO } from './types';
+  FETCH_SUCCESS, BALANCE_TEAMS, WHITE_TEAM, BLACK_TEAM, WHITE_TEAM_DNE, BLACK_TEAM_DNE, LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO, GET_USER_PRICE } from './types';
 
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
@@ -48,9 +48,10 @@ export const getUserDetailsThunk = () => {
             let lastName = (snapshot.val() && snapshot.val().lastname)
             //console.log("FirstName ",  firstName)
             fullname = firstName + " " + lastName
-            console.log("V ", snapshot.val().venmo)
+            console.log("V ", snapshot.val())
           dispatch({ type: GET_USER_DETAILS, payload: fullname });
           dispatch({ type: GET_USER_VENMO, payload:snapshot.val().venmo})
+          
         });
     };
   };

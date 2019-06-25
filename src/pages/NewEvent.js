@@ -47,7 +47,8 @@ class NewEvent extends Component {
             availSpots: 0,
             level: '',
             uuid: 0,
-            venmo: ''
+            venmo: '',
+            price: 0
         };
     }
 
@@ -159,7 +160,16 @@ class NewEvent extends Component {
 
 
                 </Block>
-
+<Block flex={false}>
+                    <Text h3 primary caption bold h3 accent style={{ marginRight: -(25 + 5), marginTop: 15 }}> Price $</Text>
+                    <TextInput style={styles.input}
+                        underlineColorAndroid="transparent"
+                        keyboardType='numeric'
+                        placeholder="Price"
+                        placeholderTextColor="gray"
+                        onChangeText={(text) => this.setState({ price: text })}
+                    />
+                </Block>
                 
 
               {/*   <Block flex={1} center style={{ justifyContent: 'flex-end', marginBottom: 36 }}>
@@ -216,6 +226,7 @@ class NewEvent extends Component {
                 level: oldstate.state.level,
                 date: oldstate.state.date,
                 venmo: this.props.userVenmoReducer,
+                price: oldstate.state.price
             }).then((data) => {
                 //success callback
                 console.log('data ', data)

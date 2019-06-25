@@ -192,6 +192,7 @@ class Home extends Component {
                                 level: request.level,
                                 organizer: request.scheduler,
                                 uuid: request.uuid,
+                                price: request.price
     
                             })
                         
@@ -208,7 +209,7 @@ class Home extends Component {
                                     >
                                         <Block flex={0.45} middle center color={theme.colors.primary}>
                                             <Text medium white style={{ textTransform: "uppercase", padding: 5 }}>
-                                                {request.availability}
+                                                Spots
                                             </Text>
                                         </Block>
                                         
@@ -224,7 +225,7 @@ class Home extends Component {
                                     <Block flex={0.75} column middle>
                                         <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
                                         <Text caption semibold>
-                                            Time: {request.time}  •  Level: {request.level}  •  Organizer: {request.scheduler}
+                                            Time: {request.time}  •  Level: {request.level}  •  Organizer: {request.scheduler}  •  Price: ${request.price} 
                                         </Text>
                                     </Block>
                                 </Block>

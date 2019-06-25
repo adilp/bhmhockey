@@ -158,9 +158,9 @@ class Event extends Component {
                     </Block>
                     <Block row space="between" style={{ paddingHorizontal: 30 }}>
                         <Block flex={false} row center>
-                            <Text caption bold tertiary>Level: </Text>
+                            <Text caption bold tertiary>Price: </Text>
                             <Text h2 style={{ paddingHorizontal: 10 }}>
-                                {this.params.level}
+                                ${this.params.price}
                   </Text>
                         </Block>
 
@@ -178,17 +178,19 @@ class Event extends Component {
                         space="between"
                         style={{ paddingHorizontal: 30 }}
                     >
-                        <Text caption light>
+                        
+                <Block flex={false} row center>
+                    <Text caption bold primary style={{ paddingHorizontal: 10}}>
+                        Level: {this.params.level}
+                    </Text>
+                    
+                </Block>
+                <Text caption light>
                             Organizer venmo:
                 </Text>
                         <Text caption light>
-                            {this.props.userVenmoReducer}
+                            {this.props.userVenmoReducer.venmo}
                 </Text>
-                <Block flex={false} row center>
-                    <Text caption bold primary style={{ paddingHorizontal: 10}}>
-                        Price: 
-                    </Text>
-                </Block>
             
                     </Block>
                     <Block flex={1}>
@@ -461,7 +463,7 @@ class Event extends Component {
 
 
     render() {
-       //console.log("helasdf ", this.props.userVenmoReducer)
+       console.log("helasdf ", this.params)
         
         if (this.props.teamListFetchReducer.isFetching) {
             return(
