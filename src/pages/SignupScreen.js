@@ -100,7 +100,7 @@ class SignupScreen extends Component {
                   onChangeText={(text) => this.setState({ firstName: text })}
                   placeholder="First Name"
                 //   autoCapitalize = "none"
-                  onFocus = { () => this.setState({ firstName: text })}
+                  onFocus = { () => this.setState({ firstName: "" })}
                 //   keyboardType = "email-address"
                   underlineColorAndroid = "#fff"
                 />

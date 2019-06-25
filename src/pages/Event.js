@@ -106,12 +106,13 @@ class Event extends Component {
         let _ = require('underscore');
         //console.log("My name: " , this.state.fullname)
         var checking = true;
-        Object.keys(this.state.requestsState).map(i => {
-            var myitem = this.state.requestsState[i];
+        Object.keys(this.props.whiteTeamReducer.whiteTeam).map(i => {
+            var myitem = this.props.whiteTeamReducer.whiteTeam[i];
+            console.log('my item', myitem.Name);
             //console.log("state name: " , myitem.scheduler)
            //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
 
-            if ("Is eqal ", _.isEqual(myitem.scheduler, this.props.userDetailsReducer)){
+            if ("Is eqal ", _.isEqual(myitem.Name, this.props.userDetailsReducer)){
                 //console.log("false")
                 checking = false;
                 
@@ -121,6 +122,18 @@ class Event extends Component {
                 
             }
             
+        })
+        Object.keys(this.props.blackTeamReducer.blackTeam).map(i => {
+            var myotherItem = this.props.blackTeamReducer.blackTeam[i];
+            if ("Is eqal ", _.isEqual(myotherItem.Name, this.props.userDetailsReducer)){
+                //console.log("false")
+                checking = false;
+                
+            }
+            else {
+               // console.log("true")
+                
+            }
         })
 
         return checking;
