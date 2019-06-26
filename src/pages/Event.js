@@ -9,7 +9,8 @@ import {
     TextInput,
     Picker,
     RefreshControl,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from "react-native";
 
 import Form from '../components/Form';
@@ -427,21 +428,87 @@ class Event extends Component {
 
     } else {
         //console.log("Already exists");
-        alert("You have already registered!")
+        //alert("You have already registered! ")
+        Alert.alert(
+            'Remove?',
+            'Already registred, remove from list?',
+            [
+               //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'Remove', onPress: () => this.removeFromList()},
+            ],
+            {cancelable: false},
+          );
     }
 
+    }
+
+    removeFromList(){
+        var delEventuuid = ''
+        that = this;
+        console.log("Event uuid", this.params.uuid)
+        var ref = firebase.database().ref('SignUp/' + this.params.uuid);
+        ref.once("value", function(snapshot) {
+            console.log("Snapshot from action " , snapshot.val())
+            snapshot.forEach(child => {
+                console.log("child ", child.val().scheduler)
+                console.log("Name ", that.props.userDetailsReducer)
+                if ("Is eqal ", _.isEqual(child.val().scheduler, that.props.userDetailsReducer)){
+                    console.log("Equal ", child.key)
+                    delEventuuid = child.key
+                    
+                }
+                else {
+                    console.log("Not equal")
+                    
+                }                
+            })
+          });
+         var remRef = firebase.database().ref('SignUp/' + this.params.uuid + "/" + delEventuuid);
+         remRef.remove()
+        delEventIndex = ''
+        delKey = ''
+        var ref2 = firebase.database().ref('TeamsList/' + this.params.uuid);
+        ref2.once("value", function(snapshot){
+            snapshot.forEach(child => {
+                console.log("childsss ", child.val())
+                
+                child.val().forEach(function (item, index){
+                    console.log("Items ", item)
+                    if ("Is eqal ", _.isEqual(item.Name, that.props.userDetailsReducer)){
+                        console.log("Equal ", item.Name)
+                        console.log("childsss key ", child.key)
+                        delKey = child.key
+                        delEventIndex = index
+                    
+                    }
+                    else {
+                        console.log("Not equal")
+                    
+                    } 
+                })
+
+               
+            })
+        })
+        var remRef2 = firebase.database().ref('TeamsList/' + this.params.uuid + "/" + delKey + "/" + delEventIndex)
+        remRef2.remove()
     }
 
     _deleteEvent(){
         var delEventuuid = ''
-        console.log("Event uuid", this.params.uuid)
+        //console.log("Event uuid", this.params.uuid)
         var ref = firebase.database().ref('Events/');
         ref.orderByChild("uuid").equalTo(this.params.uuid).on("value", function(snapshot) {
-            console.log("Snapshot from action " , snapshot.val())
+            //console.log("Snapshot from action " , snapshot.val())
             
             
             snapshot.forEach(child => {
-                console.log("child ", child.key)
+                //console.log("child ", child.key)
                 delEventuuid = child.key
                 
             })
