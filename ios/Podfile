@@ -13,6 +13,8 @@ target 'bhmhockey' do
   
 
   platform :ios, '9.0'
+  pod 'ReactNativeKeyboardManager', :path => '../node_modules/react-native-keyboard-manager'
+
   target 'bhmhockeyTests' do
     inherit! :search_paths
     # Pods for testing

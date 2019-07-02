@@ -13,6 +13,7 @@ import {
 
 import Logo from '../components/Logo';
 import colors from "../config/colors";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import * as firebase from 'firebase';
 
@@ -80,14 +81,18 @@ class SignupScreen extends Component {
       
         return (
             
-            <KeyboardAvoidingView
-            behaviour = 'padding'
-            style = {styles.signup_container}
-          >
-            <ScrollView
-              contentContainerStyle = {styles.signup_container}
-              keyboardShouldPersistTaps = 'never'
-            >
+          //   <KeyboardAvoidingView
+          //   behaviour = 'padding'
+          //   style = {styles.signup_container}
+          // >
+
+          // <ScrollView
+          //     contentContainerStyle = {styles.signup_container}
+          //     keyboardShouldPersistTaps = 'never'
+          //   ></ScrollView>
+          <KeyboardAwareScrollView 
+          contentContainerStyle = {styles.signup_container2}>
+            
               <View style = {styles.signup_form_container}>
                 <Text style={styles.signup_banner_text}>
                   SIGN UP
@@ -116,7 +121,7 @@ class SignupScreen extends Component {
                 <TextInput
                   style = {styles.signup_input}
                   onChangeText={(text) => this.setState({ email: text })}
-                  placeholder = "EMAIL ADDRESS"
+                  placeholder = "Email Address"
                   autoCapitalize = "none"
                   onFocus = { () => this.setState({email: ""})}
                   keyboardType = "email-address"
@@ -125,7 +130,7 @@ class SignupScreen extends Component {
                 <TextInput
                   style = {styles.signup_input}
                   onChangeText={(text) => this.setState({ password: text })}
-                  placeholder = "PASSWORD"
+                  placeholder = "Password"
                   autoCapitalize = "none"
                   onFocus = { () => {
                     this.setState({password: ""});
@@ -173,8 +178,10 @@ class SignupScreen extends Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-            </ScrollView>
-          </KeyboardAvoidingView>
+           
+            </KeyboardAwareScrollView>
+          // </KeyboardAvoidingView>
+
             
         );
     }
@@ -186,6 +193,12 @@ class SignupScreen extends Component {
 export default SignupScreen;
 
 const styles = StyleSheet.create({
+  signup_container2: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-end',
+    
+  },
     signup_container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -246,3 +259,6 @@ const styles = StyleSheet.create({
         letterSpacing: 10
       },
 });
+
+
+
