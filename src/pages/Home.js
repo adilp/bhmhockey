@@ -25,6 +25,8 @@ import {connect} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import Reducers from '../Reducer';
 import RenderRequestsList from './RenderRequests';
+import AuthLoading from "./Settings";
+import LoadingScroll from './AuthLoading'
 
 
 class Home extends Component {
@@ -39,7 +41,8 @@ class Home extends Component {
             fullname: '',
             requestsState: [],
             loading: false,
-            messages: []
+            messages: [],
+            loadingfetch: false,
           }
     }
 
@@ -65,6 +68,8 @@ class Home extends Component {
     componentWillMount(){      
         this.props.getAllEvents();
         this.listenForMessages();
+        this.props.getUserDetailsThunk();
+        //this.setState({fullname: this.props.userDetailsReducer.userDetails})
     }
 
     render2Header() {
@@ -178,9 +183,13 @@ class Home extends Component {
         } else {
             return (
                 <Block flex={0.9} color="gray2" style={styles.requests}>
+                <Block flex={false} row space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
+                        <Text title>Welcome {this.props.userDetailsReducer}</Text>
+                    </Block>
                     <Block flex={false} row space="between" style={styles.requestsHeader}>
                         <Text light>Upcoming games</Text>
                     </Block>
+                    
     
                     <ScrollView showsVerticalScrollIndicator={false}>
                
@@ -244,39 +253,48 @@ class Home extends Component {
         
         var obj = this.props.eventListReducer
         console.log("Checking validity ", this.props.eventLoading)
-        console.log("Objecsts ", this.state.messages)
-
-        return (
-            <SafeAreaView style={styles.safe} >
+        console.log("Objecsts ", this.props.userDetailsReducer)
+        console.log("Objecsts22222 ", this.props.userDetailsReducer.userDetails)
+        //return this.state.fullname.length ? this.render
+        if (typeof this.props.userDetailsReducer === 'object'){
+            console.log("This is an object")
+            return(<LoadingScroll />)
+            
+        } else {
+            console.log("no longer an object")
+            return (
+                <SafeAreaView style={styles.safe} >
+                    
+    
+                    {this.render2Header()}
+                    {this.renderRequests3()}
+                   
+                   {/*  
+                 
+                 {this.renderRequest()} 
                 
-
-                {this.render2Header()}
-                {this.renderRequests3()}
-               
-               {/*  
-             
-             {this.renderRequest()} 
-            
-            
-            */}
-               
-                <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
-                    <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
-
-                        style={styles.FloatingButtonStyle} />
-                </TouchableOpacity>
-            </SafeAreaView>
-
-        );
+                
+                */}
+                   
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
+                        <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
+    
+                            style={styles.FloatingButtonStyle} />
+                    </TouchableOpacity>
+                </SafeAreaView>
+    
+            );
+        } 
+        
     }
 }
 
 
 
 export default connect(
-    state=>({eventLoading: state.eventListReducer.loading, 
+    state=>({eventLoading: state.eventListReducer.loading, userDetailsReducer: state.userDetailsReducer,
          eventListReducer: state.eventListReducer.arr}), 
-    {  getAllEvents}
+    { getUserDetailsThunk, getAllEvents}
   )(Home);
 
 

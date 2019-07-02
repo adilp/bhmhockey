@@ -14,7 +14,7 @@ import {
 import Logo from '../components/Logo';
 import colors from "../config/colors";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+import AuthLoading from './AuthLoading';
 import * as firebase from 'firebase';
 
 
@@ -30,7 +30,8 @@ class SignupScreen extends Component {
             password: '',
             level: '',
             uid: '',
-            venmo: ''
+            venmo: '',
+            loading: false
         };
     }
 
@@ -38,7 +39,7 @@ class SignupScreen extends Component {
 
 
     async _handlePress(): Promise<void> {
-        // console.log(this.state.password);
+        console.log("signed up");
         // console.log(this.state.firstName);
         // console.log(this.state.lastName);
         // console.log(this.state.email);
@@ -46,6 +47,7 @@ class SignupScreen extends Component {
         try {
             await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(user) {
                 oldstate.setState({uid: user.user.uid});
+                oldstate.setState({loading: true})
                 firebase.database().ref('UsersList/').child(user.user.uid).set({
                     email: oldstate.state.email,
                     firstname: oldstate.state.firstName,
@@ -55,6 +57,8 @@ class SignupScreen extends Component {
                 }).then((data)=>{
                     //success callback
                     console.log('data ' , data)
+                    this.props.navigation.navigate('Main');
+                    oldstate.setState({loading: false})
                 }).catch((error)=>{
                     //error callback
                     console.log('error ' , error)
@@ -72,12 +76,16 @@ class SignupScreen extends Component {
         //writeUserData(this.state.email, this.state.firstName, this.state.lastName, this.state.level, this.state.uid)
 
         console.log("after login ",  this.state.uid)
+        
     }
 
  
 
     render() {
-
+      if (this.state.loading === true) {
+        return(<AuthLoading />)
+        
+      } else {
       
         return (
             
@@ -90,6 +98,8 @@ class SignupScreen extends Component {
           //     contentContainerStyle = {styles.signup_container}
           //     keyboardShouldPersistTaps = 'never'
           //   ></ScrollView>
+
+         
           <KeyboardAwareScrollView 
           contentContainerStyle = {styles.signup_container2}>
             
@@ -184,6 +194,7 @@ class SignupScreen extends Component {
 
             
         );
+                }
     }
 }
 
