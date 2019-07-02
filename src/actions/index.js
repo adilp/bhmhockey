@@ -71,16 +71,24 @@ export const getUserDetailsThunk = () => {
     };
   };
 
-  export const updateCount = (uuid) => {
+  export const updateCount = (uuid, flag) => {
     console.log("Index UUUID " , uuid);
     foundKey = '';
+    var decrement = '';
     return (dispatch) => {
         var ref = firebase.database().ref('Events/');
         ref.orderByChild("uuid").equalTo(uuid).once("value", function(snapshot) {
             //console.log("Snapshot from action " , snapshot.val())
             snapshot.forEach(child => {
                 console.log("Current Spots ", child.val().availableSpots)
-                var decrement = (child.val().availableSpots) -1
+                if (flag === 0) {
+                  console.log("decremtnt")
+                  decrement = (child.val().availableSpots) -1
+                } else if (flag === 1) {
+                  console.log("increment")
+                  decrement = (child.val().availableSpots) +1
+                }
+                
                 console.log("Remove Spots ", decrement)
                 child.ref.update({ availableSpots: decrement});
 

@@ -412,7 +412,7 @@ class Event extends Component {
                 uuid: signupUid,
                
             }).then((data)=>{
-                this.props.updateCount(event_uuid);
+                this.props.updateCount(event_uuid, 0);
                 console.log('data ' , data)
             }).catch((error)=>{
                 //error callback
@@ -467,6 +467,9 @@ class Event extends Component {
                     
                 }                
             })
+          }).then((data) =>{
+            console.log("then")
+            that.props.updateCount(this.params.uuid, 1);
           });
          var remRef = firebase.database().ref('SignUp/' + this.params.uuid + "/" + delEventuuid);
          remRef.remove()
