@@ -8,7 +8,8 @@ import {
     Image,
     TouchableOpacity,
     Alert,
-    Animated
+    Animated,
+    RefreshControl
 } from "react-native";
 
 import Form from '../components/Form';
@@ -26,7 +27,7 @@ import ReduxThunk from 'redux-thunk';
 import Reducers from '../Reducer';
 import RenderRequestsList from './RenderRequests';
 import AuthLoading from "./Settings";
-import LoadingScroll from './AuthLoading'
+import LoadingScroll from './AuthLoading';
 
 
 class Home extends Component {
@@ -43,27 +44,30 @@ class Home extends Component {
             loading: false,
             messages: [],
             loadingfetch: false,
+            refreshing: false,
           }
     }
 
-   
-      
-    listenForMessages() {
-        //console.log("messages ")
-        that = this
-        var ref = firebase.database().ref('Events/');
-        ref.orderByChild("epochTime").on("value", function(snapshot) {
-            //console.log("messages ", snapshot)
-            let messages = [];
-            snapshot.forEach(child => {
-                let msg = child.val();
-                //console.log("messages ", msg)
-                messages.unshift(msg);
-            })
-            that.setState({ messages: messages, isFetching: false})
+    // _onRefresh = () => {
+    //     this.setState({refreshing: true});
+    //     that = this
+    //     var ref = firebase.database().ref('Events/');
+    //     ref.orderByChild("epochTime").once("value", function(snapshot) {
+    //         console.log("messages ", snapshot)
+    //         let messages = [];
+    //         snapshot.forEach(child => {
+    //             let msg = child.val();
+    //             console.log("messages ", msg)
+    //             messages.unshift(msg);
+    //         })
+    //         that.setState({ messages: messages, isFetching: false})
 
-    })
-      }
+    // }).then(() => {
+    //       this.setState({refreshing: false});
+    //     });
+    //   }
+
+   
 
     componentWillMount(){      
         this.props.getAllEvents();
@@ -72,6 +76,32 @@ class Home extends Component {
         //this.setState({fullname: this.props.userDetailsReducer.userDetails})
     }
 
+   
+      
+    listenForMessages() {
+        console.log("messages ")
+        that = this
+        var ref = firebase.database().ref('Events/');
+        ref.orderByChild("epochTime").on("value", function(snapshot) {
+            //console.log("messages ", snapshot)
+            let messages = [];
+            snapshot.forEach(child => {
+                let msg = child.val();
+                console.log("messages ", msg)
+                messages.unshift(msg);
+            })
+            that.setState({ messages: messages, isFetching: false})
+
+    })
+      }
+
+      _onRefresh = () => {
+        this.setState({refreshing: true});
+        console.log("refreshiing")
+        this.listenForMessages();
+        this.setState({refreshing: false});
+     
+      }
     render2Header() {
         //const { user } = this.props;
 
@@ -191,7 +221,13 @@ class Home extends Component {
                     </Block>
                     
     
-                    <ScrollView showsVerticalScrollIndicator={false}>
+                    <ScrollView showsVerticalScrollIndicator={false} 
+                    refreshControl={
+                        <RefreshControl
+                          refreshing={this.state.refreshing}
+                          onRefresh={this._onRefresh}
+                        /> }
+                        >
                
                         {obj.map((request,i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.props.navigation.navigate('Event', {
