@@ -12,6 +12,7 @@ import AuthLoading from './src/pages/AuthLoading';
 import Settings from './src/pages/Settings';
 import NewEvent from './src/pages/NewEvent';
 import SignupScreen from './src/pages/SignupScreen';
+import EditProfile from './src/pages/EditProfile';
 import * as firebase from 'firebase';
 import Api from './src/Api';
 import LoginScreen from './src/pages/LoginScreen';
@@ -150,6 +151,8 @@ const HomeStackNavigator = createStackNavigator({
     screen: Event,
     navigationOptions: {
       title: "Pickup",
+      headerTintColor: "#ffffff",
+      headerStyle: {backgroundColor: "#A62C23"}
     }
   },
   
@@ -158,7 +161,15 @@ const HomeStackNavigator = createStackNavigator({
     navigationOptions: {
       title: "New Event"
     }
-  }
+  },
+  EditProfile: {
+    screen: EditProfile,
+    navigationOptions: {
+      title: "Edit Profile",
+      headerTintColor: "#ffffff",
+      headerStyle: {backgroundColor: "#A62C23"}
+    },
+  },
 });
 
 const HomeAppContainer = createAppContainer(HomeStackNavigator);

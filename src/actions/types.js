@@ -14,3 +14,8 @@ export const LIST_FETCH_SUCCESS = 'list_fetch_success';
 export const LIST_FETCH_BEGIN = 'list_fetch_begin';
 export const GET_USER_VENMO = 'get_user_venmo';
 export const GET_USER_PRICE = 'get_user_price';
+export const GET_USER_FIRSTNAME = 'get_user_firstname';
+export const GET_USER_LASTNAME = 'get_user_lastname';
+export const GET_USER_PLAYINGEXP = 'get_user_playingexp';
+export const GET_USER_EMAIL = 'get_user_email';
+

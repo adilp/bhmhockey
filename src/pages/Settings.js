@@ -17,7 +17,7 @@ import App from "../../App";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from 'firebase';
 
-class AuthLoading extends Component {
+class Settings extends Component {
 
     constructor() {
         super()
@@ -61,7 +61,7 @@ class AuthLoading extends Component {
 
             <Block flex={0.9} color="gray2" style={styles.requests}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')}>
                         <Block row card shadow color="white" style={styles.request} >
                             <Block row space="between" style={{ paddingHorizontal: 30 }}>
                                 <Block flex={false} row center>
@@ -159,7 +159,7 @@ class AuthLoading extends Component {
     }
 }
 
-export default AuthLoading;
+export default Settings;
 
 const styles = StyleSheet.create({
     container: {

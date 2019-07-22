@@ -9,6 +9,7 @@ import whiteTeamReducer from './whiteTeamReducer';
 import blackTeamReducer from './blackTeamReducer';
 import teamListFetchReducer from './teamListFetchReducer';
 import userVenmoReducer from './userVenmoReducer';
+import userFormDetails from './userFormDetails';
 
 export default combineReducers({
     listReducer: listReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
     blackTeamReducer: blackTeamReducer,
     teamListFetchReducer: teamListFetchReducer,
     userVenmoReducer: userVenmoReducer,
+    userFormDetails: userFormDetails
 });
