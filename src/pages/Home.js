@@ -237,8 +237,8 @@ class Home extends Component {
                                 level: request.level,
                                 organizer: request.scheduler,
                                 uuid: request.uuid,
-                                price: request.price
-    
+                                price: request.price,
+                                venmo: request.venmo.venmo,
                             })
                         
                         }>
@@ -291,6 +291,7 @@ class Home extends Component {
         console.log("Checking validity ", this.props.eventLoading)
         console.log("Objecsts ", this.props.userDetailsReducer)
         console.log("Objecsts22222 ", this.props.userDetailsReducer.userDetails)
+        console.log("messages here ", this.state.messages)
         //return this.state.fullname.length ? this.render
         if (typeof this.props.userDetailsReducer === 'object'){
             console.log("This is an object")

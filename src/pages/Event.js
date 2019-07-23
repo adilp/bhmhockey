@@ -204,7 +204,7 @@ class Event extends Component {
                             Organizer venmo:
                 </Text>
                         <Text caption light>
-                            {this.props.userVenmoReducer.venmo}
+                            {this.params.venmo}
                 </Text>
             
                     </Block>
