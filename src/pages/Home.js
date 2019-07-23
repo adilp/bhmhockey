@@ -291,36 +291,59 @@ class Home extends Component {
         console.log("Checking validity ", this.props.eventLoading)
         console.log("Objecsts ", this.props.userDetailsReducer)
         console.log("Objecsts22222 ", this.props.userDetailsReducer.userDetails)
-        console.log("messages here ", this.state.messages)
+        console.log("messages here ", this.props.userFormDetails)
         //return this.state.fullname.length ? this.render
         if (typeof this.props.userDetailsReducer === 'object'){
             console.log("This is an object")
             return(<LoadingScroll />)
             
         } else {
+            
             console.log("no longer an object")
-            return (
-                <SafeAreaView style={styles.safe} >
+            if (this.props.userFormDetails.creator === 1) {
+                return (
+                    <SafeAreaView style={styles.safe} >
+                        
+        
+                        {this.render2Header()}
+                        {this.renderRequests3()}
+                       
+                       {/*  
+                     
+                     {this.renderRequest()} 
                     
-    
-                    {this.render2Header()}
-                    {this.renderRequests3()}
-                   
-                   {/*  
-                 
-                 {this.renderRequest()} 
-                
-                
-                */}
-                   
-                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
-                        <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
-    
-                            style={styles.FloatingButtonStyle} />
-                    </TouchableOpacity>
-                </SafeAreaView>
-    
-            );
+                    
+                    */}
+                       
+                        <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
+                            <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
+        
+                                style={styles.FloatingButtonStyle} />
+                        </TouchableOpacity>
+                    </SafeAreaView>
+        
+                );
+            } else {
+                return (
+                    <SafeAreaView style={styles.safe} >
+                        
+        
+                        {this.render2Header()}
+                        {this.renderRequests3()}
+                       
+                       {/*  
+                     
+                     {this.renderRequest()} 
+                    
+                    
+                    */}
+                       
+                        
+                    </SafeAreaView>
+        
+                );
+            }
+            
         } 
         
     }
@@ -329,7 +352,7 @@ class Home extends Component {
 
 
 export default connect(
-    state=>({eventLoading: state.eventListReducer.loading, userDetailsReducer: state.userDetailsReducer,
+    state=>({eventLoading: state.eventListReducer.loading, userDetailsReducer: state.userDetailsReducer, userFormDetails: state.userFormDetails,
          eventListReducer: state.eventListReducer.arr}), 
     { getUserDetailsThunk, getAllEvents}
   )(Home);

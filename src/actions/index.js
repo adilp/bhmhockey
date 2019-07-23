@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 import { GET_LIST, GET_USER, GET_USER_DETAILS, 
   GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, 
   FETCH_SUCCESS, BALANCE_TEAMS, WHITE_TEAM, BLACK_TEAM, WHITE_TEAM_DNE, BLACK_TEAM_DNE, 
-  LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO, GET_USER_PRICE, GET_USER_FIRSTNAME, GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL } from './types';
+  LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO, GET_USER_PRICE, GET_USER_FIRSTNAME, GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL, GET_FLAG } from './types';
 
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
 
@@ -56,6 +56,7 @@ export const getUserDetailsThunk = () => {
           dispatch({ type: GET_USER_LASTNAME, payload:snapshot.val().lastname})
           dispatch({ type: GET_USER_PLAYINGEXP, payload:snapshot.val().level})
           dispatch({ type: GET_USER_EMAIL, payload:snapshot.val().email})
+          dispatch({ type: GET_FLAG, payload:snapshot.val().creator})
         });
     };
   };

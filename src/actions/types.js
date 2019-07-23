@@ -18,4 +18,5 @@ export const GET_USER_FIRSTNAME = 'get_user_firstname';
 export const GET_USER_LASTNAME = 'get_user_lastname';
 export const GET_USER_PLAYINGEXP = 'get_user_playingexp';
 export const GET_USER_EMAIL = 'get_user_email';
+export const GET_FLAG = 'get_flag';
 

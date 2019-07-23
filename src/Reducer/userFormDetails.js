@@ -1,9 +1,10 @@
-import { GET_USER_FIRSTNAME, GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL } from '../actions/types';
+import { GET_USER_FIRSTNAME, GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL, GET_FLAG } from '../actions/types';
 const INITIAL_STATE = {
     firstName: '',
     lastName: '',
     level: '',
-    email: ''
+    email: '',
+    creator: ''
 };
 
 const userFormDetails = (state = INITIAL_STATE, action) => {
@@ -21,6 +22,9 @@ const userFormDetails = (state = INITIAL_STATE, action) => {
             return {...state, level: action.payload};
         case GET_USER_EMAIL:
             return {...state, email: action.payload};
+        case GET_FLAG:
+            console.log("Flags ", action.payload)
+            return {...state, creator: action.payload};
         default:
         console.log("default1 ");
             return state;

@@ -6,6 +6,7 @@ import {
     AsyncStorage,
     SafeAreaView,
     ScrollView,
+    TouchableOpacity
 } from 'react-native';
 
 import Form from '../components/Form';
@@ -14,7 +15,6 @@ import * as theme from '../theme';
 import Block from '../components/Block';
 import Text from '../components/Text';
 import App from "../../App";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from 'firebase';
 
 class Settings extends Component {
