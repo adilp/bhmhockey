@@ -51,7 +51,8 @@ class Event extends Component {
             message: 'default click state',
             fullname: '',
             requestsState: [],
-            loading: false
+            loading: false,
+            registered: false,
           }
     }
 
@@ -339,6 +340,12 @@ class Event extends Component {
             regButton = register;
         }
         //console.log("is fetching ", this.props.listReducer.isFetching )
+        if (this.state.registered) {
+            return(
+                <ActivityIndicator size="large" color ="0000ff"/>
+            );
+            
+        } else {
       
             return (
                 <Block flex={0.8} color="gray2" style={styles.requests}>
@@ -391,7 +398,7 @@ class Event extends Component {
                 </Block>
             );
         
-                
+                        }  
         
     }
 
@@ -399,8 +406,8 @@ class Event extends Component {
                 
         
         let event_uuid = this.params.uuid;
-
-           
+        this.setState({ registered: true });
+        
 
     if (this.check()) {
        
@@ -418,8 +425,8 @@ class Event extends Component {
                 //error callback
                 console.log('error ' , error)
             })
-           
-        
+            this.setState({ registered: false });
+            
         
         
     } catch (e) {
@@ -429,6 +436,7 @@ class Event extends Component {
     } else {
         //console.log("Already exists");
         //alert("You have already registered! ")
+        this.setState({ registered: false });
         Alert.alert(
             'Remove?',
             'Already registred, remove from list?',
@@ -547,6 +555,8 @@ class Event extends Component {
 
     render() {
        console.log("helasdf ", this.params)
+      
+       
         
         if (this.props.teamListFetchReducer.isFetching) {
             return(

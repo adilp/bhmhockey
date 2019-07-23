@@ -17,6 +17,8 @@ target 'bhmhockey' do
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
   target 'bhmhockeyTests' do
     inherit! :search_paths
     # Pods for testing
