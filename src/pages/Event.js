@@ -228,50 +228,6 @@ class Event extends Component {
             </Block>
         );
     }
-    renderRequest(request) {
-        return (
-            
-                <Block flex={0.75} column middle>
-                    <Text caption style={{ paddingVertical: 8, }}>{request.organizer}</Text>
-                </Block>
-           
-        );
-    }
-
-
-    renderRequests() {
-                
-        return (
-            <Block flex={0.8} color="gray2" style={styles.requests}>
-            <Block center>
-                 <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
-                    
-                        <Text style={styles.buttonText}> Register</Text>
-    
-                </TouchableOpacity>
-                
-                </Block>
-                <Block flex={false} row space="between" style={styles.requestsHeader}>
-                    <Text h3>White team:</Text>
-                </Block>
-                <Block row card shadow color="white" style={styles.request} >
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    {this.state.requestsState.map(request => (
-                        <TouchableOpacity activeOpacity={0.8} key={`request-${request.uuid}`}>
-                        <Block flex={0.75} column middle>
-                        <Text caption style={{ paddingVertical: 8, }}>{request.scheduler}</Text>
-                    </Block>
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
-                </Block>
-                <Block flex={false} row space="between" style={styles.requestsHeader}>
-                <Text h3>Black team:</Text>
-            </Block>
-                
-            </Block>
-        );
-    }
 
     togglePaidUnPaid(request, team) {
         console.log("This is toggle " , request)
@@ -332,6 +288,32 @@ class Event extends Component {
         //console.log("Update ", vpath)
         firebase.database().ref(vpath).update({ Paid: vstatus });
     }
+
+    _onLongPress(request){
+        
+        console.log("long pressed ", request)
+        if (this.props.userDetailsReducer != this.params.organizer){
+            console.log("Not authorized")
+        } else {
+            Alert.alert(
+                'Remove?',
+                "Remove " + request.Name + " from list?",
+                [
+                   //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {text: 'Remove', onPress: () => this.removeFromList(request.Name)},
+                ],
+                {cancelable: false},
+              );
+            // Alert.alert("you have removed ", request.Name);
+            // this.removeFromList(request.Name)
+        }
+        
+    }
     renderRequestsRedux() {
     //<ActivityIndicator size="large" color ="0000ff"/>
         //console.log("is fetching ", this.props.listReducer.isFetching )
@@ -355,7 +337,7 @@ class Event extends Component {
                     <ActivityIndicator size="large"/>
                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
                             
-                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")}
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")} onLongPress={() => this._onLongPress()}
                             >
                             <Block flex={0.75} column middle>
                                 <Block row space="between">
@@ -374,7 +356,7 @@ class Event extends Component {
                      <ScrollView showsVerticalScrollIndicator={false}>
                      <ActivityIndicator size="large"/>
                         {this.props.blackTeamReducer.blackTeam.map((request, i) => (
-                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} >
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} onLongPress={() => this._onLongPress()}>
                             <Block flex={0.75} column middle>
                             <Block row space="between">
                             <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
@@ -410,7 +392,7 @@ class Event extends Component {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
                             
-                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")}
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")} onLongPress={() => this._onLongPress(request)}
                             >
                             <Block flex={0.75} column middle>
                                 <Block row space="between">
@@ -428,7 +410,7 @@ class Event extends Component {
                 <Block row card shadow color="white" style={styles.request} >
                      <ScrollView showsVerticalScrollIndicator={false}>
                         {this.props.blackTeamReducer.blackTeam.map((request, i) => (
-                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} >
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} onLongPress={() => this._onLongPress(request)}>
                             <Block flex={0.75} column middle>
                             <Block row space="between">
                             <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
@@ -493,7 +475,7 @@ class Event extends Component {
                 onPress: () => console.log('Cancel Pressed'),
                 style: 'cancel',
               },
-              {text: 'Remove', onPress: () => this.removeFromList()},
+              {text: 'Remove', onPress: () => this.removeFromList(this.props.userDetailsReducer)},
             ],
             {cancelable: false},
           );
@@ -501,7 +483,7 @@ class Event extends Component {
 
     }
 
-    removeFromList(){
+    removeFromList(user){
         var delEventuuid = ''
         that = this;
         console.log("Event uuid", this.params.uuid)
@@ -511,7 +493,7 @@ class Event extends Component {
             snapshot.forEach(child => {
                 console.log("child ", child.val().scheduler)
                 console.log("Name ", that.props.userDetailsReducer)
-                if ("Is eqal ", _.isEqual(child.val().scheduler, that.props.userDetailsReducer)){
+                if ("Is eqal ", _.isEqual(child.val().scheduler, user)){//that.props.userDetailsReducer)){
                     console.log("Equal ", child.key)
                     delEventuuid = child.key
                     
@@ -536,7 +518,7 @@ class Event extends Component {
                 
                 child.val().forEach(function (item, index){
                     console.log("Items ", item)
-                    if ("Is eqal ", _.isEqual(item.Name, that.props.userDetailsReducer)){
+                    if ("Is eqal ", _.isEqual(item.Name, user)){//that.props.userDetailsReducer)){
                         console.log("Equal ", item.Name)
                         console.log("childsss key ", child.key)
                         delKey = child.key
