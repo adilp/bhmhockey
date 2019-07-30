@@ -341,17 +341,18 @@ class Event extends Component {
                 <Block center>
                      <TouchableOpacity  style={styles.button} onPress={() => this.registerButtonPressed()}>
                         
-                            <Text style={styles.buttonText}> Register</Text>
+                     <ActivityIndicator size="small"/>
         
                     </TouchableOpacity>
                     
                     </Block>
-                    <AuthLoading />
+                    
                     <Block flex={false} row space="between" style={styles.requestsHeader}>
                         <Text h3>White team:</Text>
                     </Block>
                     <Block row card shadow color="white" style={styles.request} >
                     <ScrollView showsVerticalScrollIndicator={false}>
+                    <ActivityIndicator size="large"/>
                         {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
                             
                             <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")}
@@ -371,6 +372,7 @@ class Event extends Component {
                 </Block>
                 <Block row card shadow color="white" style={styles.request} >
                      <ScrollView showsVerticalScrollIndicator={false}>
+                     <ActivityIndicator size="large"/>
                         {this.props.blackTeamReducer.blackTeam.map((request, i) => (
                             <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} >
                             <Block flex={0.75} column middle>
