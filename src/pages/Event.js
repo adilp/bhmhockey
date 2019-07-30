@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import Form from '../components/Form';
+import AuthLoading from './AuthLoading';
 import * as firebase from "firebase";
 import * as theme from '../theme';
 import Block from '../components/Block';
@@ -45,6 +46,7 @@ class Event extends Component {
 
     constructor(props) {
         super(props);
+        this.onButtonDelay = _.debounce(this.onButtonPress, 2000);
         this.params = this.props.navigation.state.params;
         this.state = {
             isDisabled: true,
@@ -56,6 +58,16 @@ class Event extends Component {
           }
     }
 
+    registerButtonPressed(){
+        this.setState({ registered: true})
+        this.onButtonDelay()
+    }
+
+    onButtonPress(){
+        console.log("debounce");
+        this._handlePress()
+        this.setState({ registered: false})
+    }
   
     componentDidMount() {
         
@@ -321,28 +333,60 @@ class Event extends Component {
         firebase.database().ref(vpath).update({ Paid: vstatus });
     }
     renderRequestsRedux() {
-        const register = <Block center>
-                            <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
-                                       <Text style={styles.buttonText}> Register</Text>
-
-                            </TouchableOpacity>
-                        </Block>
-        const disableRegister = <Block center>
-                                    <TouchableOpacity style={styles.button} onPress={() => alert("Game is full!")}>
-                                        <Text style={styles.buttonText}> Register</Text>
-                                    </TouchableOpacity>
-                                </Block>
-        let regButton = disableRegister;
-
-        if (this.fullCheck()) {
-            regButton = disableRegister;
-        } else {
-            regButton = register;
-        }
+    //<ActivityIndicator size="large" color ="0000ff"/>
         //console.log("is fetching ", this.props.listReducer.isFetching )
         if (this.state.registered) {
             return(
-                <ActivityIndicator size="large" color ="0000ff"/>
+                <Block flex={0.8} color="gray2" style={styles.requests}>
+                <Block center>
+                     <TouchableOpacity  style={styles.button} onPress={() => this.registerButtonPressed()}>
+                        
+                            <Text style={styles.buttonText}> Register</Text>
+        
+                    </TouchableOpacity>
+                    
+                    </Block>
+                    <AuthLoading />
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                        <Text h3>White team:</Text>
+                    </Block>
+                    <Block row card shadow color="white" style={styles.request} >
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        {this.props.whiteTeamReducer.whiteTeam.map((request,i) => (
+                            
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "whiteTeam")}
+                            >
+                            <Block flex={0.75} column middle>
+                                <Block row space="between">
+                                    <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
+                                    <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
+                                </Block>
+                            </Block>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                    </Block>
+                    <Block flex={false} row space="between" style={styles.requestsHeader}>
+                    <Text h3>Black team:</Text>
+                </Block>
+                <Block row card shadow color="white" style={styles.request} >
+                     <ScrollView showsVerticalScrollIndicator={false}>
+                        {this.props.blackTeamReducer.blackTeam.map((request, i) => (
+                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.togglePaidUnPaid(request, "blackTeam")} >
+                            <Block flex={0.75} column middle>
+                            <Block row space="between">
+                            <Text caption style={{ paddingVertical: 8, }}>{request.Name}</Text>
+                            <Text caption style={{ paddingVertical: 8, }}>{request.Paid}</Text>
+                        </Block>
+                            </Block>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                    
+                    </Block>
+                    
+                </Block>
+                
             );
             
         } else {
@@ -350,7 +394,7 @@ class Event extends Component {
             return (
                 <Block flex={0.8} color="gray2" style={styles.requests}>
                 <Block center>
-                     <TouchableOpacity  style={styles.button} onPress={() => this._handlePress()}>
+                     <TouchableOpacity  style={styles.button} onPress={() => this.registerButtonPressed()}>
                         
                             <Text style={styles.buttonText}> Register</Text>
         
