@@ -472,6 +472,23 @@ class Event extends Component {
             }).then((data)=>{
                 this.props.updateCount(event_uuid, 0);
                 console.log('data ' , data)
+                Alert.alert(
+                    'Registered',
+                    "Please venmo $" + this.params.price + " to " + this.params.venmo ,
+
+                    [
+                       //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                      {
+                        text: 'Ok',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                      },
+                     
+                    ],
+                    {cancelable: false},
+                  );
+
+                //this.props.whiteTeamReducer.whiteTeam.push({Name: "testing", Paid: "unpaid"})
             }).catch((error)=>{
                 //error callback
                 console.log('error ' , error)
