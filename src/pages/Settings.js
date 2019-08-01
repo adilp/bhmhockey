@@ -77,7 +77,7 @@ class Settings extends Component {
                             </Block>
                         </Block>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+               {/*     <TouchableOpacity>
                     <Block row card shadow color="white" style={styles.request} >
                         <Block row space="between" style={{ paddingHorizontal: 30 }}>
                             <Block flex={false} row center>
@@ -124,7 +124,9 @@ class Settings extends Component {
                             </Block>
                         </Block>
                     </Block>
-                    </TouchableOpacity>
+                    </TouchableOpacity> 
+
+               */}
                     <TouchableOpacity
                     onPress={() => this._logout()}
                     >
