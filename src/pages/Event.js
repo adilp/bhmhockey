@@ -234,6 +234,8 @@ class Event extends Component {
         //console.log("THis is uuid ", this.params.uuid) 
         //console.log("Team ",team)
         let vpath = 'TeamsList/' + this.params.uuid + "/" + team + "/";
+        let SingupPath = 'SignUp/' + this.params.uuid + "/";
+        let newStatus ='';
         let Paid = 'Paid';
         let unpaid = 'unpaid';
         let vstatus = ''
@@ -261,14 +263,31 @@ class Event extends Component {
                         vpath += child.key
                         if (child.val().Paid === Paid){
                             console.log("Unpaid")
-                            vstatus = "Unpaid";
+                            vstatus = "unpaid";
                         } else {
                             vstatus = "Paid";
                         }
                     }
                 })
                
-            }).then(this.updateToggle(vpath, vstatus))
+            }).then(firebase.database().ref('SignUp/' + this.params.uuid).once('value', snapshot => {
+                console.log("snapshot in firebase ", snapshot.val())
+                snapshot.forEach( child => {
+                    console.log("snapshot in firebase child ", child.val())
+                    if (child.val().scheduler === request.Name) {
+                        SingupPath += child.key
+                        console.log(SingupPath)
+                        if (child.val().Paid == Paid){
+                            newStatus = "unpaid";
+                        } else {
+                            newStatus = "Paid";
+                        }
+                    }
+                })
+            }))
+            
+            
+            .then(this.updateToggle(vpath, vstatus, SingupPath, newStatus))
             
             .catch((error)=>{
                 //error callback
@@ -281,12 +300,15 @@ class Event extends Component {
     } catch (e) {
         alert(e);
     }
+    
 }
     }
 
-    updateToggle(vpath, vstatus){
+    updateToggle(vpath, vstatus, SignupPath, newStatus){
         //console.log("Update ", vpath)
         firebase.database().ref(vpath).update({ Paid: vstatus });
+        firebase.database().ref(SignupPath).update({ Paid: newStatus });
+
     }
 
     _onLongPress(request){
@@ -445,6 +467,7 @@ class Event extends Component {
             firebase.database().ref('SignUp/' + event_uuid /* + '/' + currentUser */).push({
                 scheduler: this.props.userDetailsReducer,
                 uuid: signupUid,
+                Paid: "unpaid"
                
             }).then((data)=>{
                 this.props.updateCount(event_uuid, 0);
