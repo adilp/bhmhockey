@@ -45,6 +45,7 @@ class Home extends Component {
             messages: [],
             loadingfetch: false,
             refreshing: false,
+            fadeAnim: new Animated.Value(0),
           }
     }
  
@@ -55,7 +56,15 @@ class Home extends Component {
         this.props.getUserDetailsThunk();
     }
 
-   
+   componentDidMount(){
+       Animated.timing(
+           this.state.fadeAnim,
+           {
+               toValue: 1,
+               duration: 1500
+           }
+       ).start();
+   }
       
     listenForMessages() {
         
@@ -80,23 +89,28 @@ class Home extends Component {
      
       }
     render2Header() {
-       
+        
+        let { fadeAnim } = this.state;
         return (
-            <Block flex={0.15} column style={{ paddingHorizontal: 15 }}>
+            <Animated.View
+            style={{opacity: fadeAnim, flex:0.15}} >
+            <Block flex={1} column style={{ paddingHorizontal: 15 }}>
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
                     <Block center>
                         <Text h3 white style={{ marginRight: -(25 + 5) }}>
-                            Pickup Schedule
+                            Schedule
                             
                         </Text>
                     </Block>
                 </Block>
 
             </Block>
+            </Animated.View>
         );
     }
 
     renderRequests3() {
+        let { fadeAnim } = this.state;
         var obj = this.state.messages
          //var b = ar[0]; 
         console.log("Loading.... ", this.props.eventLoading)
@@ -106,10 +120,10 @@ class Home extends Component {
             return (
                 <Block flex={0.9} color="gray2" style={styles.requests}>
                 <Block flex={false} row space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
-                        <Text title>Welcome {this.props.userDetailsReducer}</Text>
+                        <Text style={{ fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 3}}title>Welcome {this.props.userDetailsReducer}!</Text>
                     </Block>
                     <Block flex={false} row space="between" style={styles.requestsHeader}>
-                        <Text light>Upcoming games</Text>
+                        <Text light>Upcoming games:</Text>
                     </Block>
                     
     
@@ -122,6 +136,7 @@ class Home extends Component {
                         >
                
                         {obj.map((request,i) => (
+                           
                             <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.props.navigation.navigate('Event', {
                                 spots: request.availableSpots,
                                 date: request.date,
@@ -135,7 +150,8 @@ class Home extends Component {
                         
                         }>
                           
-    
+                        <Animated.View
+                        style={{opacity: fadeAnim, flex:1}} >
                                 <Block row card shadow color="white" style={styles.request}>
                                     <Block
                                         flex={0.45}
@@ -166,7 +182,10 @@ class Home extends Component {
                                         </Text>
                                     </Block>
                                 </Block>
+                                </Animated.View>
                             </TouchableOpacity>
+                            
+                           
                         ))}
                     </ScrollView>
     
@@ -177,6 +196,7 @@ class Home extends Component {
     }
  
     render() {
+        
         
         var obj = this.props.eventListReducer
         
@@ -189,20 +209,23 @@ class Home extends Component {
             
             if (this.props.userFormDetails.creator === 1) {
                 return (
+                   
                     <SafeAreaView style={styles.safe} >
                       
         
                         {this.render2Header()}
-                        {this.renderRequests3()}
-                   
+                        
+                            {this.renderRequests3()}
+                        
                                        
                         <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
                             <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
         
                                 style={styles.FloatingButtonStyle} />
                         </TouchableOpacity>
+
                     </SafeAreaView>
-        
+                    
                 );
             } else {
                 return (
