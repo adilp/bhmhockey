@@ -46,6 +46,8 @@ class Home extends Component {
             loadingfetch: false,
             refreshing: false,
             fadeAnim: new Animated.Value(0),
+            textAnim: new Animated.Value(0),
+            slideDownAnim: new Animated.Value(0),
           }
     }
  
@@ -64,6 +66,20 @@ class Home extends Component {
                duration: 1500
            }
        ).start();
+       Animated.timing(
+        this.state.textAnim,
+        {
+            toValue: 1,
+            duration: 3000
+        }
+    ).start();
+    Animated.timing(
+        this.state.slideDownAnim,
+        {
+            toValue: 1,
+            duration: 2000
+        }
+    ).start();
    }
       
     listenForMessages() {
@@ -99,7 +115,6 @@ class Home extends Component {
                     <Block center>
                         <Text h3 white style={{ marginRight: -(25 + 5) }}>
                             Schedule
-                            
                         </Text>
                     </Block>
                 </Block>
@@ -119,11 +134,34 @@ class Home extends Component {
         } else {
             return (
                 <Block flex={0.9} color="gray2" style={styles.requests}>
-                <Block flex={false} row space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
-                        <Text style={{ fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 3}}title>Welcome {this.props.userDetailsReducer}!</Text>
-                    </Block>
-                    <Block flex={false} row space="between" style={styles.requestsHeader}>
-                        <Text light>Upcoming games:</Text>
+                
+                <Block flex={false} column space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
+                <Animated.View
+                flex={false}
+                style={{
+                    transform: [
+                        {
+                          translateY: this.state.slideDownAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [-40, 0]
+                          })
+                        }
+                      ],
+                      
+                }}>
+                        <Text style={{ letterSpacing: 3, fontSize: 30}} title light >Welcome,</Text>
+                        </Animated.View>
+
+                        <Animated.View
+                        flex={false}
+                        style={{opacity: this.state.textAnim}} >
+                        <Text style={{ fontSize: 30, fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 3}} title >{this.props.userDetailsReducer}!</Text>
+                        </Animated.View>
+                </Block>
+                    
+
+                    <Block flex={0.1} style={[styles.requestsHeader, {alignItems: 'center', justifyContent: 'center'}]}>
+                        <Text light style={{alignItems: 'center', justifyContent: 'center'}}>Upcoming games:</Text>
                     </Block>
                     
     
@@ -154,6 +192,7 @@ class Home extends Component {
                         style={{opacity: fadeAnim, flex:1}} >
                                 <Block row card shadow color="white" style={styles.request}>
                                     <Block
+                                        middle
                                         flex={0.45}
                                         card
                                         column
@@ -177,9 +216,42 @@ class Home extends Component {
                                     </Block>
                                     <Block flex={0.75} column middle>
                                         <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
-                                        <Text caption semibold>
+                                       {/* <Text caption semibold>
                                             Time: {request.time}  •  Level: {request.level}  •  Organizer: {request.scheduler}  •  Price: ${request.price} 
+                                       </Text> */}
+                                       <Block flex={false} row style={{paddingVertical: 2}}>
+                                        <Text caption >
+                                            TIME:  
                                         </Text>
+                                        <Text caption semibold style={{paddingLeft: 5}}>
+                                            {request.time}
+                                        </Text>
+                                       </Block>
+                                        
+                                       <Block flex={false} row style={{paddingVertical: 2}}>
+                                       <Text caption >
+                                       LEVEL:  
+                                       </Text>
+                                       <Text caption semibold style={{paddingLeft: 5}}>
+                                       {request.level}
+                                       </Text>
+                                      </Block>
+                                      <Block flex={false} row style={{paddingVertical: 2}}>
+                                      <Text caption >
+                                      ORGANIZER:  
+                                      </Text>
+                                      <Text caption semibold style={{paddingLeft: 5}}>
+                                      {request.scheduler} 
+                                      </Text>
+                                     </Block>
+                                     <Block flex={false} row style={{paddingVertical: 2}}>
+                                     <Text caption >
+                                     PRICE:  
+                                     </Text>
+                                     <Text caption semibold style={{paddingLeft: 5}}>
+                                     ${request.price} 
+                                     </Text>
+                                    </Block>
                                     </Block>
                                 </Block>
                                 </Animated.View>
