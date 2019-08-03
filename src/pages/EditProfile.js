@@ -54,9 +54,7 @@ class EditProfile extends Component {
 
     async _handlePress(): Promise<void> {
         console.log("signed up");
-        // console.log(this.state.firstName);
-        // console.log(this.state.lastName);
-        // console.log(this.state.email);
+      
         let oldstate = this;
         try {
           

@@ -58,13 +58,15 @@ class Event extends Component {
           }
     }
 
+    //Handling Debounce
     registerButtonPressed(){
         this.setState({ registered: true})
         this.onButtonDelay()
     }
 
+    //Button state updated
     onButtonPress(){
-        console.log("debounce");
+        
         this._handlePress()
         this.setState({ registered: false})
     }
@@ -91,9 +93,7 @@ class Event extends Component {
     async _handleStart(): Promise<void> {
         var that = this;
         var ref = firebase.database().ref('SignUp/' + this.params.uuid);
-   
 
-        
         ref.once('value').then(function (snapshot) {
             
             snapshot.forEach(function (child) {
@@ -109,6 +109,7 @@ class Event extends Component {
             })
         })
     }
+    //UUID generator
     uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -116,23 +117,20 @@ class Event extends Component {
           });
     }
 
+    //Checking to see if user exists in either team
     check() {
         let _ = require('underscore');
-        //console.log("My name: " , this.state.fullname)
         var checking = true;
         Object.keys(this.props.whiteTeamReducer.whiteTeam).map(i => {
             var myitem = this.props.whiteTeamReducer.whiteTeam[i];
-            console.log('my item', myitem.Name);
-            //console.log("state name: " , myitem.scheduler)
-           //console.log("Is eqal ", _.isEqual(myitem.scheduler, this.state.fullname)) 
 
             if ("Is eqal ", _.isEqual(myitem.Name, this.props.userDetailsReducer)){
-                //console.log("false")
+                
                 checking = false;
                 
             }
             else {
-               // console.log("true")
+              
                 
             }
             
@@ -140,12 +138,12 @@ class Event extends Component {
         Object.keys(this.props.blackTeamReducer.blackTeam).map(i => {
             var myotherItem = this.props.blackTeamReducer.blackTeam[i];
             if ("Is eqal ", _.isEqual(myotherItem.Name, this.props.userDetailsReducer)){
-                //console.log("false")
+                
                 checking = false;
                 
             }
             else {
-               // console.log("true")
+               
                 
             }
         })
@@ -154,6 +152,8 @@ class Event extends Component {
         
     }
     
+    //Checking to see if any spots available
+
     fullCheck(){
         if (this.params.spots == 0){
             console.log("Zero spots aval")
@@ -166,7 +166,7 @@ class Event extends Component {
     
 
     renderHeader() {
-        //const { user } = this.props;
+        
 
         return (
             <Block flex={0.42} column style={{ paddingHorizontal: 15 }}>
@@ -229,10 +229,10 @@ class Event extends Component {
         );
     }
 
+    //figuring out the path in db to update
     togglePaidUnPaid(request, team) {
-        console.log("This is toggle " , request)
-        //console.log("THis is uuid ", this.params.uuid) 
-        //console.log("Team ",team)
+        
+        
         let vpath = 'TeamsList/' + this.params.uuid + "/" + team + "/";
         let SingupPath = 'SignUp/' + this.params.uuid + "/";
         let newStatus ='';
@@ -240,26 +240,22 @@ class Event extends Component {
         let unpaid = 'unpaid';
         let vstatus = ''
         let emmpty = "Empty";
-        console.log("Reducer ", this.props.userDetailsReducer)
-        console.log("Thunk ", this.props.userThunk)
+       
 
 
         if (request.Name == emmpty || this.props.userDetailsReducer != this.params.organizer){
             console.log("EMpty or same guys");
         } else {
 
-        
         try {
             
             var signupUid = this.uuidv4();
             firebase.database().ref('TeamsList/' + this.params.uuid + "/" + team).once('value', snapshot => {
-                //console.log("toggle ", snapshot.val())
+                
 
                 snapshot.forEach( child => {
                     console.log("toggle child", child.val())
                     if (request.Name === child.val().Name) {
-                        //console.log("Found ", child.val())
-                        //console.log("Found ", child.key)
                         vpath += child.key
                         if (child.val().Paid === Paid){
                             console.log("Unpaid")
@@ -303,7 +299,7 @@ class Event extends Component {
     
 }
     }
-
+    //Make database update here
     updateToggle(vpath, vstatus, SignupPath, newStatus){
         //console.log("Update ", vpath)
         firebase.database().ref(vpath).update({ Paid: vstatus });
@@ -311,6 +307,7 @@ class Event extends Component {
 
     }
 
+    //Deleting user if owner
     _onLongPress(request){
         
         console.log("long pressed ", request)
@@ -337,8 +334,7 @@ class Event extends Component {
         
     }
     renderRequestsRedux() {
-    //<ActivityIndicator size="large" color ="0000ff"/>
-        //console.log("is fetching ", this.props.listReducer.isFetching )
+    
         if (this.state.registered) {
             return(
                 <Block flex={0.8} color="gray2" style={styles.requests}>
@@ -452,15 +448,18 @@ class Event extends Component {
         
     }
 
+
+    //Pressing register button
     async _handlePress(): Promise<void> {
                 
         
         let event_uuid = this.params.uuid;
         this.setState({ registered: true });
         
-
+        //Checking to see if user is already signed up. 
     if (this.check()) {
        
+        //If not then register user and update the counter
         try {
             
             var signupUid = this.uuidv4();
@@ -477,7 +476,7 @@ class Event extends Component {
                     "Please venmo $" + this.params.price + " to " + this.params.venmo ,
 
                     [
-                       //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                       
                       {
                         text: 'Ok',
                         onPress: () => console.log('Cancel Pressed'),
@@ -488,9 +487,9 @@ class Event extends Component {
                     {cancelable: false},
                   );
 
-                //this.props.whiteTeamReducer.whiteTeam.push({Name: "testing", Paid: "unpaid"})
+                
             }).catch((error)=>{
-                //error callback
+                
                 console.log('error ' , error)
             })
             this.setState({ registered: false });
@@ -500,16 +499,15 @@ class Event extends Component {
     } catch (e) {
         alert(e);
     }
-
+    //Else already registerd, remove user. 
     } else {
-        //console.log("Already exists");
-        //alert("You have already registered! ")
+        
         this.setState({ registered: false });
         Alert.alert(
             'Remove?',
             'Already registred, remove from list?',
             [
-               //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+               
               {
                 text: 'Cancel',
                 onPress: () => console.log('Cancel Pressed'),
@@ -523,6 +521,7 @@ class Event extends Component {
 
     }
 
+    //Removing user from list in DB by getting path 
     removeFromList(user){
         var delEventuuid = ''
         that = this;
@@ -547,9 +546,11 @@ class Event extends Component {
             console.log("then")
             that.props.updateCount(this.params.uuid, 1);
           });
+          //Removing from signup db
          var remRef = firebase.database().ref('SignUp/' + this.params.uuid + "/" + delEventuuid);
          remRef.remove()
-        delEventIndex = ''
+        
+         delEventIndex = ''
         delKey = ''
         var ref2 = firebase.database().ref('TeamsList/' + this.params.uuid);
         ref2.once("value", function(snapshot){
@@ -574,20 +575,22 @@ class Event extends Component {
                
             })
         })
+        //Removing from the tams list db
         var remRef2 = firebase.database().ref('TeamsList/' + this.params.uuid + "/" + delKey + "/" + delEventIndex)
         remRef2.remove()
     }
 
+    //Delete event from firebase and navigate back to home
     _deleteEvent(){
         var delEventuuid = ''
-        //console.log("Event uuid", this.params.uuid)
+        
         var ref = firebase.database().ref('Events/');
         ref.orderByChild("uuid").equalTo(this.params.uuid).on("value", function(snapshot) {
-            //console.log("Snapshot from action " , snapshot.val())
+          
             
             
             snapshot.forEach(child => {
-                //console.log("child ", child.key)
+                
                 delEventuuid = child.key
                 
             })
@@ -598,10 +601,9 @@ class Event extends Component {
 
         this.props.navigation.navigate('Main');
     }
-        //eventNode = 
-        //var adaRef = firebase.database().ref('Events/')
+        
     
-    
+    //Delete event rendering
     deleteEvent() {
 
         if (this.props.userDetailsReducer != this.params.organizer){

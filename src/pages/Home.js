@@ -47,47 +47,24 @@ class Home extends Component {
             refreshing: false,
           }
     }
-
-    // _onRefresh = () => {
-    //     this.setState({refreshing: true});
-    //     that = this
-    //     var ref = firebase.database().ref('Events/');
-    //     ref.orderByChild("epochTime").once("value", function(snapshot) {
-    //         console.log("messages ", snapshot)
-    //         let messages = [];
-    //         snapshot.forEach(child => {
-    //             let msg = child.val();
-    //             console.log("messages ", msg)
-    //             messages.unshift(msg);
-    //         })
-    //         that.setState({ messages: messages, isFetching: false})
-
-    // }).then(() => {
-    //       this.setState({refreshing: false});
-    //     });
-    //   }
-
-   
+ 
 
     componentWillMount(){      
         this.props.getAllEvents();
         this.listenForMessages();
         this.props.getUserDetailsThunk();
-        //this.setState({fullname: this.props.userDetailsReducer.userDetails})
     }
 
    
       
     listenForMessages() {
-        console.log("messages ")
+        
         that = this
         var ref = firebase.database().ref('Events/');
         ref.orderByChild("epochTime").on("value", function(snapshot) {
-            //console.log("messages ", snapshot)
             let messages = [];
             snapshot.forEach(child => {
                 let msg = child.val();
-                console.log("messages ", msg)
                 messages.unshift(msg);
             })
             that.setState({ messages: messages, isFetching: false})
@@ -97,14 +74,13 @@ class Home extends Component {
 
       _onRefresh = () => {
         this.setState({refreshing: true});
-        console.log("refreshiing")
+        
         this.listenForMessages();
         this.setState({refreshing: false});
      
       }
     render2Header() {
-        //const { user } = this.props;
-
+       
         return (
             <Block flex={0.15} column style={{ paddingHorizontal: 15 }}>
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
@@ -119,91 +95,7 @@ class Home extends Component {
             </Block>
         );
     }
-    renderRequests2() {
-        var obj = this.props.eventListReducer
-         //var b = ar[0]; 
-        console.log("Loading.... ", this.props.eventLoading)
-        if (this.props.eventListReducer == null || (this.props.eventLoading === false)) {
-            <Text> Broke </Text>
-        } else {
-            return (
-                <Block flex={0.9} color="gray2" style={styles.requests}>
-                    <Block flex={false} row space="between" style={styles.requestsHeader}>
-                        <Text light>Upcoming games</Text>
-                    </Block>
-    
-                    <ScrollView showsVerticalScrollIndicator={false}>
-               
-                        {obj.map((request,i) => (
-                            <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => this.props.navigation.navigate('Event', {
-                                spots: request.availableSpots,
-                                date: request.date,
-                                puckdrop: request.time,
-                                level: request.level,
-                                organizer: request.scheduler,
-                                uuid: request.uuid,
-    
-                            })
-                        
-                        }>
-                          
-    
-                                <Block row card shadow color="white" style={styles.request}>
-                                    <Block
-                                        flex={0.45}
-                                        card
-                                        column
-                                        color="secondary"
-                                        style={styles.requestStatus}
-                                    >
-                                        <Block flex={0.45} middle center color={theme.colors.primary}>
-                                            <Text medium white style={{ textTransform: "uppercase", padding: 5 }}>
-                                                {request.availability}
-                                            </Text>
-                                        </Block>
-                                        
-                                       
-                                        <Block flex={0.7} center middle>
-                                            <Text h2 white>
-                                                {request.availableSpots}
-                                                
-                                            </Text>
-                                        </Block>
-                      
-                                    </Block>
-                                    <Block flex={0.75} column middle>
-                                        <Text h3 style={{ paddingVertical: 8, }}>{request.date}</Text>
-                                        <Text caption semibold>
-                                            Time: {request.time}  •  Level: {request.level}  •  Organizer: {request.scheduler}
-                                        </Text>
-                                    </Block>
-                                </Block>
-                            </TouchableOpacity>
-                        ))}
-                        {/* </Animated.View> */}
-                    </ScrollView>
-    
-                </Block>
-            );
-                        }
-        
-        
-    }
 
-    renderRequest() {
-        return (
-            <Block flex={0.9} color="gray2" style={styles.requests}>
-            <Block flex={false} row space="between" style={styles.requestsHeader}>
-                        <Text light>Upcoming games</Text>
-            </Block>
-            <Block>
-                <CustomListView
-                    itemList={this.props.eventListReducer}
-                />
-            </Block>
-            </Block>
-        );
-    }
     renderRequests3() {
         var obj = this.state.messages
          //var b = ar[0]; 
@@ -276,7 +168,6 @@ class Home extends Component {
                                 </Block>
                             </TouchableOpacity>
                         ))}
-                        {/* </Animated.View> */}
                     </ScrollView>
     
                 </Block>
@@ -288,33 +179,23 @@ class Home extends Component {
     render() {
         
         var obj = this.props.eventListReducer
-        console.log("Checking validity ", this.props.eventLoading)
-        console.log("Objecsts ", this.props.userDetailsReducer)
-        console.log("Objecsts22222 ", this.props.userDetailsReducer.userDetails)
-        console.log("messages here ", this.props.userFormDetails)
-        //return this.state.fullname.length ? this.render
+        
         if (typeof this.props.userDetailsReducer === 'object'){
-            console.log("This is an object")
+            
             return(<LoadingScroll />)
             
         } else {
             
-            console.log("no longer an object")
+            
             if (this.props.userFormDetails.creator === 1) {
                 return (
                     <SafeAreaView style={styles.safe} >
-                        
+                      
         
                         {this.render2Header()}
                         {this.renderRequests3()}
-                       
-                       {/*  
-                     
-                     {this.renderRequest()} 
-                    
-                    
-                    */}
-                       
+                   
+                                       
                         <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
                             <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
         
@@ -331,13 +212,7 @@ class Home extends Component {
                         {this.render2Header()}
                         {this.renderRequests3()}
                        
-                       {/*  
-                     
-                     {this.renderRequest()} 
-                    
-                    
-                    */}
-                       
+                      
                         
                     </SafeAreaView>
         

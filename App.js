@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 
 
-import Login from './src/pages/Login';
+
 import Home from './src/pages/Home';
-import Signup from './src/pages/Signup';
+
 //import Firebase from './src/Firebase';
 import Event from './src/pages/Event';
 import AuthLoading from './src/pages/AuthLoading';
