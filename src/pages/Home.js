@@ -112,7 +112,7 @@ class Home extends Component {
         let { fadeAnim } = this.state;
         return (
             <Animated.View
-            style={{opacity: fadeAnim, flex:0.15}} >
+            style={{opacity: fadeAnim}} >
             <Block flex={1} column style={{ paddingHorizontal: 15 }}>
                 <Block flex={false} row style={{ paddingVertical: 15 }}>
                     <Block center>
@@ -193,6 +193,7 @@ class Home extends Component {
                         }>
                           
                         <Animated.View
+                        flex={1}
                         style={{
                             transform: [
                                 {
@@ -202,7 +203,7 @@ class Home extends Component {
                                   })
                                 }
                               ],
-                            opacity: fadeAnim, flex:1}} >
+                            opacity: fadeAnim }} >
                                 <Block row card shadow color="white" style={styles.request}>
                                     <Block
                                         middle
@@ -297,9 +298,9 @@ class Home extends Component {
                    
                     <SafeAreaView style={styles.safe} >
                       
-        
+        {/* 
                         {this.render2Header()}
-                        
+                        */}
                             {this.renderRequests3()}
                         
                                        
@@ -316,8 +317,8 @@ class Home extends Component {
                 return (
                     <SafeAreaView style={styles.safe} >
                         
-        
-                        {this.render2Header()}
+        {/* 
+                        {this.render2Header()} */}
                         {this.renderRequests3()}
                        
                       
@@ -346,12 +347,12 @@ export default connect(
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#A62C23',
+        backgroundColor: theme.colors.gray2,
     },
 
     safe: {
         flex: 1,
-        backgroundColor: theme.colors.accent,
+        backgroundColor: theme.colors.gray2,
     },
     headerChart: {
         paddingTop: 30,
