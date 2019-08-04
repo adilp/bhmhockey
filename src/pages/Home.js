@@ -12,6 +12,8 @@ import {
     RefreshControl
 } from "react-native";
 
+
+
 import Form from '../components/Form';
 import * as firebase from "firebase";
 import * as theme from '../theme';
@@ -57,6 +59,8 @@ class Home extends Component {
         this.listenForMessages();
         this.props.getUserDetailsThunk();
     }
+
+    
 
    componentDidMount(){
        //List Fade in 

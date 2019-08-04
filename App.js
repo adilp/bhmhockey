@@ -82,8 +82,14 @@ componentWillMount(){
 }
 
 const HomeTabNavigator = createBottomTabNavigator({
-  Home,
-  Settings
+  Home: {
+    screen: Home,
+    tabBarOptions: {
+      activeTintColor: "#A62C23"
+    }
+  },
+  Settings,
+
 });
 
 
@@ -106,7 +112,8 @@ const AppStackNavigator = createStackNavigator({
   Main: {
     screen: HomeTabNavigator,
     navigationOptions: {
-      header: null
+      header: null,
+      
     }
   },
   Event: {
@@ -143,8 +150,10 @@ const HomeStackNavigator = createStackNavigator({
   },
   Main: {
     screen: HomeTabNavigator,
+    activeTintColor: "#A62C23",
     navigationOptions: {
-      header: null
+      header: null,
+      
     }
   },
   Event: {
