@@ -111,7 +111,7 @@ class Home extends Component {
             let messages = [];
             snapshot.forEach(child => {
                 let msg = child.val();
-                messages.unshift(msg);
+                messages.push(msg);
             })
             that.setState({ messages: messages, isFetching: false })
 
@@ -124,7 +124,7 @@ class Home extends Component {
             snapshot.forEach(child => {
                 let msg = child.val();
                 console.log("chilsdf ", msg)
-                messages.unshift(msg);
+                messages.push(msg);
             })
             that.setState({ golds: messages })
 
@@ -137,7 +137,7 @@ class Home extends Component {
             snapshot.forEach(child => {
                 let msg = child.val();
                 console.log("chilsdf ", msg)
-                messages.unshift(msg);
+                messages.push(msg);
             })
             that.setState({ silvers: messages })
 
