@@ -66,9 +66,27 @@ class Event extends Component {
 
     //Button state updated
     onButtonPress(){
-        
-        this._handlePress()
-        this.setState({ registered: false})
+        if (!this.fullCheck() || !this.check()) {
+            this._handlePress()
+            this.setState({ registered: false})
+        } else {
+            Alert.alert(
+                'Full',
+                'Game is full',
+                [
+                   
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                 
+                ],
+                {cancelable: false},
+              );
+            this.setState({ registered: false})
+        }
+       
     }
   
     componentDidMount() {
@@ -155,11 +173,12 @@ class Event extends Component {
     //Checking to see if any spots available
 
     fullCheck(){
-        if (this.params.spots == 0){
+        console.log("number of total spots at the moment ", this.props.eventcountReducer);
+        if (this.props.eventcountReducer == 0){
             console.log("Zero spots aval")
             return true
         } else {
-            console.log("There are " + this.params.spots + " available")
+            console.log("There are " + this.props.eventcountReducer + " available")
             return false
         }
     }
@@ -458,6 +477,7 @@ class Event extends Component {
         
         //Checking to see if user is already signed up. 
     if (this.check()) {
+        console.log("full check ", !this.fullCheck())
        
         //If not then register user and update the counter
         try {
@@ -500,7 +520,7 @@ class Event extends Component {
         alert(e);
     }
     //Else already registerd, remove user. 
-    } else {
+    } else { 
         
         this.setState({ registered: false });
         Alert.alert(
