@@ -33,6 +33,7 @@ import AuthLoading from "./Settings";
 import LoadingScroll from './AuthLoading';
 //import Swiper from 'react-native-web-swiper';
 import Swiper from '../config/swiper';
+import {AfterInteractions} from 'react-native-interactions';
 
 
 
@@ -76,7 +77,8 @@ class Home extends Component {
             this.state.fadeAnim,
             {
                 toValue: 1,
-                duration: 1500
+                duration: 1500,
+                useNativeDriver: true 
             }
         ).start();
         //Name Fade in
@@ -84,7 +86,8 @@ class Home extends Component {
             this.state.textAnim,
             {
                 toValue: 1,
-                duration: 3000
+                duration: 3000,
+                useNativeDriver: true 
             }
         ).start();
         //Welcome slide from up
@@ -92,7 +95,8 @@ class Home extends Component {
             this.state.slideDownAnim,
             {
                 toValue: 1,
-                duration: 1500
+                duration: 1500,
+                useNativeDriver: true 
             }
         ).start();
     }
@@ -127,7 +131,7 @@ class Home extends Component {
         })
 
         //Get Silver Schedule
-        var silver = firebase.database().ref('Gold/');
+        var silver = firebase.database().ref('Silver/');
         silver.on("value", function (snapshot) {
             let messages = [];
             snapshot.forEach(child => {
@@ -169,7 +173,7 @@ class Home extends Component {
 
                 <Block flex={false} column space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
                     <Animated.View
-                        
+            
                         style={{
                             transform: [
                                 {
@@ -397,10 +401,7 @@ class Home extends Component {
 
                     {obj.map((request, i) => (
 
-
-
-
-                        <Block row card shadow color="white" style={styles.request}>
+                        <Block key={i} row card shadow color="white" style={styles.request}>
                             <Block
                                 middle
                                 flex={0.45}
@@ -592,10 +593,11 @@ class Home extends Component {
 
             if (this.props.userFormDetails.creator === 1) {
                 return (
-
+                    
                     <SafeAreaView style={styles.safe} >
+                 
                          {this.render2Header()} 
-
+                         
                         <Swiper>
                             <View style={{ paddingTop: 10 }}>
                            
@@ -618,29 +620,7 @@ class Home extends Component {
                             </View>
                         </Swiper>
 
-                        {/*    <ScrollView 
-                        pagingEnabled 
-                        scrollEnabled 
-                        showsHorizontalScrollIndicator={false} 
-                        horizontal 
-                        flex={1} 
-                        contentContainerStyle={{
-                                flex: 1
-                            }} 
-                        style={{width: "100%"}}
-                        decelerationRate={0}
-                        scrollEventThrottle={16}
-                        snapToAlignment="center"
-                        >
-
-                    
-                      
-        
-                        {this.render2Header()}
-                        
-                            {this.renderRequests3()}
-                        
-                            </ScrollView>     */}
+                       
                         <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
                             <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
 
@@ -648,20 +628,42 @@ class Home extends Component {
                         </TouchableOpacity>
 
                     </SafeAreaView>
+                    
 
                 );
             } else {
                 return (
+                    <AfterInteractions flex={1}> 
                     <SafeAreaView style={styles.safe} >
 
-                        {/* 
-                        {this.render2Header()} */}
-                        {this.renderRequests3()}
+                    {this.render2Header()} 
+
+                    <Swiper>
+                        <View style={{ paddingTop: 10 }}>
+                       
+                             {this.renderRequests3()} 
+                        </View>
+                        <View style={{ paddingTop: 10 }}>
+                        {this.renderGoldSchedules()} 
+                            
+                            
+                        </View>
+                        <View>
+                        {this.renderSilverSchedules()} 
+                            
+                           
+                        </View>
+                        <View>
+                        {this.renderBronzeSchedules()} 
+                            
+                            
+                        </View>
+                    </Swiper>
 
 
 
                     </SafeAreaView>
-
+                    </AfterInteractions>
                 );
             }
 
