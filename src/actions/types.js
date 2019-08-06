@@ -19,4 +19,7 @@ export const GET_USER_LASTNAME = 'get_user_lastname';
 export const GET_USER_PLAYINGEXP = 'get_user_playingexp';
 export const GET_USER_EMAIL = 'get_user_email';
 export const GET_FLAG = 'get_flag';
+export const GET_GOLD = 'get_gold';
+export const GET_SILVER = 'get_silver';
+export const GET_BRONZE = 'get_bronze';
 

@@ -11,6 +11,7 @@ import teamListFetchReducer from './teamListFetchReducer';
 import userVenmoReducer from './userVenmoReducer';
 import userFormDetails from './userFormDetails';
 
+
 export default combineReducers({
     listReducer: listReducer,
     userReducer: userReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
     blackTeamReducer: blackTeamReducer,
     teamListFetchReducer: teamListFetchReducer,
     userVenmoReducer: userVenmoReducer,
-    userFormDetails: userFormDetails
+    userFormDetails: userFormDetails,
+    
 });

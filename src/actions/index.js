@@ -2,9 +2,29 @@ import * as firebase from "firebase";
 import { GET_LIST, GET_USER, GET_USER_DETAILS, 
   GET_EVENT_COUNT, GET_EVENT_LIST, FETCH_BEGIN, 
   FETCH_SUCCESS, BALANCE_TEAMS, WHITE_TEAM, BLACK_TEAM, WHITE_TEAM_DNE, BLACK_TEAM_DNE, 
-  LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO, GET_USER_PRICE, GET_USER_FIRSTNAME, GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL, GET_FLAG } from './types';
+  LIST_FETCH_BEGIN, LIST_FETCH_SUCCESS, GET_USER_VENMO, GET_USER_PRICE, GET_USER_FIRSTNAME, 
+  GET_USER_LASTNAME, GET_USER_PLAYINGEXP, GET_USER_EMAIL, GET_FLAG, 
+  GET_GOLD, GET_SILVER, GET_BRONZE,
+} from './types';
 
 //export const getList = (teams) => ({type: GET_LIST, payload: teams})
+
+// export const getGoldSched = () => {
+//   return (dispatch) => {
+//     var ref = firebase.database().ref('Events/');
+//     const gsched = [];
+
+//     ref.on('value', function (snapshot) {
+//       console.log("Gold sched ", snapshot);
+//       snapshot.forEach(function(child){
+//         console.log("Gold sched ", child);
+//       })
+//       dispatch({ type: GET_GOLD, payload: gsched})
+//     })
+//   }
+// }
+
+
 
 
 export const getListThunk = (uuid) => {
