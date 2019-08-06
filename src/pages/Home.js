@@ -387,7 +387,7 @@ class Home extends Component {
 
 
         return (
-            <Block flex={false} color="gray2" style={styles.requests}>
+            <Block flex={1} color="gray2" style={styles.requests}>
                 <Block flex={false} style={[styles.requestsHeader, { alignItems: 'center', justifyContent: 'center', marginBottom: 10 }]}>
                     <Text light style={{ alignItems: 'center', justifyContent: 'center' }}>{title} Games:</Text>
                 </Block>
@@ -462,7 +462,7 @@ class Home extends Component {
             <Text> Broke </Text>
         } else {
             return (
-                <Block flex={false} color="gray2" style={styles.requests}>
+                <Block flex={1} color="gray2" style={styles.requests}>
                     <Block flex={false} style={[styles.requestsHeader, { alignItems: 'center', justifyContent: 'center', marginBottom: 10 }]}>
                         <Text light style={{ alignItems: 'center', justifyContent: 'center' }}>Pickup Games:</Text>
                     </Block>
