@@ -9,7 +9,8 @@ import {
     TouchableOpacity,
     Alert,
     Animated,
-    RefreshControl
+    RefreshControl,
+    Platform
 } from "react-native";
 
 
@@ -156,7 +157,6 @@ class Home extends Component {
 
     _onRefresh = () => {
         this.setState({ refreshing: true });
-
         this.listenForMessages();
         this.setState({ refreshing: false });
 
@@ -169,7 +169,7 @@ class Home extends Component {
 
                 <Block flex={false} column space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
                     <Animated.View
-                        flex={false}
+                        
                         style={{
                             transform: [
                                 {
@@ -186,7 +186,7 @@ class Home extends Component {
                     </Animated.View>
 
                     <Animated.View
-                        flex={false}
+                       
                         style={{ opacity: this.state.textAnim }} >
                         <Text style={{ fontSize: 30, fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 3 }} title secondary >{this.props.userDetailsReducer}!</Text>
                     </Animated.View>
@@ -594,20 +594,27 @@ class Home extends Component {
                 return (
 
                     <SafeAreaView style={styles.safe} >
-                        {this.render2Header()}
+                         {this.render2Header()} 
 
                         <Swiper>
                             <View style={{ paddingTop: 10 }}>
-                                {this.renderRequests3()}
+                           
+                                 {this.renderRequests3()} 
                             </View>
                             <View style={{ paddingTop: 10 }}>
-                                {this.renderGoldSchedules()}
+                            {this.renderGoldSchedules()} 
+                                
+                                
                             </View>
                             <View>
-                                {this.renderSilverSchedules()}
+                            {this.renderSilverSchedules()} 
+                                
+                               
                             </View>
                             <View>
-                                {this.renderBronzeSchedules()}
+                            {this.renderBronzeSchedules()} 
+                                
+                                
                             </View>
                         </Swiper>
 
