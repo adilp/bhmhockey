@@ -599,27 +599,27 @@ class Home extends Component {
                  
                          {this.render2Header()} 
                          
-                        <Swiper>
-                            <View style={{ paddingTop: 10 }}>
-                           
-                                 {this.renderRequests3()} 
-                            </View>
-                            <View style={{ paddingTop: 10 }}>
-                            {this.renderGoldSchedules()} 
-                                
-                                
-                            </View>
-                            <View>
-                            {this.renderSilverSchedules()} 
-                                
-                               
-                            </View>
-                            <View>
-                            {this.renderBronzeSchedules()} 
-                                
-                                
-                            </View>
-                        </Swiper>
+                         <Swiper>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                        
+                              {this.renderRequests3()} 
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderGoldSchedules()} 
+                             
+                             
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderSilverSchedules()} 
+                             
+                            
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderBronzeSchedules()} 
+                             
+                             
+                         </View>
+                     </Swiper>
 
                        
                         <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('NewEvent')} style={styles.TouchableOpacityStyle}>
