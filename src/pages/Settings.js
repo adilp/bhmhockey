@@ -35,6 +35,23 @@ class Settings extends Component {
         firebase.auth().signOut();
         console.log("signedout");
     }
+
+    renderHeader2() {
+        return (
+            <Block flex={false} color="gray2" style={[styles.requests, { marginBottom: 30 }]}>
+
+                <Block flex={false} column space="between" style={[styles.requestsHeader, { marginBottom: 10 }]}>
+                    
+                        <Text style={{ letterSpacing: 3, fontSize: 30 }} title secondary >Settings</Text>
+  
+                </Block>
+
+
+
+
+            </Block>
+        );
+    }
     renderHeader() {
         //const { user } = this.props;
 
@@ -65,7 +82,7 @@ class Settings extends Component {
                         <Block row card shadow color="white" style={styles.request} >
                             <Block row space="between" style={{ paddingHorizontal: 30 }}>
                                 <Block flex={false} row center>
-                                    <Text h3 > Account </Text>
+                                    <Text h3 primary > Account </Text>
                                 </Block>
 
                                 <Block flex={false} row center>
@@ -133,7 +150,7 @@ class Settings extends Component {
                     <Block row card shadow color="white" style={styles.request} >
                         <Block row space="between" style={{ paddingHorizontal: 30 }}>
                             <Block flex={false} row center>
-                                <Text h3 > Logout </Text>
+                                <Text h3 primary > Logout </Text>
                             </Block>
 
                             <Block flex={false} row center>
@@ -154,7 +171,7 @@ class Settings extends Component {
     render() {
         return (
             <SafeAreaView style={styles.safe} >
-                {this.renderHeader()}
+            {this.renderHeader2()}
                 {this.renderRequests()}
             </SafeAreaView>
         );
@@ -168,12 +185,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#A62C23',
+        backgroundColor: theme.colors.gray2,
     },
 
     safe: {
         flex: 1,
-        backgroundColor: theme.colors.accent,
+        backgroundColor: theme.colors.gray2,
     },
     headerChart: {
         paddingTop: 30,

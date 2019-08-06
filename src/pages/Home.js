@@ -119,7 +119,7 @@ class Home extends Component {
 
         //Get Gold schedule
         var gold = firebase.database().ref('Gold/');
-        gold.on("value", function (snapshot) {
+        gold.orderByChild('/order').on("value", function (snapshot) {
             let messages = [];
             snapshot.forEach(child => {
                 let msg = child.val();
@@ -132,7 +132,7 @@ class Home extends Component {
 
         //Get Silver Schedule
         var silver = firebase.database().ref('Silver/');
-        silver.on("value", function (snapshot) {
+        silver.orderByChild('/order').on("value", function (snapshot) {
             let messages = [];
             snapshot.forEach(child => {
                 let msg = child.val();
@@ -145,7 +145,8 @@ class Home extends Component {
 
         //Get Bronze Schedule
         var bronze = firebase.database().ref('Bronze/');
-        bronze.on("value", function (snapshot) {
+        bronze.orderByChild('/order').on("value", function (snapshot) {
+            console.log("This is the snap ", snapshot.val())
             let messages = [];
             snapshot.forEach(child => {
                 let msg = child.val();
