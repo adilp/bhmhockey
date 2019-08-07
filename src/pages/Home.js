@@ -204,110 +204,11 @@ class Home extends Component {
         );
     }
     renderBronzeSchedules() {
-        const obj = [
-            {
-                "date": "August 11, 2019",
-                "Home": "Innisfree",
-                "Away": "Icemen",
-                "Time": "6:00 pm"
-            },
-            {
-                "date": "August 11, 2019",
-                "Home": "Highlanders",
-                "Away": "Bandits",
-                "Time": "7:15 pm"
-            },
-            {
-                "date": "August 11, 2019",
-                "Home": "Flyers",
-                "Away": "Blue Monkey",
-                "Time": "8:30 pm"
-            },
-            {
-                "date": "August 11, 2019",
-                "Home": "Bombers",
-                "Away": "Hooligans",
-                "Time": "8:30 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Flyers",
-                "Away": "Innisfree",
-                "Time": "6:00 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Bandits",
-                "Away": "Hooligans",
-                "Time": "7:15 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Blue Monkey",
-                "Away": "Highlanders",
-                "Time": "8:30 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Icemen",
-                "Away": "Bombers",
-                "Time": "9:45 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Blue Monkey",
-                "Away": "Highlanders",
-                "Time": "3:30 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Innisfree",
-                "Away": "Bandits",
-                "Time": "4:45 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Highlanders",
-                "Away": "Icemen",
-                "Time": "6:00 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Flyers",
-                "Away": "Hooligans",
-                "Time": "7:15 pm"
-            },
-        ]
+        
         return (this.renderScrollableNav(this.state.bronzes, "Bronze"))
     }
     renderGoldSchedules() {
-        const obj1 = [
-            {
-                "date": "August 18, 2019",
-                "Home": "Brew Hops",
-                "Away": "BASH",
-                "Time": "12:45 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Panthers",
-                "Away": "Average Joe's",
-                "Time": "1:00 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "BASH",
-                "Away": "Panthers",
-                "Time": "8:30 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Brew Hops",
-                "Away": "Average Joe's",
-                "Time": "9:45 pm"
-            }
-        ]
-
+       
 
         console.log("typesa ", typeof (this.state.messages));
 
@@ -323,62 +224,7 @@ class Home extends Component {
     }
 
     renderSilverSchedules() {
-        const obj = [
-            {
-                "date": "August 11, 2019",
-                "Home": "Cahaba Brewing",
-                "Away": "Sam Adams",
-                "Time": "2:15 pm"
-            },
-            {
-                "date": "August 11, 2019",
-                "Home": "Bandits",
-                "Away": "Black Market",
-                "Time": "3:30 pm"
-            },
-            {
-                "date": "August 11, 2019",
-                "Home": "Ghost Train",
-                "Away": "Good People",
-                "Time": "4:45 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Good People",
-                "Away": "Bandits",
-                "Time": "2:15 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Sam Adams",
-                "Away": "Ghost Train",
-                "Time": "3:30 pm"
-            },
-            {
-                "date": "August 18, 2019",
-                "Home": "Cahaba Brewing",
-                "Away": "Black Market",
-                "Time": "4:45 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Black Market",
-                "Away": "Cahaba Brewing",
-                "Time": "11:45 am"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Bandits",
-                "Away": "Good People",
-                "Time": "1:00 pm"
-            },
-            {
-                "date": "August 25, 2019",
-                "Home": "Sam Adams",
-                "Away": "Ghost Train",
-                "Time": "2:15 pm"
-            },
-        ]
+       
         return (this.renderScrollableNav(this.state.silvers, "Silver"))
     }
 
