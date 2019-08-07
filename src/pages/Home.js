@@ -53,6 +53,7 @@ class Home extends Component {
             golds: [],
             silvers: [],
             bronzes: [],
+            dleagues: [],
             loadingfetch: false,
             refreshing: false,
             fadeAnim: new Animated.Value(0),
@@ -156,6 +157,19 @@ class Home extends Component {
             that.setState({ bronzes: messages })
         })
 
+        //Get D league Schedule
+        var bronze = firebase.database().ref('DLeague/');
+        bronze.orderByChild('order').on("value", function (snapshot) {
+            console.log("This is the snap ", snapshot.val())
+            let messages = [];
+            snapshot.forEach(child => {
+                let msg = child.val();
+                console.log("chilsdf ", msg)
+                messages.push(msg);
+            })
+            that.setState({ dleagues: messages })
+        })
+
     }
 
 
@@ -202,6 +216,11 @@ class Home extends Component {
 
             </Block>
         );
+    }
+
+    renderDLeagueSchedules() {
+        
+        return (this.renderScrollableNav(this.state.dleagues, "D League"))
     }
     renderBronzeSchedules() {
         
@@ -465,6 +484,9 @@ class Home extends Component {
                              
                              
                          </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                            {this.renderDLeagueSchedules()}
+                        </View>
                      </Swiper>
 
                        
@@ -480,37 +502,40 @@ class Home extends Component {
                 );
             } else {
                 return (
-                    <AfterInteractions flex={1}> 
+                 
                     <SafeAreaView style={styles.safe} >
 
                     {this.render2Header()} 
-
-                    <Swiper>
-                        <View style={{ paddingTop: 10 }}>
-                       
-                             {this.renderRequests3()} 
-                        </View>
-                        <View style={{ paddingTop: 10 }}>
-                        {this.renderGoldSchedules()} 
+                         
+                         <Swiper>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                        
+                              {this.renderRequests3()} 
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderGoldSchedules()} 
+                             
+                             
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderSilverSchedules()} 
+                             
                             
-                            
-                        </View>
-                        <View>
-                        {this.renderSilverSchedules()} 
-                            
-                           
-                        </View>
-                        <View>
-                        {this.renderBronzeSchedules()} 
-                            
-                            
+                         </View>
+                         <View style={{ paddingTop: 10, flex: 1 }}>
+                         {this.renderBronzeSchedules()} 
+                             
+                             
+                         </View>
+                         <View>
+                            {this.renderDLeagueSchedules()}
                         </View>
                     </Swiper>
 
 
 
                     </SafeAreaView>
-                    </AfterInteractions>
+                    
                 );
             }
 
