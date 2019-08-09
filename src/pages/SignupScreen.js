@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
     ScrollView,
-    Image
+    Image,
+    Switch
 } from "react-native";
 
 
@@ -31,7 +32,8 @@ class SignupScreen extends Component {
             level: '',
             uid: '',
             venmo: '',
-            loading: false
+            loading: false,
+            goalie: false
         };
     }
 
@@ -53,7 +55,8 @@ class SignupScreen extends Component {
                     firstname: oldstate.state.firstName,
                     lastname: oldstate.state.lastName,
                     level: oldstate.state.level,
-                    venmo: oldstate.state.venmo
+                    venmo: oldstate.state.venmo,
+                    goalie: oldstate.state.goalie
                 }).then((data)=>{
                     //success callback
                     console.log('data ' , data)
@@ -166,6 +169,13 @@ class SignupScreen extends Component {
               //   keyboardType = "email-address"
                 underlineColorAndroid = "#fff"
               />
+              <View>
+                  <Text> Goalie? </Text>
+                  <Switch 
+                    onValueChange={(value) => this.setState({ goalie: value})}
+                    value = {this.state.goalie}
+                  />
+              </View>
               </View>
               <View style = {styles.signup_actions_container}>
                 <TouchableOpacity  onPress={() => this.props.navigation.navigate('Home')}
